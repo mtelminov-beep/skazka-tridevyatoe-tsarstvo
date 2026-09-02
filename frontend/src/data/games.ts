@@ -24,13 +24,19 @@ export const defaultGames: GamesCatalog = {
     ages: "3-5",
     emoji: "🃏",
     tint: "berry",
+    /*
+      `image` пустой намеренно: карточка показывает крупное эмодзи и в таком
+      виде играется полноценно. Путь с несуществующим файлом был бы хуже
+      пустого — вместо картинки в игре висел бы значок битого изображения.
+      Библиотека подставляет свои рисунки через админку.
+    */
     cards: [
-      { id: "repka", label: "Репка", emoji: "🌱", image: "/games/memory/repka.jpg", tale: "Репка" },
-      { id: "kolobok", label: "Колобок", emoji: "🥯", image: "/games/memory/kolobok.jpg", tale: "Колобок" },
-      { id: "teremok", label: "Теремок", emoji: "🏚️", image: "/games/memory/teremok.jpg", tale: "Теремок" },
-      { id: "yaichko", label: "Золотое яичко", emoji: "🥚", image: "/games/memory/yaichko.jpg", tale: "Курочка Ряба" },
-      { id: "shchuka", label: "Щука", emoji: "🐟", image: "/games/memory/shchuka.jpg", tale: "По щучьему велению" },
-      { id: "strela", label: "Стрела", emoji: "🏹", image: "/games/memory/strela.jpg", tale: "Царевна-лягушка" }
+      { id: "repka", label: "Репка", emoji: "🌱", image: "", tale: "Репка" },
+      { id: "kolobok", label: "Колобок", emoji: "🥯", image: "", tale: "Колобок" },
+      { id: "teremok", label: "Теремок", emoji: "🏚️", image: "", tale: "Теремок" },
+      { id: "yaichko", label: "Золотое яичко", emoji: "🥚", image: "", tale: "Курочка Ряба" },
+      { id: "shchuka", label: "Щука", emoji: "🐟", image: "", tale: "По щучьему велению" },
+      { id: "strela", label: "Стрела", emoji: "🏹", image: "", tale: "Царевна-лягушка" }
     ]
   },
 
@@ -149,24 +155,30 @@ export const defaultGames: GamesCatalog = {
     emoji: "🧩",
     tint: "violet",
     size: 3,
+    /*
+      Картинки — собственные векторные рисунки панели, а не репродукции.
+      Панель работает без сети, а держать в репозитории чужие сканы незачем.
+      Библиотека может заменить их своими файлами через админку: работы
+      Билибина и Васнецова в общественном достоянии, ссылки — в «Галерее».
+    */
     pictures: [
       {
-        id: "bilibin-vasilisa",
-        title: "Василиса Прекрасная",
-        image: "/games/puzzle/bilibin-vasilisa.jpg",
-        caption: "Иван Билибин, иллюстрация к сказке «Василиса Прекрасная»"
+        id: "zhar-ptitsa",
+        title: "Жар-птица",
+        image: "/games/puzzle/zhar-ptitsa.svg",
+        caption: "Жар-птица в ночном саду с золотыми яблоками — «Иван-царевич и Серый Волк»"
       },
       {
-        id: "vasnetsov-kover",
-        title: "Ковёр-самолёт",
-        image: "/games/puzzle/vasnetsov-kover.jpg",
-        caption: "Виктор Васнецов, «Ковёр-самолёт»"
+        id: "izbushka",
+        title: "Избушка на курьих ножках",
+        image: "/games/puzzle/izbushka.svg",
+        caption: "Дом Бабы-яги: сруб на курьих ножках, забор с фонарями — «Василиса Прекрасная»"
       },
       {
-        id: "bilibin-baba-yaga",
-        title: "Баба-яга",
-        image: "/games/puzzle/bilibin-baba-yaga.jpg",
-        caption: "Иван Билибин, иллюстрация к сказке «Василиса Прекрасная»"
+        id: "tsarevna-lyagushka",
+        title: "Царевна-лягушка",
+        image: "/games/puzzle/tsarevna-lyagushka.svg",
+        caption: "Лягушка с короной и стрела на болоте — «Царевна-лягушка»"
       }
     ]
   },

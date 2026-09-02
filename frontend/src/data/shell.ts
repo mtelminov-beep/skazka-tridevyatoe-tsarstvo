@@ -146,7 +146,7 @@ export const defaultHome: HomeCatalog = {
       text: "Тридцать историй: аудио, пересказ по шагам, знаменитые присказки и чему учит сказка.",
       path: "/tales",
       emoji: "📖",
-      image: "/home/tales-photo.png",
+      image: "",
       tint: "gold",
       wide: true
     },
@@ -156,7 +156,7 @@ export const defaultHome: HomeCatalog = {
       text: "Шесть ступеней: от «Репки» в два года до «Марьи Моревны» в пятнадцать.",
       path: "/ages",
       emoji: "🪜",
-      image: "/home/ages-photo.png",
+      image: "",
       tint: "berry",
       wide: false
     },
@@ -166,7 +166,7 @@ export const defaultHome: HomeCatalog = {
       text: "Баба-яга, Кощей, Серый Волк, Василиса Премудрая и лиса Патрикеевна.",
       path: "/heroes",
       emoji: "👑",
-      image: "/home/heroes-photo.png",
+      image: "",
       tint: "violet",
       wide: false
     },
@@ -176,7 +176,7 @@ export const defaultHome: HomeCatalog = {
       text: "Пары, «Чей предмет?», «Доскажи словечко», пазл, «Порядок сказки» и «Кто лишний».",
       path: "/games",
       emoji: "🎲",
-      image: "/home/games-photo.png",
+      image: "",
       tint: "sky",
       wide: true
     },
@@ -186,7 +186,7 @@ export const defaultHome: HomeCatalog = {
       text: "Шесть уровней сложности — по одному на каждую возрастную полку.",
       path: "/quiz",
       emoji: "🎯",
-      image: "/home/quiz-photo.png",
+      image: "",
       tint: "rose",
       wide: false
     },
@@ -196,7 +196,7 @@ export const defaultHome: HomeCatalog = {
       text: "Зачин, присказка и концовка; сказители, собиратели и три типа сказок.",
       path: "/traditions",
       emoji: "🕯️",
-      image: "/home/traditions-photo.png",
+      image: "",
       tint: "ember",
       wide: false
     },
@@ -206,7 +206,7 @@ export const defaultHome: HomeCatalog = {
       text: "Что такое ухват, сусек, кудель, полати и калинов мост.",
       path: "/dictionary",
       emoji: "🔎",
-      image: "/home/dictionary-photo.png",
+      image: "",
       tint: "gzhel",
       wide: false
     },
@@ -216,7 +216,7 @@ export const defaultHome: HomeCatalog = {
       text: "Билибин, Васнецов, Рачёв, палехская лаковая миниатюра.",
       path: "/gallery",
       emoji: "🖼️",
-      image: "/home/gallery-photo.png",
+      image: "",
       tint: "violet",
       wide: false
     },
@@ -226,7 +226,7 @@ export const defaultHome: HomeCatalog = {
       text: "Афиша встреч, кружки и как записаться в читатели.",
       path: "/library",
       emoji: "🏛️",
-      image: "/home/library-photo.png",
+      image: "",
       tint: "gold",
       wide: true
     }

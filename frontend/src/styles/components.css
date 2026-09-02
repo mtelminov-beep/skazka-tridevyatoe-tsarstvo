@@ -679,8 +679,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 5, 26, 0.16), rgba(8, 5, 26, 0.78)),
-    linear-gradient(120deg, rgba(8, 5, 26, 0.78), rgba(8, 5, 26, 0.16) 58%),
+    linear-gradient(180deg, rgba(7, 15, 11, 0.16), rgba(7, 15, 11, 0.78)),
+    linear-gradient(120deg, rgba(7, 15, 11, 0.78), rgba(7, 15, 11, 0.16) 58%),
     var(--tile-image) center / cover;
   opacity: 0.96;
   transform: scale(1.01);

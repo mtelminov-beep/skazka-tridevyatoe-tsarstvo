@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Царевна-лягушка со стрелой">
+  <defs>
+    <linearGradient id="cl-water" x1="0" y1="300" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#23508c"/>
+      <stop offset="100%" stop-color="#10294d"/>
+    </linearGradient>
+    <linearGradient id="cl-sky" x1="0" y1="0" x2="0" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#12261b"/>
+      <stop offset="100%" stop-color="#1a3626"/>
+    </linearGradient>
+    <linearGradient id="cl-frog" x1="220" y1="300" x2="380" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5fbf80"/>
+      <stop offset="100%" stop-color="#1a7148"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="330" fill="url(#cl-sky)"/>
+  <rect y="330" width="600" height="270" fill="url(#cl-water)"/>
+
+  <!-- Камыши -->
+  <g stroke="#0b3a29" stroke-width="10" stroke-linecap="round">
+    <path d="M60 350V180M100 355V225M520 350V200M560 355V245"/>
+  </g>
+  <g fill="#6b3f1c">
+    <rect x="52" y="160" width="16" height="46" rx="8"/>
+    <rect x="92" y="205" width="16" height="40" rx="8"/>
+    <rect x="512" y="180" width="16" height="44" rx="8"/>
+    <rect x="552" y="225" width="16" height="38" rx="8"/>
+  </g>
+
+  <!-- Круги на воде -->
+  <g fill="none" stroke="#9cc8f5" stroke-width="4" opacity="0.45">
+    <ellipse cx="300" cy="455" rx="150" ry="26"/>
+    <ellipse cx="300" cy="455" rx="215" ry="40"/>
+  </g>
+
+  <!-- Кувшинка -->
+  <path d="M180 440c40-26 90-26 130 0-40 26-90 26-130 0Z" fill="#1a7148"/>
+
+  <!-- Лягушка -->
+  <ellipse cx="300" cy="392" rx="92" ry="66" fill="url(#cl-frog)"/>
+  <ellipse cx="262" cy="336" rx="30" ry="28" fill="#5fbf80"/>
+  <ellipse cx="338" cy="336" rx="30" ry="28" fill="#5fbf80"/>
+  <circle cx="262" cy="334" r="13" fill="#fff3d4"/>
+  <circle cx="338" cy="334" r="13" fill="#fff3d4"/>
+  <circle cx="264" cy="336" r="7" fill="#0c1912"/>
+  <circle cx="340" cy="336" r="7" fill="#0c1912"/>
+  <path d="M262 412c22 20 54 20 76 0" stroke="#0b3a29" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M208 432c-30 6-52 22-58 44 30 6 58-4 76-24l-18-20Z" fill="#1a7148"/>
+  <path d="M392 432c30 6 52 22 58 44-30 6-58-4-76-24l18-20Z" fill="#1a7148"/>
+
+  <!-- Корона -->
+  <path d="M252 300l14-42 18 26 16-38 16 38 18-26 14 42h-96Z" fill="#e0a12b"/>
+  <circle cx="300" cy="272" r="8" fill="#d8452f"/>
+
+  <!-- Стрела -->
+  <path d="M430 250 500 180" stroke="#8c5a28" stroke-width="12" stroke-linecap="round"/>
+  <path d="M424 256l-24 24 34-6 6-34-16 16Z" fill="#c8c8c8"/>
+  <path d="M498 178l30-30-6 40-40 6 16-16Z" fill="#fff3d4"/>
+</svg>

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Избушка на курьих ножках">
+  <defs>
+    <linearGradient id="iz-night" x1="0" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070f0b"/>
+      <stop offset="100%" stop-color="#12261b"/>
+    </linearGradient>
+    <linearGradient id="iz-wood" x1="180" y1="200" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#c98f52"/>
+      <stop offset="100%" stop-color="#6b3f1c"/>
+    </linearGradient>
+    <radialGradient id="iz-moon" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#fff3d4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#fff3d4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#iz-night)"/>
+
+  <!-- Луна -->
+  <circle cx="470" cy="120" r="130" fill="url(#iz-moon)"/>
+  <circle cx="470" cy="120" r="62" fill="#ffdf9c"/>
+
+  <!-- Ели -->
+  <path d="M0 600V430l40-70 22 34 38-84 32 62 26-40 44 86V600H0Z" fill="#0b3a29"/>
+  <path d="M600 600V400l-46-80-30 48-40-92-36 70-30-46-48 96V600h230Z" fill="#0b3a29"/>
+
+  <!-- Курьи ножки -->
+  <path d="M235 420v90M365 420v90" stroke="#5a3316" stroke-width="20" stroke-linecap="round"/>
+  <path d="M235 510l-40 35M235 510l40 35M235 510v40" stroke="#5a3316" stroke-width="14" stroke-linecap="round"/>
+  <path d="M365 510l-40 35M365 510l40 35M365 510v40" stroke="#5a3316" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Сруб -->
+  <rect x="190" y="270" width="220" height="160" rx="10" fill="url(#iz-wood)"/>
+  <path d="M190 310h220M190 350h220M190 390h220" stroke="#4e2d13" stroke-width="4" opacity="0.6"/>
+
+  <!-- Крыша -->
+  <path d="M300 170 445 285H155L300 170Z" fill="#8c3a22"/>
+  <path d="M300 170 445 285h-30L300 200 185 285h-30L300 170Z" fill="#d8452f"/>
+
+  <!-- Окно со светом и наличником -->
+  <rect x="258" y="320" width="84" height="76" rx="8" fill="#ffdf9c"/>
+  <path d="M300 320v76M258 358h84" stroke="#6b3f1c" stroke-width="8"/>
+  <path d="M248 312h104l-14-22H262l-14 22Z" fill="#3f7ec4"/>
+  <path d="M248 404h104l-14 22H262l-14-22Z" fill="#3f7ec4"/>
+
+  <!-- Конёк на крыше -->
+  <path d="M300 150c14 10 20 22 18 36-12-6-24-6-36 0-2-14 4-26 18-36Z" fill="#e0a12b"/>
+
+  <!-- Забор с черепами-фонарями -->
+  <g>
+    <path d="M60 560v-60M120 560v-60M480 560v-60M540 560v-60" stroke="#5a3316" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="60" cy="486" r="18" fill="#ffdf9c"/>
+    <circle cx="120" cy="486" r="18" fill="#ffdf9c"/>
+    <circle cx="480" cy="486" r="18" fill="#ffdf9c"/>
+    <circle cx="540" cy="486" r="18" fill="#ffdf9c"/>
+  </g>
+</svg>

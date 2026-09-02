@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-label="Жар-птица в ночном саду">
+  <!--
+    Картинка для пазла. Собственный рисунок, а не репродукция: панель работает
+    без интернета, и тянуть в репозиторий чужие сканы незачем. Композиция
+    крупная и контрастная — иначе кусочки пазла неразличимы на девяти клетках.
+  -->
+  <defs>
+    <linearGradient id="zp-night" x1="0" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c1912"/>
+      <stop offset="100%" stop-color="#1a3626"/>
+    </linearGradient>
+    <linearGradient id="zp-fire" x1="150" y1="120" x2="470" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff3d4"/>
+      <stop offset="40%" stop-color="#f5c451"/>
+      <stop offset="100%" stop-color="#d8452f"/>
+    </linearGradient>
+    <radialGradient id="zp-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#f5c451" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#f5c451" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#zp-night)"/>
+  <circle cx="300" cy="290" r="250" fill="url(#zp-glow)"/>
+
+  <!-- Яблоня с золотыми яблоками -->
+  <path d="M60 600V420c0-90 40-150 100-170" stroke="#3f2a16" stroke-width="26" fill="none" stroke-linecap="round"/>
+  <circle cx="118" cy="250" r="70" fill="#1a7148"/>
+  <circle cx="70" cy="310" r="52" fill="#0b3a29"/>
+  <circle cx="170" cy="315" r="46" fill="#0b3a29"/>
+  <circle cx="105" cy="255" r="17" fill="#e0a12b"/>
+  <circle cx="160" cy="300" r="15" fill="#e0a12b"/>
+  <circle cx="62" cy="298" r="14" fill="#e0a12b"/>
+
+  <!-- Хвост -->
+  <path d="M300 330c-60 90-130 140-230 165 40-120 120-190 210-215l20 50Z" fill="#d8452f"/>
+  <path d="M320 320c-40 100-100 165-190 205 20-125 85-205 165-245l25 40Z" fill="#e08b3c"/>
+  <path d="M345 315c-15 105-55 180-130 235 0-130 45-215 110-265l20 30Z" fill="#f5c451"/>
+
+  <!-- Тело и голова -->
+  <path d="M300 180c75-40 150-20 185 45 30 55 10 115-45 145-60 33-135 20-175-30-35-45-25-125 35-160Z" fill="url(#zp-fire)"/>
+  <path d="M430 195c30-45 70-70 125-80-15 60-50 100-100 122l-25-42Z" fill="#f5c451"/>
+  <circle cx="420" cy="235" r="16" fill="#0c1912"/>
+  <circle cx="426" cy="229" r="6" fill="#fff3d4"/>
+  <path d="M470 250l60 18-58 20-2-38Z" fill="#d8452f"/>
+
+  <!-- Перо, падающее вниз -->
+  <path d="M215 470c50-20 85-10 105 30-45 12-80 6-105-30Z" fill="#f5c451"/>
+  <path d="M215 470l-95 55" stroke="#e0a12b" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Звёзды -->
+  <g fill="#fff3d4">
+    <circle cx="520" cy="70" r="6"/>
+    <circle cx="80" cy="90" r="5"/>
+    <circle cx="560" cy="420" r="5"/>
+    <circle cx="250" cy="60" r="4"/>
+  </g>
+</svg>
