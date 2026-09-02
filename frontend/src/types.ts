@@ -234,6 +234,8 @@ export type SortingBin = {
   id: string;
   label: string;
   emoji: string;
+  /** Старое поле совместимости для импортированных игровых каталогов. */
+  icon?: string;
   image?: string;
 };
 

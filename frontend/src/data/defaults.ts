@@ -1,5 +1,9 @@
 import type { AgeBand, CatalogMap, Tale, TaleKind, Tint } from "../types";
 import { talesAge0 } from "./tales/age0";
+import { talesAge1 } from "./tales/age1";
+import { talesAge2 } from "./tales/age2";
+import { talesAge3 } from "./tales/age3";
+import { talesAge4 } from "./tales/age4";
 import { defaultHeroes } from "./heroes";
 import { defaultDictionary } from "./dictionary";
 
@@ -43,7 +47,19 @@ const makeTale = ([id, title, ages, kind, emoji, shortTitle, summary, moral, tin
   questions: ["Кто помог герою?", "Какой выбор оказался важным?", "Чему учит эта история?"], heroes: [], words: []
 });
 
-export const allTales: Tale[] = [...talesAge0, ...seeds.map(makeTale)];
+/**
+ * Полки 0–13 лет — развёрнутые адаптированные тексты; старшая подборка
+ * остаётся в компактном формате для вдумчивого самостоятельного чтения.
+ * Фильтр нужен, чтобы не продублировать сказки, уже раскрытые в age1–age4.
+ */
+export const allTales: Tale[] = [
+  ...talesAge0,
+  ...talesAge1,
+  ...talesAge2,
+  ...talesAge3,
+  ...talesAge4,
+  ...seeds.filter((seed) => seed[2] === "13-17").map(makeTale)
+];
 
 export const catalogDefaults: CatalogMap = {
   "skazka-navigation-v1": { idleTimeoutMinutes: 8, footer: "Тридевятое царство · библиотечная интерактивная панель", items: [] },
@@ -68,3 +84,17 @@ export const catalogDefaults: CatalogMap = {
 };
 
 export const CATALOG_KEYS = Object.keys(catalogDefaults) as Array<keyof CatalogMap>;
+
+/** Подписи и подсказки сохраняют работоспособность универсальной CMS. */
+export const CATALOG_LABELS: Record<keyof CatalogMap, string> = {
+  "skazka-navigation-v1": "Навигация", "skazka-start-screen-v1": "Заставка", "skazka-home-v1": "Главная",
+  "skazka-ages-v1": "Возрастные полки", "skazka-tales-v1": "Сказки", "skazka-heroes-v1": "Герои",
+  "skazka-dictionary-v1": "Словарик", "skazka-quiz-v1": "Викторина", "skazka-games-v1": "Игры",
+  "skazka-traditions-v1": "Традиция", "skazka-gallery-v1": "Источники", "skazka-library-v1": "Библиотека"
+};
+export const CATALOG_HINTS: Record<keyof CatalogMap, string> = {
+  "skazka-navigation-v1": "Настройки панели.", "skazka-start-screen-v1": "Текст заставки.", "skazka-home-v1": "Плитки главного экрана.",
+  "skazka-ages-v1": "Возрастные рекомендации.", "skazka-tales-v1": "Тексты, пересказы и аудио.", "skazka-heroes-v1": "Карточки персонажей.",
+  "skazka-dictionary-v1": "Толкования слов.", "skazka-quiz-v1": "Вопросы викторины.", "skazka-games-v1": "Игровые задания.",
+  "skazka-traditions-v1": "Материалы о фольклоре.", "skazka-gallery-v1": "Ссылки и иллюстрации.", "skazka-library-v1": "Контакты и события."
+};
