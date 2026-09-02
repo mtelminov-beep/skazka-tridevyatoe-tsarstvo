@@ -110,21 +110,33 @@ const LABELS: Record<string, string> = {
   badges: "Значки на заставке",
   idleTimeoutMinutes: "Возврат на заставку, минут",
   footer: "Подпись внизу панели",
-  nanny: "Блок о няне",
   forKids: "Простыми словами (3 — 7 лет)",
   memory: "Игра «Найди пару»",
   sorting: "Игра «Чей предмет?»",
-  puzzle: "Игра «Собери картинку»"
+  puzzle: "Игра «Собери картинку»",
+  order: "Игра «Порядок сказки»",
+  odd: "Номер лишнего варианта (с нуля)",
+  steps: "Шаги сказки по порядку",
+  sayings: "Присказки и повторы",
+  advice: "Совет родителю",
+  short: "Короткая подпись",
+  kinds: "Типы сказок",
+  structure: "Части сказки",
+  collectors: "Сказители и собиратели",
+  examples: "Примеры сказок",
+  audioParts: "Аудио по частям",
+  src: "Файл"
 };
 
 const TINTS = [
-  { value: "gold", label: "Золото" },
-  { value: "sea", label: "Море" },
-  { value: "forest", label: "Дуб зелёный" },
-  { value: "rose", label: "Заря" },
+  { value: "gold", label: "Хохлома (золото)" },
+  { value: "berry", label: "Клюква" },
+  { value: "gzhel", label: "Гжель" },
+  { value: "forest", label: "Дремучий лес" },
+  { value: "ember", label: "Киноварь" },
   { value: "violet", label: "Сумерки" },
   { value: "sky", label: "Небо" },
-  { value: "ember", label: "Уголь" }
+  { value: "rose", label: "Заря" }
 ];
 
 const AGES = [

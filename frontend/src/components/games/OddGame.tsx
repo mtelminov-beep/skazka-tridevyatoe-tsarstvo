@@ -11,30 +11,29 @@ function shuffle<T>(items: T[]): T[] {
   return copy;
 }
 
-/** Сколько строк в одном коне — чтобы игра не превращалась в марафон. */
-const TASKS_PER_ROUND = 8;
-
-/** «Доскажи словечко»: в знаменитой строке пропущено слово. */
-export function WordGame({ config }: { config: GamesCatalog["words"] }) {
+/**
+ * «Кто лишний»: среди четырёх героев или предметов один из другой сказки.
+ *
+ * Задания перемешиваются, а варианты внутри задания — нет: в `odd` лежит
+ * номер лишнего, и перетасовка вариантов сделала бы его недействительным.
+ * Вместо этого варианты в каталоге записаны в разном порядке от задания
+ * к заданию — ребёнок не может выучить «лишний всегда справа».
+ */
+export function OddGame({ config }: { config: GamesCatalog["odd"] }) {
   const [round, setRound] = useState(0);
   const [position, setPosition] = useState(0);
-  const [picked, setPicked] = useState<string | null>(null);
+  const [picked, setPicked] = useState<number | null>(null);
   const [score, setScore] = useState(0);
 
-  const queue = useMemo(
-    () => shuffle(config.tasks).slice(0, Math.min(TASKS_PER_ROUND, config.tasks.length)),
-    [config.tasks, round]
-  );
+  const queue = useMemo(() => shuffle(config.tasks), [config.tasks, round]);
 
   const task = queue[position] ?? null;
-  // Варианты тоже перемешиваем: иначе правильный всегда стоит первым.
-  const options = useMemo(() => (task ? shuffle(task.options) : []), [task]);
   const finished = position >= queue.length;
 
-  const choose = (option: string) => {
-    if (picked || !task) return;
-    setPicked(option);
-    if (option === task.answer) setScore((previous) => previous + 1);
+  const choose = (index: number) => {
+    if (picked !== null || !task) return;
+    setPicked(index);
+    if (index === task.odd) setScore((previous) => previous + 1);
   };
 
   const next = () => {
@@ -59,7 +58,9 @@ export function WordGame({ config }: { config: GamesCatalog["words"] }) {
             {score} из {queue.length}
           </div>
           <div className="quote-card__note">
-            {great ? "Отлично! Сказочные присказки вы знаете наизусть." : "Загляните в раздел «Сказки» — и попробуйте снова."}
+            {great
+              ? "Отлично! Вы точно знаете, кто в какой сказке живёт."
+              : "Загляните в раздел «Герои» — там про каждого рассказано отдельно."}
           </div>
         </div>
         <div className="row" style={{ justifyContent: "center" }}>
@@ -73,7 +74,7 @@ export function WordGame({ config }: { config: GamesCatalog["words"] }) {
 
   if (!task) return null;
 
-  const right = picked === task.answer;
+  const right = picked === task.odd;
 
   return (
     <>
@@ -82,7 +83,7 @@ export function WordGame({ config }: { config: GamesCatalog["words"] }) {
           <b>
             {position + 1}/{queue.length}
           </b>
-          <span>Строка</span>
+          <span>Вопрос</span>
         </div>
         <div className="game-bar__stat">
           <b>{score}</b>
@@ -93,41 +94,32 @@ export function WordGame({ config }: { config: GamesCatalog["words"] }) {
         </button>
       </div>
 
-      <div className="word-line" key={task.id}>
-        {task.before}{" "}
-        <span className={`word-blank${picked && right ? " word-blank--filled" : ""}`}>
-          {picked ? picked : "…"}
-        </span>
-        {task.after}
-        <div style={{ fontSize: "0.8rem", color: "var(--text-faint)", marginTop: "0.9rem", fontFamily: "Nunito, sans-serif" }}>
-          {task.source}
-        </div>
+      <div className="quiz-question" key={task.id}>
+        {task.question}
       </div>
 
-      <div className="word-options">
-        {options.map((option) => {
-          let className = "answer";
-          if (picked) {
-            if (option === task.answer) className += " answer--right";
-            else if (option === picked) className += " answer--wrong";
-            else className += " answer--muted";
+      <div className="odd-grid">
+        {task.options.map((option, index) => {
+          let className = "odd-card";
+          if (picked !== null) {
+            if (index === task.odd) className += " odd-card--right";
+            else if (index === picked) className += " odd-card--wrong";
+            else className += " odd-card--muted";
           }
           return (
-            <button key={option} type="button" className={className} onClick={() => choose(option)}>
-              <span className="answer__key" aria-hidden="true">
-                ✎
-              </span>
-              <span>{option}</span>
-              <span />
+            <button key={option.label} type="button" className={className} onClick={() => choose(index)}>
+              <em aria-hidden="true">{option.emoji}</em>
+              <span>{option.label}</span>
             </button>
           );
         })}
       </div>
 
-      {picked ? (
+      {picked !== null ? (
         <div className="rise-in" style={{ marginTop: "1.2rem" }}>
           <div className="explain">
-            {right ? "Верно! Именно так в сказке." : `Правильное слово — «${task.answer}».`}
+            <strong>{right ? "Верно. " : "Не он. "}</strong>
+            {task.explain}
           </div>
           <div className="row" style={{ justifyContent: "center", marginTop: "1rem" }}>
             <button type="button" className="btn btn--primary btn--lg" onClick={next}>

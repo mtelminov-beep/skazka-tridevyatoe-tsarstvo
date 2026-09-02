@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMax slice" role="img" aria-label="">
+  <!--
+    Фон заставки: ночной лес, дорога к терему и жар-птица над ним.
+    Векторный, а не растровый: панель 4K, и любая фотография такого размера
+    весила бы мегабайты, а рисунок здесь всё равно условный.
+    Библиотека может заменить его своей картинкой через админку.
+  -->
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070f0b"/>
+      <stop offset="55%" stop-color="#0c1912"/>
+      <stop offset="100%" stop-color="#12261b"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="440" y1="1180" x2="660" y2="1520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffdf9c"/>
+      <stop offset="50%" stop-color="#e0a12b"/>
+      <stop offset="100%" stop-color="#8a5316"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#fff3d4" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#e0a12b" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e0a12b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="road" x1="540" y1="1500" x2="540" y2="1920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e0a12b" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#e0a12b" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="url(#night)"/>
+
+  <!-- Месяц -->
+  <circle cx="800" cy="330" r="230" fill="url(#moon)"/>
+  <path d="M812 210a125 125 0 1 0 0 240 150 150 0 0 1 0-240Z" fill="#ffdf9c" opacity="0.85"/>
+
+  <!-- Дальний лес -->
+  <path fill="#0b3a29" opacity="0.75" d="M0 1250l45-70 22 34 38-84 32 62 26-40 44 86 38-62 32 50 48-96 38 74 32-46 44 80 38-56 32 44 48-86 38 68 32-42 44 76 38-52 32 40 48-80 38 64 32-38 44 72 38-48 32 36 48-74 38 60 32-34 44 68V1920H0Z"/>
+
+  <!-- Ближний лес -->
+  <path fill="#12261b" d="M0 1470l60-96 30 48 50-116 44 86 34-56 58 118 50-86 44 70 62-130 50 100 44-62 58 108 50-72 44 62 62-118 50 94 44-56 58 100 50-66 44 56 62-110 50 88 44-50 58 92V1920H0Z"/>
+
+  <!-- Дорога к терему -->
+  <path d="M500 1500h80l120 420H380l120-420Z" fill="url(#road)"/>
+
+  <!-- Терем -->
+  <g>
+    <path d="M540 1150 700 1300H380l160-150Z" fill="#d8452f"/>
+    <rect x="410" y="1300" width="260" height="230" rx="10" fill="url(#gold)"/>
+    <rect x="450" y="1350" width="60" height="70" rx="8" fill="#0c1912"/>
+    <rect x="570" y="1350" width="60" height="70" rx="8" fill="#0c1912"/>
+    <rect x="505" y="1450" width="70" height="80" rx="8" fill="#0c1912"/>
+    <path d="M540 1190 578 1230 540 1270 502 1230Z" fill="#ffdf9c"/>
+  </g>
+
+  <!-- Жар-птица -->
+  <g opacity="0.9">
+    <path d="M300 640c70-52 150-46 196 22-64 10-104 40-124 88-30-46-54-78-72-110Z" fill="#e0a12b"/>
+    <path d="M496 662c58-70 104-118 168-150-24 74-58 130-104 178-22-14-42-22-64-28Z" fill="#f5c451"/>
+    <path d="M372 750c-46 44-88 66-142 78 34-56 76-92 124-112 6 12 12 23 18 34Z" fill="#d8452f"/>
+    <circle cx="470" cy="676" r="9" fill="#0c1912"/>
+  </g>
+</svg>

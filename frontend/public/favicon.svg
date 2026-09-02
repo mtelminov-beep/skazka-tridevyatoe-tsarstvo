@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Тридевятое царство">
+  <defs>
+    <linearGradient id="gold" x1="14" y1="6" x2="50" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffdf9c"/>
+      <stop offset="45%" stop-color="#e0a12b"/>
+      <stop offset="100%" stop-color="#8a5316"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="#0c1912"/>
+
+  <!-- Терем: сруб, крыша шатром и золотой конёк -->
+  <path d="M32 7 52 25H12L32 7Z" fill="#d8452f"/>
+  <path d="M15 25h34v28H15V25Z" fill="url(#gold)"/>
+  <rect x="21" y="31" width="9" height="10" rx="2" fill="#0c1912"/>
+  <rect x="34" y="31" width="9" height="10" rx="2" fill="#0c1912"/>
+  <rect x="27" y="44" width="10" height="9" rx="2" fill="#0c1912"/>
+
+  <!-- Ромб с крючками — знак засеянного поля, самый частый узор вышивки -->
+  <path d="M32 12 38 18 32 24 26 18Z" fill="#ffdf9c"/>
+
+  <!-- Звезда над теремом -->
+  <path d="M32 2.5 33.6 6l3.6.6-2.6 2.5.6 3.6L32 11l-3.2 1.7.6-3.6L26.8 6.6 30.4 6 32 2.5Z" fill="#ffdf9c"/>
+</svg>
