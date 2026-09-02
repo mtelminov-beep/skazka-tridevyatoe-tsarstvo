@@ -1,0 +1,10 @@
+node_modules/
+dist/
+*.log
+*.tsbuildinfo
+
+# Состояние CMS и загруженные библиотекой файлы — это данные конкретной панели,
+# а не код проекта. Восстанавливаются из резервной копии в админке.
+backend/data/cms-state.json
+media/uploads/*
+!media/uploads/.gitkeep

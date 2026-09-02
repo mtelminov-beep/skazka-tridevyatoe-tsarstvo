@@ -1,0 +1,16 @@
+{
+  "name": "skazka-interactive",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Интерактивная панель «Тридевятое царство» — русские народные сказки для детской библиотеки нового поколения",
+  "type": "module",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:api": "npm --prefix backend run dev",
+    "dev:web": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix backend run start",
+    "kiosk": "npm run build && npm run start",
+    "check": "npm --prefix frontend run check"
+  }
+}

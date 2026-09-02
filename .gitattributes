@@ -1,0 +1,16 @@
+# Единый перевод строки в репозитории.
+* text=auto eol=lf
+
+CHANGELOG.md merge=union
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.gif  binary
+*.mp4  binary
+*.webm binary
+*.mp3  binary
+*.ogg  binary
+*.m4a  binary

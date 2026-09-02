@@ -1,0 +1,661 @@
+/*
+  Админка (CMS) — системный вид.
+
+  Панель в зале и админка решают разные задачи, поэтому оформление здесь
+  намеренно не «сказочное»: системный шрифт, светлый нейтральный фон,
+  прямые углы, тонкие рамки, никакой анимации. Библиотекарь работает мышью
+  и клавиатурой на обычном мониторе, ему важны плотность и предсказуемость.
+
+  Кегль задан в пикселях: у панели html font-size тянется за вьюпортом
+  (clamp до 30px), и на экране 75" вёрстка в rem раздулась бы вдвое.
+  Внутри .admin переопределены и переменные темы — их используют
+  оставшиеся инлайновые стили в компонентах админки.
+*/
+
+.admin {
+  /* Собственная палитра: серый интерфейс, синий акцент, красный для опасного */
+  --a-bg: #f1f3f5;
+  --a-panel: #ffffff;
+  --a-head: #e9ecef;
+  --a-border: #c6ccd2;
+  --a-border-soft: #dee2e6;
+  --a-text: #16191d;
+  --a-muted: #5b6672;
+  --a-accent: #1a56c4;
+  --a-accent-soft: #dbe6fb;
+  --a-danger: #b42318;
+  --a-ok: #10693a;
+  --a-info: #0b5d8a;
+
+  /* Переменные темы панели — чтобы оставшиеся инлайновые var(--…) не тянули сказочные цвета */
+  --text: var(--a-text);
+  --text-dim: #3d454e;
+  --text-faint: var(--a-muted);
+  --border: var(--a-border);
+  --border-strong: #aab3bc;
+  --surface: var(--a-panel);
+  --surface-strong: var(--a-head);
+  --bg-deep: var(--a-bg);
+  --sea-300: var(--a-accent);
+  --gold-200: var(--a-text);
+  --gold-300: var(--a-text);
+  --gold-400: var(--a-accent);
+
+  min-height: 100dvh;
+  background: var(--a-bg);
+  color: var(--a-text);
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  color-scheme: light;
+}
+
+/* Заголовки панели набраны акцидентным шрифтом — в админке он неуместен */
+.admin h1,
+.admin h2,
+.admin h3,
+.admin h4 {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.admin h1 {
+  font-size: 18px;
+}
+.admin h2 {
+  font-size: 16px;
+}
+.admin h3,
+.admin h4 {
+  font-size: 13px;
+}
+
+.admin p {
+  margin: 0 0 8px;
+}
+
+.admin p:last-child {
+  margin-bottom: 0;
+}
+
+.admin code {
+  font-family: Consolas, "Cascadia Mono", ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.admin a {
+  color: var(--a-accent);
+}
+
+/* Ни свечения, ни золотой обводки — только системная рамка фокуса */
+.admin :focus-visible {
+  outline: 2px solid var(--a-accent);
+  outline-offset: 1px;
+  border-radius: 0;
+}
+
+/* Появление вложенных форм анимируется на панели, в админке это только мешает */
+.admin .rise-in {
+  animation: none;
+}
+
+.admin-shell {
+  display: grid;
+  grid-template-columns: 264px 1fr;
+  min-height: 100dvh;
+}
+
+/* ---------------------------- Боковая колонка ---------------------------- */
+
+.admin-side {
+  border-right: 1px solid var(--a-border);
+  background: var(--a-panel);
+  padding: 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow-y: auto;
+}
+
+.admin-brand {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--a-head);
+  border-bottom: 1px solid var(--a-border);
+}
+
+.admin-brand strong {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-brand span {
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--a-muted);
+}
+
+.admin-side__group {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--a-border-soft);
+}
+
+.admin-side__footer {
+  margin-top: auto;
+  padding: 10px 8px 0;
+  border-top: 1px solid var(--a-border-soft);
+}
+
+.admin-nav {
+  display: grid;
+  gap: 0;
+  padding: 4px 0;
+}
+
+.admin-nav button {
+  position: relative;
+  display: grid;
+  gap: 1px;
+  padding: 6px 22px 6px 12px;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--a-text);
+  text-align: left;
+  font-size: 13px;
+}
+
+.admin-nav button small {
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--a-muted);
+}
+
+.admin-nav button:hover {
+  background: var(--a-head);
+}
+
+.admin-nav button.is-active {
+  background: var(--a-accent-soft);
+  border-left-color: var(--a-accent);
+  font-weight: 600;
+}
+
+/* Точка — раздел опубликован на сервере. Кнопка — грид, поэтому точку
+   уводим в абсолютное позиционирование, иначе она встанет отдельной строкой */
+.admin-nav button .admin-dot {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--a-ok);
+}
+
+/* -------------------------------- Контент -------------------------------- */
+
+.admin-main {
+  padding: 14px 20px 60px;
+  max-width: 1100px;
+}
+
+.admin-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--a-border);
+}
+
+.admin-head h1 {
+  margin-bottom: 4px;
+}
+
+.admin-head p {
+  max-width: 720px;
+  font-size: 12px;
+  color: var(--a-muted);
+}
+
+/* Липкая панель действий: сохранить и опубликовать всегда под рукой */
+.admin-actions {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--a-border-soft);
+  background: var(--a-bg);
+}
+
+/* --------------------------------- Кнопки -------------------------------- */
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--a-border);
+  border-radius: 3px;
+  background: linear-gradient(180deg, #ffffff, #f0f2f4);
+  color: var(--a-text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Кнопка внутри поля (например «+ Добавить») не должна тянуться во всю ширину:
+   .admin-field — грид, и здесь работает justify-self, а не align-self */
+.admin-field > .admin-btn {
+  justify-self: start;
+}
+
+.admin-btn:hover {
+  background: #e8ebee;
+}
+
+.admin-btn:active {
+  background: #dde1e5;
+}
+
+.admin-btn--primary {
+  border-color: #14449c;
+  background: var(--a-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.admin-btn--primary:hover {
+  background: #1749a8;
+}
+
+.admin-btn--primary:active {
+  background: #143d8f;
+}
+
+.admin-btn--danger {
+  border-color: #d8b4b0;
+  color: var(--a-danger);
+}
+
+.admin-btn--danger:hover {
+  background: #fbeceb;
+}
+
+.admin-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ----------------------------- Блоки и поля ------------------------------ */
+
+.admin-card {
+  padding: 10px 12px;
+  border: 1px solid var(--a-border);
+  border-radius: 3px;
+  background: var(--a-panel);
+  margin-bottom: 10px;
+}
+
+/* Заголовок блока — как шапка окна: во всю ширину карточки */
+.admin-card > h4:first-child {
+  margin: -10px -12px 10px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--a-border);
+  border-radius: 3px 3px 0 0;
+  background: var(--a-head);
+}
+
+.admin-editor {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-field {
+  display: grid;
+  gap: 3px;
+}
+
+.admin-field > label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--a-text);
+}
+
+.admin-input,
+.admin-textarea {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid var(--a-border);
+  border-radius: 3px;
+  background: #ffffff;
+  color: var(--a-text);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.admin-input:focus,
+.admin-textarea:focus {
+  outline: none;
+  border-color: var(--a-accent);
+  box-shadow: 0 0 0 2px var(--a-accent-soft);
+}
+
+.admin-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.admin-textarea--code {
+  min-height: 520px;
+  font-family: Consolas, "Cascadia Mono", ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.admin-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-check input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--a-accent);
+}
+
+.admin-count {
+  font-weight: 400;
+  color: var(--a-muted);
+}
+
+/* Повторяющийся элемент списка */
+.admin-repeat {
+  padding: 6px;
+  border: 1px solid var(--a-border-soft);
+  border-radius: 3px;
+  background: #fafbfc;
+}
+
+.admin-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+.admin-row--split {
+  justify-content: space-between;
+}
+
+.admin-row--top {
+  align-items: flex-start;
+}
+
+.admin-list {
+  display: grid;
+  gap: 4px;
+}
+
+.admin-grow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* -------------------------------- Сообщения ------------------------------- */
+
+.admin-alert {
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  border: 1px solid var(--a-border);
+  border-radius: 3px;
+  background: var(--a-head);
+  font-size: 12px;
+}
+
+.admin-alert--error {
+  border-color: #e0b4b0;
+  background: #fbeceb;
+  color: var(--a-danger);
+}
+
+.admin-alert--ok {
+  border-color: #b6ddc4;
+  background: #eaf6ee;
+  color: var(--a-ok);
+}
+
+.admin-alert--info {
+  border-color: #b8d4e6;
+  background: #eaf3f9;
+  color: var(--a-info);
+}
+
+/* ------------------------------ Поле с медиа ------------------------------ */
+
+.admin-media-field {
+  display: grid;
+  gap: 6px;
+  padding: 6px;
+  border: 1px dashed var(--a-border);
+  border-radius: 3px;
+  background: #fafbfc;
+}
+
+.admin-media-field--over {
+  border-color: var(--a-accent);
+  background: var(--a-accent-soft);
+}
+
+.admin-media-field__input {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.admin-media-field__input > :first-child {
+  flex: 1 1 auto;
+}
+
+.admin-media-field__hint {
+  font-size: 11px;
+  color: var(--a-muted);
+}
+
+.admin-media-field__preview {
+  max-width: 320px;
+  border: 1px solid var(--a-border-soft);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.admin-media-field__preview img,
+.admin-media-field__preview video,
+.admin-media-field__preview iframe {
+  width: 100%;
+  display: block;
+  border: 0;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: #e9ecef;
+}
+
+.admin-media-field__preview audio {
+  width: 100%;
+}
+
+/* -------------------------------- Медиатека ------------------------------- */
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.media-item {
+  display: grid;
+  grid-template-rows: auto auto;
+  border: 1px solid var(--a-border);
+  border-radius: 3px;
+  background: var(--a-panel);
+  overflow: hidden;
+}
+
+.media-item__preview {
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: #e9ecef;
+  font-size: 26px;
+  overflow: hidden;
+}
+
+.media-item__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-item__body {
+  display: grid;
+  gap: 4px;
+  padding: 6px;
+  font-size: 11px;
+  color: var(--a-muted);
+}
+
+.media-item__name {
+  font-size: 12px;
+  color: var(--a-text);
+  word-break: break-word;
+}
+
+.media-item__body code {
+  font-size: 11px;
+  color: var(--a-accent);
+  word-break: break-all;
+}
+
+/* ------------------------------- Экран входа ------------------------------ */
+
+.admin-login {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.admin-login form {
+  width: 340px;
+  max-width: 100%;
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--a-border);
+  border-radius: 3px;
+  background: var(--a-panel);
+}
+
+.admin-login__title {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--a-border-soft);
+}
+
+.admin-login__title p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--a-muted);
+}
+
+.admin-login summary {
+  font-size: 12px;
+  color: var(--a-muted);
+  cursor: pointer;
+}
+
+.admin-note {
+  margin: 0;
+  font-size: 11px;
+  color: var(--a-muted);
+}
+
+/* ------------------------------ Посещаемость ------------------------------ */
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 4px 8px;
+  border: 1px solid var(--a-border-soft);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  background: var(--a-head);
+  font-weight: 600;
+}
+
+.admin-table td:last-child {
+  width: 80px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin-table__bar {
+  width: 50%;
+}
+
+.admin-table__bar i {
+  display: block;
+  height: 10px;
+  min-width: 1px;
+  background: var(--a-accent);
+}
+
+@media (max-width: 900px) {
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-side {
+    position: static;
+    height: auto;
+  }
+
+  .admin-main {
+    padding: 12px 12px 48px;
+  }
+}
