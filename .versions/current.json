@@ -1,25 +1,12 @@
 {
-  "version": "1.1.0",
-  "updatedAt": "2026-09-03T05:52:22.662Z",
+  "version": "1.1.1",
+  "updatedAt": "2026-09-03T05:53:04.308Z",
   "agent": "claude",
   "host": "DESKTOP-D0H2DER",
   "branch": "main",
-  "summary": "Панель поднята и проверена в браузере: сборка, замена неотображаемых эмодзи, исправлены переносы заголовка заставки и шапка при адресе со слэшем",
-  "type": "minor",
+  "summary": "Файл блокировки журнала версий занесён в .gitignore — после bump рабочее дерево остаётся чистым",
+  "type": "patch",
   "files": [
-    "README.md",
-    "frontend/src/components/Layout.tsx",
-    "frontend/src/components/games/SortingGame.tsx",
-    "frontend/src/data/dictionary.ts",
-    "frontend/src/data/games.ts",
-    "frontend/src/data/heroes.ts",
-    "frontend/src/data/quiz.ts",
-    "frontend/src/data/shell.ts",
-    "frontend/src/data/tales/age4.ts",
-    "frontend/src/data/tales/age5.ts",
-    "frontend/src/data/traditions.ts",
-    "frontend/src/styles/folk.css",
-    "backend/package-lock.json",
-    "frontend/package-lock.json"
+    ".gitignore"
   ]
 }
