@@ -90,6 +90,8 @@ npm run kiosk            # сборка и запуск в режиме киос
 - `frontend/src/components/games/` — шесть игр
 - `frontend/src/admin/` — редакторы CMS, админка на `/admin`
 - `frontend/src/styles/folk.css` — компоненты, которых нет в оболочке «Лукоморья»
+- `frontend/src/styles/adaptive.css` — устройство и представление (киоск / горизонтальное)
+- `frontend/src/stores/viewport.ts` — замер экрана, data-атрибуты на `<html>`
 - `frontend/public/covers/` — обложки сказок и фон заставки
 - `backend/src/catalogKeys.js` — список ключей каталогов CMS
 - `scripts/version.mjs` — журнал версий

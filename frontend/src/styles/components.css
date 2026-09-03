@@ -640,8 +640,29 @@
 
 .tiles {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /*
+    Здесь auto-fit не годится: .tile--wide занимает две колонки, а когда
+    колонка остаётся одна, span 2 создаёт лишнюю и плитка вылезает за сетку.
+    Поэтому число колонок задано контрольными точками, а span — вместе с ним.
+  */
+  grid-template-columns: 1fr;
   gap: 1rem;
+}
+
+@media (min-width: 560px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tile--wide {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1500px) {
+  .tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .tile {
@@ -701,7 +722,6 @@
 }
 
 .tile--wide {
-  grid-column: span 2;
   min-height: 10rem;
 }
 
@@ -763,7 +783,8 @@
 
 .tale-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Колонки считает сама сетка: две на вертикальной панели, больше — на столе */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 1.1rem;
 }
 
@@ -1054,7 +1075,7 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
   gap: 1rem;
 }
 
@@ -2271,7 +2292,7 @@
 
 .level-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 1rem;
 }
 
@@ -2461,7 +2482,7 @@
 
 .game-menu {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 1rem;
 }
 
@@ -2829,7 +2850,7 @@
 
 .word-options {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 0.8rem;
 }
 
@@ -2839,6 +2860,9 @@
   display: grid;
   gap: 4px;
   aspect-ratio: 1;
+  /* Квадрат по ширине легко перерастает экран, положенный горизонтально */
+  max-width: min(100%, 78dvh);
+  margin-inline: auto;
   padding: 4px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
@@ -2875,7 +2899,7 @@
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
   gap: 1rem;
 }
 
@@ -3114,51 +3138,8 @@
   font-weight: 700;
 }
 
-/* ===================== Плотные экраны (ландшафт/малый) ==================== */
-
-@media (orientation: landscape) and (max-height: 900px) {
-  :root {
-    --dock-height: 8.4rem;
-    --touch-min: 4.2rem;
-  }
-
-  .tiles,
-  .tale-grid,
-  .game-menu,
-  .level-grid,
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .tile--wide {
-    grid-column: span 2;
-  }
-
-  .hero-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .memory-board {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-/* Узкие телефоны — режим предпросмотра для библиотекаря */
-@media (max-width: 420px) {
-  .hero-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .word-options,
-  .tiles,
-  .tale-grid,
-  .game-menu,
-  .level-grid,
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .tile--wide {
-    grid-column: span 1;
-  }
-}
+/*
+  Правила для узких экранов и для экрана, положенного горизонтально,
+  собраны в adaptive.css: сетки выше считают колонки сами, а всё,
+  что зависит от устройства и режима представления, живёт в одном месте.
+*/

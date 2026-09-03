@@ -4,6 +4,23 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.3.0 — 03.09.2026 13:27:24
+
+**Агент:** claude  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-03T08:27:24.497Z
+
+Панель подстраивается под любой экран: класс устройства и ориентация определяются сами, добавлено горизонтальное представление с боковой навигацией и переключатель режима киоска в шапке
+
+Изменённые файлы:
+- `CLAUDE.md`
+- `README.md`
+- `frontend/src/components/Layout.tsx`
+- `frontend/src/main.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/src/styles/theme.css`
+- `frontend/src/stores/viewport.ts`
+- `frontend/src/styles/adaptive.css`
+
+
 ## v1.2.1 — 03.09.2026 13:05:32
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** patch  ·  **UTC:** 2026-09-03T08:05:32.894Z

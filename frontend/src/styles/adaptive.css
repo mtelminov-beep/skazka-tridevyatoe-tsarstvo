@@ -1,0 +1,267 @@
+/*
+  Адаптация под устройство и режим представления.
+
+  Панель ставят на разное железо: вертикальная панель 75", интерактивный стол
+  55" (лежит горизонтально или поднят вертикально), планшет библиотекаря,
+  обычный компьютер в кабинете. Раньше вёрстка была рассчитана на один экран
+  1080×1920, а всё остальное разбиралось двумя случайными медиа-запросами.
+
+  Теперь размеры считаются сами:
+    • кегль и все rem-размеры тянутся за короткой стороной экрана (theme.css);
+    • сетки набирают колонки через auto-fit (components.css);
+    • здесь — то, что зависит от класса устройства и от того,
+      как экран повёрнут.
+
+  Атрибуты на <html> расставляет stores/viewport.ts:
+    data-device  phone | tablet | laptop | panel
+    data-input   touch | mouse
+    data-orient  portrait | landscape
+    data-layout  kiosk | wide
+    data-mode    auto | kiosk | wide
+*/
+
+/* ======================= Настройка под устройство ======================= */
+
+/*
+  Вся вёрстка в rem, а базовый кегль уже привязан к экрану, поэтому
+  подстраивать приходится немногое: зону касания (пальцу ребёнка на панели
+  нужно куда больше, чем курсору мыши на ноутбуке) и поля страницы.
+*/
+
+:root[data-device="phone"] {
+  --touch-min: 3rem;
+  --dock-height: 8.4rem;
+  --page-pad: clamp(12px, 4vw, 20px);
+  --radius-xl: 28px;
+}
+
+:root[data-device="tablet"] {
+  --touch-min: 3.8rem;
+  --dock-height: 10rem;
+}
+
+:root[data-device="laptop"] {
+  --touch-min: 3.2rem;
+  --dock-height: 9.4rem;
+}
+
+/* Панель и стол — то, ради чего всё затевалось: значения из theme.css */
+:root[data-device="panel"] {
+  --touch-min: 5.2rem;
+  --dock-height: 11rem;
+}
+
+/* Мышью попадают точнее пальца — кнопки могут быть компактнее */
+:root[data-input="mouse"] {
+  --touch-min: 3.2rem;
+}
+
+/* Телефон и планшет библиотекаря: док ужимается, иначе съедает пол-экрана */
+:root[data-device="phone"] .dock-icon,
+:root[data-device="tablet"] .dock-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+:root[data-device="phone"] .dock-icon svg,
+:root[data-device="tablet"] .dock-icon svg {
+  width: 2.05rem;
+  height: 2.05rem;
+}
+
+:root[data-device="phone"] .dock__btn,
+:root[data-device="tablet"] .dock__btn {
+  min-width: 5.2rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.7rem;
+}
+
+:root[data-device="phone"] .topbar__title span {
+  display: none;
+}
+
+/* ==================== Горизонтальное представление ==================== */
+/*
+  Док внизу придуман для вертикальной панели 75": верх экрана ребёнку
+  недосягаем. На экране, положенном горизонтально, недосягаемого верха нет,
+  зато в дефиците высота — полоса кнопок внизу съедала бы четверть контента.
+  Поэтому в горизонтальном представлении навигация уезжает в ленту слева,
+  а страница получает всю высоту.
+*/
+
+:root[data-layout="wide"] .app-shell {
+  padding-left: var(--rail-width);
+}
+
+:root[data-layout="wide"] .dock {
+  top: 0;
+  right: auto;
+  width: var(--rail-width);
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 0.55rem 0.8rem;
+  border-right: 1px solid var(--border);
+  background: linear-gradient(90deg, rgba(7, 15, 11, 0.97) 55%, rgba(7, 15, 11, 0.86) 100%);
+}
+
+:root[data-theme="day"][data-layout="wide"] .dock {
+  background: linear-gradient(90deg, rgba(240, 236, 255, 0.98) 55%, rgba(240, 236, 255, 0.88) 100%);
+}
+
+:root[data-layout="wide"] .dock__scroll {
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.45rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 0;
+}
+
+:root[data-layout="wide"] .dock__btn {
+  width: 100%;
+  min-width: 0;
+  padding: 0.5rem 0.35rem;
+  font-size: 0.72rem;
+}
+
+:root[data-layout="wide"] .dock-icon {
+  width: 2.7rem;
+  height: 2.7rem;
+}
+
+:root[data-layout="wide"] .dock-icon svg {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+:root[data-layout="wide"] .dock__footer {
+  flex: 0 0 auto;
+  margin-top: 0.5rem;
+  font-size: 0.6rem;
+  line-height: 1.3;
+}
+
+/* Дока внизу больше нет — под ним не нужно оставлять место */
+:root[data-layout="wide"] .app-main {
+  padding-bottom: 2.5rem;
+}
+
+/* Шире экран — шире колонка текста, но не бесконечно: строку длиннее
+   примерно 90 знаков глазами уже не держат */
+:root[data-layout="wide"] .page {
+  max-width: 96rem;
+}
+
+/* Лист с подробностями всплывает над контентом, а не над лентой навигации */
+:root[data-layout="wide"] .modal-backdrop {
+  padding-left: var(--rail-width);
+  justify-items: center;
+}
+
+:root[data-layout="wide"] .modal {
+  width: min(100%, 64rem);
+  max-height: 94dvh;
+}
+
+/* Мемори: доска раскладывается вширь, но не растягивается на весь стол —
+   карточку размером с ладонь искать глазами тяжелее, чем компактную */
+:root[data-layout="wide"] .memory-board {
+  grid-template-columns: repeat(6, 1fr);
+  max-width: min(100%, 62rem);
+  margin-inline: auto;
+}
+
+/* ================== Заставка, положенная горизонтально ================== */
+/*
+  В колонку заставка не помещается: название занимает всю высоту,
+  а приглашение коснуться уезжает за нижний край. Разворачиваем в две
+  колонки — название слева, приглашение справа.
+*/
+
+:root[data-layout="wide"] .start {
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(1rem, 4vw, 4rem);
+  padding: clamp(18px, 4vh, 56px) var(--page-pad);
+}
+
+:root[data-layout="wide"] .start__eyebrow {
+  grid-column: 1 / -1;
+}
+
+:root[data-layout="wide"] .start__center {
+  padding-block: 0;
+  gap: clamp(0.8rem, 2.4vh, 1.8rem);
+}
+
+:root[data-layout="wide"] .start__title {
+  font-size: clamp(2.4rem, 6.6vw, 6rem);
+}
+
+:root[data-layout="wide"] .start__subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.6rem);
+}
+
+:root[data-layout="wide"] .start__prologue {
+  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+}
+
+:root[data-layout="wide"] .start__cta {
+  align-self: center;
+}
+
+/* ===================== Переключатель представления ===================== */
+
+.mode-btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Экран-подсказка внутри значка показывает, что именно выбрано */
+.mode-btn__screen {
+  fill: currentColor;
+  fill-opacity: 0.22;
+}
+
+.mode-btn__auto {
+  stroke-width: 2;
+}
+
+/* ============ Плотная вёрстка страниц на горизонтальном экране ============ */
+/*
+  Высота на положенном экране — дефицит: заголовок раздела в полный рост
+  съедал бы весь первый экран, и до содержимого приходилось бы докручивать.
+*/
+
+:root[data-layout="wide"] .page {
+  padding-top: 0.8rem;
+}
+
+:root[data-layout="wide"] .page-head {
+  padding: 0.6rem 0 1rem;
+}
+
+:root[data-layout="wide"] .page-head h1 {
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  margin-bottom: 0.45rem;
+}
+
+:root[data-layout="wide"] .section-title {
+  margin: 1.4rem 0 0.9rem;
+}
+
+/* Строка вступления шире, но не длиннее того, что глаз держит без потери строки */
+:root[data-layout="wide"] .lead {
+  max-width: 78ch;
+}
+
+/* Квадратной доске пазла остаётся меньше высоты — сжимаем сильнее */
+:root[data-layout="wide"] .puzzle-board {
+  max-width: min(100%, 62dvh);
+}

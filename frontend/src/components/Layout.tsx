@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useCatalog, useCatalogs } from "../stores/catalogStore";
 import { trackEvent } from "../stores/cmsClient";
+import { getViewport, MODE_TITLES, nextLayoutMode, setLayoutMode, useViewport, type LayoutMode } from "../stores/viewport";
 import { Sky } from "./Sky";
 
 const THEME_KEY = "skazka-theme";
@@ -33,6 +34,42 @@ function readLargeText(): boolean {
   } catch {
     return false;
   }
+}
+
+/**
+ * Значок переключателя представления: экран стоймя, экран лёжа
+ * и «как поставили» — рамка со стрелкой поворота.
+ *
+ * Нарисован, а не взят эмодзи, по той же причине, что и значки дока:
+ * в разных сборках ОС эмодзи выглядит по-разному, а на панели в зале
+ * иногда не отрисовывается вовсе.
+ */
+function ModeIcon({ mode }: { mode: LayoutMode }) {
+  if (mode === "kiosk") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <rect className="mode-btn__screen" x="7" y="2.5" width="10" height="19" rx="2.5" />
+        <path d="M9.8 18.4h4.4" />
+      </svg>
+    );
+  }
+
+  if (mode === "wide") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <rect className="mode-btn__screen" x="2.5" y="6" width="19" height="12" rx="2.5" />
+        <path d="M6.2 14.8V9.2" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect className="mode-btn__screen mode-btn__auto" x="2.5" y="9" width="19" height="12" rx="2.5" />
+      <path className="mode-btn__auto" d="M14.5 2.6h4.6v4.6" />
+      <path className="mode-btn__auto" d="M19.1 7.2A8 8 0 0 0 11.4 2.6" />
+    </svg>
+  );
 }
 
 /**
@@ -185,19 +222,24 @@ function DockIcon({ id }: { id: string }) {
 }
 
 /**
- * Оболочка панели: живой фон, шапка, прокручиваемый контент и нижний док.
+ * Оболочка панели: живой фон, шапка, прокручиваемый контент и док.
  *
- * Док внизу не только ради моды: панель 75" стоит вертикально, и верхняя
- * половина экрана недосягаема для ребёнка. Всё, что нажимают, живёт снизу.
+ * Док внизу не только ради моды: когда панель 75" стоит вертикально, верхняя
+ * половина экрана недосягаема для ребёнка, и всё, что нажимают, живёт снизу.
+ * На экране, положенном горизонтально, недосягаемого верха нет, зато в дефиците
+ * высота — там док уезжает в ленту слева. Разметка при этом одна и та же:
+ * представление выбирает CSS по data-layout (adaptive.css).
  */
 export function AppLayout() {
   const navigation = useCatalog("skazka-navigation-v1");
   const { online } = useCatalogs();
   const location = useLocation();
   const navigate = useNavigate();
+  const viewport = useViewport();
   const [theme, setTheme] = useState<"night" | "day">(readTheme);
   const [largeText, setLargeText] = useState<boolean>(readLargeText);
   const idleTimer = useRef<number | null>(null);
+  const dockRef = useRef<HTMLElement | null>(null);
 
   const visibleItems = navigation.items.filter((item) => item.visible);
 
@@ -227,6 +269,36 @@ export function AppLayout() {
       /* приватный режим — настройка живёт до перезагрузки */
     }
   }, [largeText]);
+
+  /*
+    Высоту дока меряем, а не задаём константой: от устройства зависят и кегль,
+    и число строк в подписи под кнопками, и то, переносится ли строка внизу.
+    Подобранное на глаз число на каком-нибудь экране обязательно окажется мало,
+    и последняя карточка спрячется под доком.
+
+    В горизонтальном представлении док — лента во всю высоту слева, места под
+    ним оставлять не нужно: там переменную не трогаем, отступ задаёт adaptive.css.
+  */
+  useEffect(() => {
+    const root = document.documentElement;
+    const dock = dockRef.current;
+    if (viewport.layout !== "kiosk" || !dock) {
+      root.style.removeProperty("--dock-height");
+      return;
+    }
+
+    const apply = () => root.style.setProperty("--dock-height", dock.offsetHeight + "px");
+    apply();
+    // Шрифты приезжают из сети уже после первой отрисовки и меняют высоту подписей.
+    document.fonts?.ready.then(apply).catch(() => undefined);
+
+    const observer = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(apply);
+    observer?.observe(dock);
+    return () => {
+      observer?.disconnect();
+      root.style.removeProperty("--dock-height");
+    };
+  }, [viewport.layout, viewport.device, largeText, visibleItems.length]);
 
   // Счётчик посещений разделов — библиотекарь видит его в админке.
   useEffect(() => {
@@ -275,6 +347,17 @@ export function AppLayout() {
         <div className="topbar__tools">
           <button
             type="button"
+            className={`icon-btn mode-btn${viewport.mode === "auto" ? "" : " icon-btn--on"}`}
+            /* Режим берём из хранилища, а не из отрисовки: два быстрых нажатия
+               подряд не должны оба посчитать «следующий» от одного и того же. */
+            onClick={() => setLayoutMode(nextLayoutMode(getViewport().mode))}
+            title={MODE_TITLES[viewport.mode]}
+            aria-label={MODE_TITLES[viewport.mode]}
+          >
+            <ModeIcon mode={viewport.mode} />
+          </button>
+          <button
+            type="button"
             className={`icon-btn${largeText ? " icon-btn--on" : ""}`}
             onClick={() => setLargeText((value) => !value)}
             aria-pressed={largeText}
@@ -299,7 +382,7 @@ export function AppLayout() {
         </div>
       </main>
 
-      <nav className="dock" aria-label="Разделы панели">
+      <nav className="dock" aria-label="Разделы панели" ref={dockRef}>
         <div className="dock__scroll">
           {visibleItems.map((item) => (
             <NavLink
