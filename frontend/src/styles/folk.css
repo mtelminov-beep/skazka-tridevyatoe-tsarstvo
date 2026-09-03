@@ -275,7 +275,9 @@
   gap: 0.9rem;
   margin-bottom: 0.8rem;
 }
-.age-shelf__emoji {
+.age-shelf__image,
+.age-shelf__emoji,
+.age-shelf__head > .media-fallback {
   display: grid;
   place-items: center;
   width: 3.6rem;
@@ -284,6 +286,10 @@
   border-radius: var(--radius-sm);
   background: linear-gradient(150deg, color-mix(in srgb, var(--tint-a) 45%, transparent), var(--tint-b));
   font-size: 1.9rem;
+}
+.age-shelf__image {
+  object-fit: cover;
+  box-shadow: inset 0 0 0 1px rgba(255, 240, 168, 0.3), 0 0.35rem 1rem rgba(0, 0, 0, 0.18);
 }
 .age-shelf__title {
   font-family: "Alegreya", Georgia, serif;
@@ -326,6 +332,21 @@
   border-radius: var(--radius-sm);
   background: var(--surface);
   font-size: 0.94rem;
+}
+.age-shelf__book-image,
+.age-shelf__list .media-fallback {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  border-radius: 0.45rem;
+  object-fit: cover;
+  overflow: hidden;
+  background: linear-gradient(150deg, color-mix(in srgb, var(--tint-a) 45%, transparent), var(--tint-b));
+}
+.age-shelf__book-title {
+  min-width: 0;
 }
 .age-shelf__list em {
   margin-left: auto;

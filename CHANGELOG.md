@@ -4,6 +4,19 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.4.0 — 03.09.2026 16:54:06
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-03T11:54:06.582Z
+
+В возрастных полках добавлены фото полок и обложки сказок
+
+Изменённые файлы:
+- `frontend/src/data/ages.ts`
+- `frontend/src/pages/AgesPage.tsx`
+- `frontend/src/styles/folk.css`
+- `frontend/src/types.ts`
+
+
 ## v1.3.1 — 03.09.2026 15:01:09
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** patch  ·  **UTC:** 2026-09-03T10:01:09.489Z

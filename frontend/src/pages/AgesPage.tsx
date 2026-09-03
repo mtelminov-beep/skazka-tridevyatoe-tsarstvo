@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { ContentImage } from "../components/ContentImage";
 import { PageHead } from "../components/PageHead";
 import { useCatalog } from "../stores/catalogStore";
 
@@ -37,9 +38,12 @@ export function AgesPage() {
           return (
             <section className={`age-shelf tint--${shelf.tint}`} key={shelf.id}>
               <header className="age-shelf__head">
-                <span className="age-shelf__emoji" aria-hidden="true">
-                  {shelf.emoji}
-                </span>
+                <ContentImage
+                  className="age-shelf__image"
+                  src={shelf.image ?? ""}
+                  alt={`Полка «${shelf.caption}»`}
+                  fallback={shelf.emoji}
+                />
                 <div>
                   <div className="age-shelf__title">{shelf.title}</div>
                   <div className="age-shelf__caption">{shelf.caption}</div>
@@ -57,8 +61,13 @@ export function AgesPage() {
                 <ul className="age-shelf__list">
                   {list.map((tale) => (
                     <li key={tale.id}>
-                      <span aria-hidden="true">{tale.emoji}</span>
-                      {tale.shortTitle}
+                      <ContentImage
+                        className="age-shelf__book-image"
+                        src={tale.image}
+                        alt={`Обложка сказки «${tale.shortTitle}»`}
+                        fallback={tale.emoji}
+                      />
+                      <span className="age-shelf__book-title">{tale.shortTitle}</span>
                       <em>{tale.minutes} мин</em>
                     </li>
                   ))}

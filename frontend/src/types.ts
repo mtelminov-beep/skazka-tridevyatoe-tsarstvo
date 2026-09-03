@@ -84,6 +84,8 @@ export type AgeGroup = {
   caption: string;
   lead: string;
   emoji: string;
+  /** Фотография-навигация для возрастной полки. */
+  image?: string;
   tint: Tint;
   /** Совет библиотекарю и родителю: как читать в этом возрасте. */
   advice: string;
