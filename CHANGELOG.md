@@ -4,6 +4,23 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.2.0 — 03.09.2026 12:54:59
+
+**Агент:** claude  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-03T07:54:59.982Z
+
+Правило журнала версий прошито хуками: sync в начале сессии, проверка отправки после каждого ответа; журнал сливается union-стратегией
+
+Изменённые файлы:
+- `.claude/skills/version-log/SKILL.md`
+- `.codex/skills/version-log/SKILL.md`
+- `.cursor/rules/versioning.mdc`
+- `.gitattributes`
+- `AGENTS.md`
+- `CLAUDE.md`
+- `scripts/version.mjs`
+- `.claude/settings.json`
+
+
 ## v1.1.1 — 03.09.2026 10:53:04
 
 **Агент:** claude  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** patch  ·  **UTC:** 2026-09-03T05:53:04.308Z

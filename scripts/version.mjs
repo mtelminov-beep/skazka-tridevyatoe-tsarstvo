@@ -11,6 +11,7 @@
  *   node scripts/version.mjs sync                          — подтянуть чужие версии с GitHub
  *   node scripts/version.mjs bump --agent <имя> -m "что сделано" [--type patch|minor|major]
  *   node scripts/version.mjs status                        — всё ли уехало на GitHub
+ *   node scripts/version.mjs hook session-start|stop       — то же для хуков агента, ответом в JSON
  *
  * Хранилище:
  *   VERSION                  — текущий номер (одна строка, для машин)
@@ -160,7 +161,7 @@ function nextVersion(base, type) {
 }
 
 /** Простая файловая блокировка: два агента на одной машине не пишут одновременно. */
-function withLock(callback) {
+function withLock(callback, owner = "unknown") {
   mkdirSync(VERSIONS_DIR, { recursive: true });
 
   if (existsSync(LOCK_FILE)) {
@@ -172,7 +173,9 @@ function withLock(callback) {
     rmSync(LOCK_FILE, { force: true }); // залежавшийся lock от упавшего процесса
   }
 
-  writeFileSync(LOCK_FILE, `${process.env.AGENT_NAME || "unknown"}|${Date.now()}`, "utf8");
+  // В блокировке пишем того агента, который её взял: иначе сообщение
+  // «журнал занят» не подсказывает, чью команду ждать.
+  writeFileSync(LOCK_FILE, `${owner}|${Date.now()}`, "utf8");
   try {
     return callback();
   } finally {
@@ -239,11 +242,13 @@ function commandCurrent() {
  * Проверка, что работа этой машины видна остальным.
  * Ненулевой код выхода — сигнал агенту: сессию закрывать нельзя, пока не отправлено.
  */
-function commandStatus() {
+function commandStatus({ offline = false } = {}) {
   const dirty = git(["-c", "core.quotepath=false", "status", "--porcelain"], { allowFail: true }) || "";
   const state = hasRemote() ? aheadBehind() : null;
   const localTags = (git(["tag", "--list", "v*"], { allowFail: true }) || "").split("\n").filter(Boolean);
-  const remoteTags = hasRemote()
+  // ls-remote ходит в сеть. В offline-режиме (хук после каждого ответа агента)
+  // это лишняя секунда задержки, поэтому теги там не сверяем.
+  const remoteTags = hasRemote() && !offline
     ? (git(["ls-remote", "--tags", "origin"], { allowFail: true }) || "")
     : "";
   const unpushedTags = remoteTags ? localTags.filter((tag) => !remoteTags.includes(`refs/tags/${tag}`)) : [];
@@ -280,11 +285,8 @@ function commandStatus() {
     console.log("\nУдалённый репозиторий не подключён — работа не видна другим агентам.");
   }
 
-  if (clean) {
-    console.log("\nВсё синхронизировано: локальная копия и GitHub совпадают.");
-    return;
-  }
-  process.exitCode = 1;
+  if (clean) console.log("\nВсё синхронизировано: локальная копия и GitHub совпадают.");
+  return clean;
 }
 
 function commandLog(options) {
@@ -445,7 +447,85 @@ function commandBump(options) {
 
     git(["push", "origin", `v${version}`], { allowFail: true });
     console.log(`Отправлено на GitHub (ветка ${branch}, тег v${version}).`);
-  });
+  }, `${agent}@${machineName()}`);
+}
+
+/**
+ * Ответ для хуков агента: то же, что sync и status, но в JSON,
+ * который Claude Code кладёт агенту в контекст.
+ *
+ * Правило «sync перед работой, status перед завершением» держится не на памяти
+ * агента, а на хуках: агент, забывший о журнале, всё равно увидит чужие версии
+ * в начале сессии и незапушенную работу в конце.
+ *
+ * Хук не имеет права уронить сессию, поэтому любая ошибка внутри превращается
+ * в обычную строку контекста, а код возврата всегда нулевой.
+ */
+function commandHook(options) {
+  const kind = options._[1] || "session-start";
+
+  // Вывод команд перехватываем: в stdout хука должен уйти только JSON.
+  const captured = [];
+  const realLog = console.log;
+  const realError = console.error;
+  console.log = (...args) => captured.push(args.join(" "));
+  console.error = (...args) => captured.push(args.join(" "));
+
+  let clean = true;
+  try {
+    if (kind === "stop") {
+      clean = commandStatus({ offline: true }) !== false;
+    } else {
+      commandSync();
+      const dirty = git(["-c", "core.quotepath=false", "status", "--porcelain"], { allowFail: true }) || "";
+      if (dirty) {
+        captured.push("", `Рабочее дерево не чистое (${dirty.split("\n").length} файл(ов)):`);
+        captured.push(...dirty.split("\n").slice(0, 20));
+        captured.push("Это могут быть правки другого агента или из Chrome — изучите их до своей работы.");
+      }
+    }
+  } catch (error) {
+    captured.push(`Не удалось выполнить проверку журнала версий: ${error.message}`);
+  } finally {
+    console.log = realLog;
+    console.error = realError;
+    process.exitCode = 0;
+  }
+
+  const report = captured.join("\n").trim();
+
+  // Stop срабатывает после каждого ответа агента. Пока всё отправлено, хук молчит:
+  // иначе журнал версий пересказывался бы в контексте по десять раз за сессию.
+  if (kind === "stop" && clean) {
+    realLog(JSON.stringify({ suppressOutput: true }));
+    return;
+  }
+
+  const answer =
+    kind === "stop"
+      ? {
+          systemMessage: "Журнал версий: есть работа, не отправленная на GitHub.",
+          hookSpecificOutput: {
+            hookEventName: "Stop",
+            additionalContext:
+              `Состояние журнала версий «Тридевятого царства»:\n${report}\n\n` +
+              'Работа НЕ уехала на GitHub. Заверсионируйте её: node scripts/version.mjs bump ' +
+              '--agent claude --type <patch|minor|major> -m "что сделано". Если отправить не удалось, ' +
+              "прямо скажите человеку, что версия осталась только на этой машине."
+          }
+        }
+      : {
+          hookSpecificOutput: {
+            hookEventName: "SessionStart",
+            additionalContext:
+              `Журнал версий «Тридевятого царства» синхронизирован с GitHub:\n${report}\n\n` +
+              "После каждого завершённого изменения выполняйте " +
+              'node scripts/version.mjs bump --agent claude --type <patch|minor|major> -m "что сделано" — ' +
+              "правка без версии невидима агентам на других машинах."
+          }
+        };
+
+  realLog(JSON.stringify(answer));
 }
 
 /* ------------------------------- запуск ------------------------------- */
@@ -458,10 +538,11 @@ try {
   else if (command === "log") commandLog(options);
   else if (command === "sync") commandSync();
   else if (command === "bump") commandBump(options);
-  else if (command === "status") commandStatus();
+  else if (command === "status") { if (commandStatus() === false) process.exitCode = 1; }
+  else if (command === "hook") commandHook(options);
   else {
     console.error(`Неизвестная команда: ${command}`);
-    console.error("Доступно: current, log, sync, bump, status");
+    console.error("Доступно: current, log, sync, bump, status, hook");
     process.exitCode = 1;
   }
 } catch (error) {

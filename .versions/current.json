@@ -1,12 +1,19 @@
 {
-  "version": "1.1.1",
-  "updatedAt": "2026-09-03T05:53:04.308Z",
+  "version": "1.2.0",
+  "updatedAt": "2026-09-03T07:54:59.982Z",
   "agent": "claude",
   "host": "DESKTOP-D0H2DER",
   "branch": "main",
-  "summary": "Файл блокировки журнала версий занесён в .gitignore — после bump рабочее дерево остаётся чистым",
-  "type": "patch",
+  "summary": "Правило журнала версий прошито хуками: sync в начале сессии, проверка отправки после каждого ответа; журнал сливается union-стратегией",
+  "type": "minor",
   "files": [
-    ".gitignore"
+    ".claude/skills/version-log/SKILL.md",
+    ".codex/skills/version-log/SKILL.md",
+    ".cursor/rules/versioning.mdc",
+    ".gitattributes",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "scripts/version.mjs",
+    ".claude/settings.json"
   ]
 }

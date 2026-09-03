@@ -14,3 +14,8 @@ CHANGELOG.md merge=union
 *.mp3  binary
 *.ogg  binary
 *.m4a  binary
+
+# Журнал версий пишется параллельно с разных машин. Обе записи только
+# дописываются в конец, поэтому union-слияние честно сохраняет и свою,
+# и чужую версию вместо конфликта посреди rebase внутри bump.
+.versions/log.jsonl merge=union
