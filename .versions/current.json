@@ -1,19 +1,18 @@
 {
-  "version": "1.2.0",
-  "updatedAt": "2026-09-03T07:54:59.982Z",
-  "agent": "claude",
+  "version": "1.2.1",
+  "updatedAt": "2026-09-03T08:05:32.894Z",
+  "agent": "codex",
   "host": "DESKTOP-D0H2DER",
   "branch": "main",
-  "summary": "Правило журнала версий прошито хуками: sync в начале сессии, проверка отправки после каждого ответа; журнал сливается union-стратегией",
-  "type": "minor",
+  "summary": "Усилена проверка правок из ChatGPT-настройки перед каждой задачей",
+  "type": "patch",
   "files": [
     ".claude/skills/version-log/SKILL.md",
     ".codex/skills/version-log/SKILL.md",
+    ".cursor/rules/parallel-work.mdc",
     ".cursor/rules/versioning.mdc",
-    ".gitattributes",
+    ".cursor/skills/version-log/SKILL.md",
     "AGENTS.md",
-    "CLAUDE.md",
-    "scripts/version.mjs",
-    ".claude/settings.json"
+    "CLAUDE.md"
   ]
 }

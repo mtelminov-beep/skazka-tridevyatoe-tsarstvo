@@ -4,6 +4,22 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.2.1 — 03.09.2026 13:05:32
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** patch  ·  **UTC:** 2026-09-03T08:05:32.894Z
+
+Усилена проверка правок из ChatGPT-настройки перед каждой задачей
+
+Изменённые файлы:
+- `.claude/skills/version-log/SKILL.md`
+- `.codex/skills/version-log/SKILL.md`
+- `.cursor/rules/parallel-work.mdc`
+- `.cursor/rules/versioning.mdc`
+- `.cursor/skills/version-log/SKILL.md`
+- `AGENTS.md`
+- `CLAUDE.md`
+
+
 ## v1.2.0 — 03.09.2026 12:54:59
 
 **Агент:** claude  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-03T07:54:59.982Z
