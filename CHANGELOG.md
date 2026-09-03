@@ -4,6 +4,17 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.3.1 — 03.09.2026 15:01:09
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** patch  ·  **UTC:** 2026-09-03T10:01:09.489Z
+
+Фон стартового экрана заменён на лесной
+
+Изменённые файлы:
+- `frontend/src/pages/StartPage.tsx`
+- `frontend/public/covers/tridevyatoe-forest-background.png`
+
+
 ## v1.3.0 — 03.09.2026 13:27:24
 
 **Агент:** claude  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-03T08:27:24.497Z

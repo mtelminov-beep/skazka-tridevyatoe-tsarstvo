@@ -25,7 +25,7 @@ export function StartPage() {
 
   return (
     <div className="start" onClick={() => navigate("/home")} role="button" tabIndex={0}>
-      <img className="start__hero-image" src="/covers/skazka-hero.svg" alt="" aria-hidden="true" />
+      <img className="start__hero-image" src="/covers/tridevyatoe-forest-background.png" alt="" aria-hidden="true" />
       <Sky stars={110} sparks={26} />
 
       <div className="start__eyebrow rise-in">{start.eyebrow}</div>
