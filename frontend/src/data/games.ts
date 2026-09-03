@@ -49,7 +49,7 @@ export const defaultGames: GamesCatalog = {
     emoji: "🧺",
     tint: "gold",
     bins: [
-      { id: "gusi", label: "Гуси-лебеди", emoji: "🪿", image: "" },
+      { id: "gusi", label: "Гуси-лебеди", emoji: "🦢", image: "" },
       { id: "lyagushka", label: "Царевна-лягушка", emoji: "🐸", image: "" },
       { id: "morozko", label: "Морозко", emoji: "🌨️", image: "" },
       { id: "volk", label: "Иван-царевич и Серый Волк", emoji: "🐺", image: "" }
@@ -60,13 +60,13 @@ export const defaultGames: GamesCatalog = {
       { id: "rechka", label: "Молочная речка", emoji: "🥛", bin: "gusi", hint: "Кисельные берега — её примета.", image: "" },
       { id: "strela", label: "Стрела", emoji: "🏹", bin: "lyagushka", hint: "Три брата пустили по стреле — куда упадёт, там и невеста.", image: "" },
       { id: "kozha", label: "Лягушачья кожа", emoji: "🐸", bin: "lyagushka", hint: "Её сожгли, торопя счастье.", image: "" },
-      { id: "igla", label: "Игла в яйце", emoji: "🪡", bin: "lyagushka", hint: "На её конце спрятана Кощеева смерть.", image: "" },
+      { id: "igla", label: "Игла в яйце", emoji: "📌", bin: "lyagushka", hint: "На её конце спрятана Кощеева смерть.", image: "" },
       { id: "sunduk-morozko", label: "Сундук с приданым", emoji: "🎁", bin: "morozko", hint: "Награда за вежливый ответ на морозе.", image: "" },
       { id: "posokh", label: "Морозный посох", emoji: "🌨️", bin: "morozko", hint: "«Тепло ли тебе, девица?»", image: "" },
-      { id: "pero", label: "Перо Жар-птицы", emoji: "🪶", bin: "volk", hint: "Оно светит, как днём, и с него начинается вся дорога.", image: "" },
+      { id: "pero", label: "Перо Жар-птицы", emoji: "🌟", bin: "volk", hint: "Оно светит, как днём, и с него начинается вся дорога.", image: "" },
       { id: "kon", label: "Конь златогривый", emoji: "🐎", bin: "volk", hint: "Вторая добыча Ивана-царевича.", image: "" },
       { id: "klubok", label: "Клубочек", emoji: "🧶", bin: "volk", hint: "Катится впереди и показывает дорогу.", image: "" },
-      { id: "kadka", label: "Кадка с водой", emoji: "🪣", bin: "morozko", hint: "Работа падчерицы в доме мачехи начиналась затемно.", image: "" }
+      { id: "kadka", label: "Кадка с водой", emoji: "🚰", bin: "morozko", hint: "Работа падчерицы в доме мачехи начиналась затемно.", image: "" }
     ]
   },
 
@@ -189,7 +189,7 @@ export const defaultGames: GamesCatalog = {
     subtitle: "Расставьте события по местам",
     rules: "Шаги сказки перемешаны. Нажимайте на них в том порядке, в каком всё случилось.",
     ages: "3-5",
-    emoji: "🪜",
+    emoji: "🔢",
     tint: "forest",
     tasks: [
       {
@@ -221,7 +221,7 @@ export const defaultGames: GamesCatalog = {
       {
         id: "o-gusi",
         tale: "Гуси-лебеди",
-        emoji: "🪿",
+        emoji: "🦢",
         steps: [
           "Девочка загулялась и оставила братца одного.",
           "Гуси-лебеди унесли братца.",
@@ -310,7 +310,7 @@ export const defaultGames: GamesCatalog = {
         options: [
           { label: "Стрела", emoji: "🏹" },
           { label: "Лягушачья кожа", emoji: "🐸" },
-          { label: "Игла в яйце", emoji: "🪡" },
+          { label: "Игла в яйце", emoji: "📌" },
           { label: "Молодильное яблоко", emoji: "🍏" }
         ],
         odd: 3,

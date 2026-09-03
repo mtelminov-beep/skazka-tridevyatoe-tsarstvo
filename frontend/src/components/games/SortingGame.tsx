@@ -103,7 +103,7 @@ export function SortingGame({ config }: { config: GamesCatalog["sorting"] }) {
         <div className="sorting-item" key={item.id}>
           <div className="sorting-item__picture" aria-hidden="true">
             {item.image ? <img src={item.image} alt="" /> : null}
-            <em>{item.icon ?? item.emoji}</em>
+            <em>{item.emoji}</em>
           </div>
           <div className="sorting-item__body">
             <strong>{item.label}</strong>

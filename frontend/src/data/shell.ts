@@ -27,7 +27,7 @@ export const defaultNavigation: NavigationCatalog = {
       title: "Полки",
       subtitle: "Шесть возрастов",
       path: "/ages",
-      emoji: "🪜",
+      emoji: "📚",
       tint: "berry",
       visible: true
     },
@@ -155,7 +155,7 @@ export const defaultHome: HomeCatalog = {
       title: "Полки по возрасту",
       text: "Шесть ступеней: от «Репки» в два года до «Марьи Моревны» в пятнадцать.",
       path: "/ages",
-      emoji: "🪜",
+      emoji: "📚",
       image: "",
       tint: "berry",
       wide: false

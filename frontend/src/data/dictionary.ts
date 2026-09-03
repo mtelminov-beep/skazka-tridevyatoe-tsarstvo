@@ -180,7 +180,7 @@ export const defaultDictionary: DictionaryCatalog = {
       meaning: "Изогнутая деревянная дуга на плечи: на ней носили от колодца два ведра.",
       example: "«Пошла Алёнушка по воду с коромыслом».",
       tale: "Сестрица Алёнушка и братец Иванушка",
-      emoji: "🪣"
+      emoji: "🚰"
     },
     {
       id: "lapti",
@@ -492,7 +492,7 @@ export const defaultDictionary: DictionaryCatalog = {
       meaning: "Птица с горящими перьями; одно перо освещает целую комнату.",
       example: "«Уронила Жар-птица перо, и стало в саду светло как днём».",
       tale: "Иван-царевич и Серый Волк",
-      emoji: "🪶"
+      emoji: "🌟"
     }
   ]
 };

@@ -200,7 +200,12 @@ export function AppLayout() {
   const idleTimer = useRef<number | null>(null);
 
   const visibleItems = navigation.items.filter((item) => item.visible);
-  const current = visibleItems.find((item) => item.path === location.pathname);
+
+  // Адрес может прийти с завершающим слэшем — из адресной строки, из настроек
+  // киоска или после редиректа. Тогда «/games/» не совпадал с «/games» в каталоге
+  // навигации, и в шапке вместо названия раздела оставалась общая подпись.
+  const path = location.pathname.replace(/\/+$/, "") || "/";
+  const current = visibleItems.find((item) => item.path === path);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -225,9 +230,9 @@ export function AppLayout() {
 
   // Счётчик посещений разделов — библиотекарь видит его в админке.
   useEffect(() => {
-    const key = location.pathname.replace(/^\//, "") || "home";
+    const key = path.replace(/^\//, "") || "home";
     trackEvent(`section:${key}`);
-  }, [location.pathname]);
+  }, [path]);
 
   // Прокрутка наверх при смене раздела: панель не должна открывать
   // новый раздел с середины предыдущего.

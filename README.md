@@ -182,7 +182,7 @@ scripts/version.mjs журнал версий
 переменными окружения бэкенда:
 
 ```bash
-CMS_USER=bibliotekar CMS_PASSWORD=длинный-пароль npm run start
+CMS_ADMIN_USER=bibliotekar CMS_ADMIN_PASSWORD=длинный-пароль npm run start
 ```
 
 ### Что заполнить перед открытием
@@ -198,8 +198,8 @@ CMS_USER=bibliotekar CMS_PASSWORD=длинный-пароль npm run start
 | `API_PORT` | бэк, фронт | `8803` | Порт CMS API |
 | `WEB_PORT` | фронт | `5275` | Порт панели в dev |
 | `HOST` | бэк | `0.0.0.0` | Интерфейс прослушивания |
-| `CMS_USER` | бэк | `admin` | Логин в админку |
-| `CMS_PASSWORD` | бэк | `admin` | Пароль в админку |
+| `CMS_ADMIN_USER` | бэк | `admin` | Логин в админку |
+| `CMS_ADMIN_PASSWORD` | бэк | `admin` | Пароль в админку |
 | `CORS_ORIGIN` | бэк | `*` | Ограничить источник запросов |
 | `VITE_API_PROXY` | фронт | `http://127.0.0.1:8803` | Адрес API для dev-прокси |
 

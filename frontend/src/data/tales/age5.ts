@@ -257,7 +257,7 @@ export const talesAge5: Tale[] = [
     ages: "13-17",
     kind: "literary",
     minutes: 18,
-    emoji: "🪞",
+    emoji: "🔮",
     tint: "rose",
     image: "",
     epigraph: "Свет мой, зеркальце! скажи да всю правду доложи.",

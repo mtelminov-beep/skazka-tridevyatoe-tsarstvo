@@ -18,7 +18,7 @@ export const talesAge4: Tale[] = [
     ages: "10-13",
     kind: "magic",
     minutes: 14,
-    emoji: "🪶",
+    emoji: "🦅",
     tint: "violet",
     image: "",
     epigraph: "Три пары башмаков железных истоптала, три посоха чугунных изломала.",
