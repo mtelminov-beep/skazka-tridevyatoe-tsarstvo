@@ -4,6 +4,26 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.7.0 — 04.09.2026 12:42:14
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T07:42:14.470Z
+
+Карточки словаря получили фотореалистичные тематические изображения
+
+Изменённые файлы:
+- `frontend/src/data/dictionary.ts`
+- `frontend/src/pages/DictionaryPage.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/src/types.ts`
+- `frontend/public/dictionary/architecture.png`
+- `frontend/public/dictionary/costume.png`
+- `frontend/public/dictionary/household.png`
+- `frontend/public/dictionary/kitchen.png`
+- `frontend/public/dictionary/magic.png`
+- `frontend/public/dictionary/people.png`
+- `frontend/public/dictionary/spinning.png`
+
+
 ## v1.6.0 — 04.09.2026 12:32:19
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T07:32:19.787Z

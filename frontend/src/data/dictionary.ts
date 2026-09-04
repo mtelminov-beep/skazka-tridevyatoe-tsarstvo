@@ -1,5 +1,19 @@
 import type { DictionaryCatalog } from "../types";
 
+const dictionaryPhotoGroups: Array<{ image: string; ids: string[] }> = [
+  { image: "/dictionary/architecture.png", ids: ["izba", "seni", "gornitsa", "svetlitsa", "terem", "polati", "ambar", "gumno", "zastava", "prorub"] },
+  { image: "/dictionary/spinning.png", ids: ["vereteno", "pryalka", "kudel", "serp", "gusli"] },
+  { image: "/dictionary/kitchen.png", ids: ["pech", "ukhvat", "chugunok", "susek", "kvashnya", "zhernova", "kisel", "kalach", "stupa"] },
+  { image: "/dictionary/costume.png", ids: ["lapti", "sarafan", "kokoshnik", "kaftan", "kushak", "kolchuga", "bogatyr", "palitsa", "vitiaz"] },
+  { image: "/dictionary/household.png", ids: ["krynka", "korob", "lukoshko", "koromyslo", "rukavitsa", "pomelo", "nevod"] },
+  { image: "/dictionary/magic.png", ids: ["zhar-ptitsa", "zhivaya-voda", "molodilnye-yabloki", "kover-samolyot", "skatert-samobranka", "shapka-nevidimka", "klubochek", "kalinov-most", "tridevyatoe-tsarstvo"] },
+  { image: "/dictionary/people.png", ids: ["batyushka", "matushka", "sestritsa", "kupets", "obrok", "machekha", "padcheritsa", "skomorokh", "zachin", "priskazka", "kontsovka"] }
+];
+
+function dictionaryPhotoFor(id: string) {
+  return dictionaryPhotoGroups.find((group) => group.ids.includes(id))?.image ?? "/dictionary/household.png";
+}
+
 /**
  * Словарик старинных слов.
  *
@@ -494,5 +508,5 @@ export const defaultDictionary: DictionaryCatalog = {
       tale: "Иван-царевич и Серый Волк",
       emoji: "🌟"
     }
-  ]
+  ].map((item) => ({ ...item, image: dictionaryPhotoFor(item.id) }))
 };

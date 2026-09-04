@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { ContentImage } from "../components/ContentImage";
 import { PageHead } from "../components/PageHead";
 import { useCatalog } from "../stores/catalogStore";
 
@@ -82,12 +83,18 @@ export function DictionaryPage() {
       <div className="stack stagger" style={{ gap: "0.8rem" }}>
         {shown.map((item) => (
           <div className="dict-card" key={item.id}>
-            <div className="dict-card__word">
-              {item.emoji} {item.word}
+            <ContentImage
+              className="dict-card__image"
+              src={item.image ?? ""}
+              alt={`Фотография к слову «${item.word}»`}
+              fallback={item.emoji}
+            />
+            <div className="dict-card__body">
+              <div className="dict-card__word">{item.word}</div>
+              <div className="dict-card__meaning">{item.meaning}</div>
+              <div className="dict-card__example">{item.example}</div>
+              <div className="dict-card__tale">{item.tale}</div>
             </div>
-            <div className="dict-card__meaning">{item.meaning}</div>
-            <div className="dict-card__example">{item.example}</div>
-            <div style={{ fontSize: "0.76rem", color: "var(--text-faint)" }}>{item.tale}</div>
           </div>
         ))}
       </div>

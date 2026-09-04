@@ -1622,6 +1622,30 @@
   gap: 0.9rem;
 }
 
+.dict-card__image,
+.dict-card > .media-fallback {
+  display: grid;
+  place-items: center;
+  width: 6rem;
+  height: 6rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  object-fit: cover;
+  background: linear-gradient(145deg, var(--gold-400), color-mix(in srgb, var(--tint-a) 72%, var(--gold-600)));
+  border: 1px solid color-mix(in srgb, var(--gold-400) 40%, var(--border));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 0.7rem 1.3rem rgba(0, 0, 0, 0.12);
+}
+
+.dict-card > .media-fallback {
+  font-size: 2.4rem;
+}
+
+.dict-card__body {
+  display: grid;
+  min-width: 0;
+  gap: 0.35rem;
+}
+
 .dict-card__word {
   font-family: "Alegreya", Georgia, serif;
   font-size: 1.1rem;
@@ -2286,6 +2310,11 @@
   font-style: italic;
   font-size: 1.05rem;
   color: var(--text-dim);
+}
+
+.dict-card__tale {
+  font-size: 0.76rem;
+  color: var(--text-faint);
 }
 
 /* ============================= Викторина ============================= */

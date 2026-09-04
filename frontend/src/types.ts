@@ -174,6 +174,8 @@ export type DictionaryEntry = {
   example: string;
   tale: string;
   emoji: string;
+  /** Фотография предмета или сцены для карточки словаря. */
+  image?: string;
 };
 
 export type DictionaryCatalog = {

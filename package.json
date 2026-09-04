@@ -1,6 +1,6 @@
 {
   "name": "skazka-interactive",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "description": "Интерактивная панель «Тридевятое царство» — русские народные сказки для детской библиотеки нового поколения",
   "type": "module",
