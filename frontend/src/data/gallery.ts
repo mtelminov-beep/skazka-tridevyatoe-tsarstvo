@@ -23,7 +23,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "bilibin-vasilisa",
       kind: "image",
-      url: "",
+      url: "/gallery/vasilisa-white-rider.jpg",
       title: "Василиса Прекрасная и белый всадник",
       author: "Иван Билибин",
       year: "1899 — 1900",
@@ -34,7 +34,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "bilibin-baba-yaga",
       kind: "image",
-      url: "",
+      url: "/gallery/baba-yaga.jpg",
       title: "Баба-яга в ступе",
       author: "Иван Билибин",
       year: "1900",
@@ -45,7 +45,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "vasnetsov-kover",
       kind: "image",
-      url: "",
+      url: "/gallery/flying-carpet.jpg",
       title: "Ковёр-самолёт",
       author: "Виктор Васнецов",
       year: "1880",
@@ -56,7 +56,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "vasnetsov-alyonushka",
       kind: "image",
-      url: "",
+      url: "/gallery/alyonushka.jpg",
       title: "Алёнушка",
       author: "Виктор Васнецов",
       year: "1881",
@@ -67,7 +67,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "vasnetsov-bogatyri",
       kind: "image",
-      url: "",
+      url: "/gallery/bogatyrs.jpg",
       title: "Богатыри",
       author: "Виктор Васнецов",
       year: "1898",
@@ -78,7 +78,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "bilibin-tsarevna-lyagushka",
       kind: "image",
-      url: "",
+      url: "/gallery/frog-princess.jpg",
       title: "Царевна-лягушка",
       author: "Иван Билибин",
       year: "1899",
@@ -87,20 +87,20 @@ export const defaultGallery: GalleryCatalog = {
         "Обратите внимание на узорную рамку: у Билибина она часть рассказа."
     },
     {
-      id: "rachev-zveri",
+      id: "folk-animals-original",
       kind: "image",
-      url: "",
-      title: "Звери в человеческой одежде",
-      author: "Евгений Рачёв",
-      year: "1950-е",
+      url: "/gallery/folk-animals-original.png",
+      title: "Звери в народных костюмах",
+      author: "Современная цифровая иллюстрация",
+      year: "2026",
       caption:
-        "Рачёв одевал лису в сарафан, а волка в кафтан — и сказка о животных сразу читалась " +
-        "как сказка о людях. Классические иллюстрации к «Теремку» и «Рукавичке»."
+        "Оригинальная иллюстрация для панели: лиса, заяц и медведь в народных костюмах. " +
+        "Она не воспроизводит и не имитирует работы конкретного художника."
     },
     {
       id: "palekh",
       kind: "image",
-      url: "",
+      url: "/gallery/palekh-miniature.jpg",
       title: "Палехская лаковая миниатюра",
       author: "Мастера Палеха",
       year: "XX век",
@@ -111,7 +111,7 @@ export const defaultGallery: GalleryCatalog = {
     {
       id: "bilibin-perya",
       kind: "image",
-      url: "",
+      url: "/gallery/ivan-tsarevich-firebird.jpg",
       title: "Иван-царевич и Жар-птица",
       author: "Иван Билибин",
       year: "1899",

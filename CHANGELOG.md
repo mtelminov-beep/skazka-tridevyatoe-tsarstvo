@@ -4,6 +4,25 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.11.0 — 04.09.2026 16:17:59
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T11:17:59.313Z
+
+Добавлены репродукции и оригинальная иллюстрация в галерею
+
+Изменённые файлы:
+- `frontend/src/data/gallery.ts`
+- `frontend/public/gallery/alyonushka.jpg`
+- `frontend/public/gallery/baba-yaga.jpg`
+- `frontend/public/gallery/bogatyrs.jpg`
+- `frontend/public/gallery/flying-carpet.jpg`
+- `frontend/public/gallery/folk-animals-original.png`
+- `frontend/public/gallery/frog-princess.jpg`
+- `frontend/public/gallery/ivan-tsarevich-firebird.jpg`
+- `frontend/public/gallery/palekh-miniature.jpg`
+- `frontend/public/gallery/vasilisa-white-rider.jpg`
+
+
 ## v1.10.0 — 04.09.2026 15:41:43
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T10:41:43.521Z
