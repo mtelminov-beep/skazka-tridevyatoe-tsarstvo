@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { Confetti } from "../components/Confetti";
+import { ContentImage } from "../components/ContentImage";
 import { PageHead } from "../components/PageHead";
 import { useCatalog } from "../stores/catalogStore";
 import { trackEvent } from "../stores/cmsClient";
@@ -86,7 +87,12 @@ export function QuizPage() {
                 onClick={() => start(item.id)}
                 disabled={count === 0}
               >
-                <em>{item.emoji}</em>
+                <ContentImage
+                  className="level-card__image"
+                  src={item.image ?? ""}
+                  alt={`Фотография для викторины «${item.subtitle}»`}
+                  fallback={item.emoji}
+                />
                 <strong>{item.title}</strong>
                 <span style={{ color: "var(--text-dim)", fontSize: "0.9rem" }}>{item.subtitle}</span>
                 <span className="chip chip--tint" style={{ justifySelf: "center" }}>

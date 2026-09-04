@@ -4,6 +4,25 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.8.0 — 04.09.2026 15:00:49
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T10:00:49.143Z
+
+Плитки викторины получили фотореалистичные тематические обложки
+
+Изменённые файлы:
+- `frontend/src/data/quiz.ts`
+- `frontend/src/pages/QuizPage.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/src/types.ts`
+- `frontend/public/quiz/animals.png`
+- `frontend/public/quiz/feats.png`
+- `frontend/public/quiz/first-tales.png`
+- `frontend/public/quiz/journey.png`
+- `frontend/public/quiz/myth.png`
+- `frontend/public/quiz/wonders.png`
+
+
 ## v1.7.0 — 04.09.2026 12:42:14
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T07:42:14.470Z

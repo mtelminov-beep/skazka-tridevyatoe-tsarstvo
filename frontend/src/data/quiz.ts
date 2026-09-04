@@ -18,12 +18,12 @@ export const defaultQuiz: QuizCatalog = {
   questionsPerRound: 6,
 
   levels: [
-    { id: "0-3", title: "0 — 3 года", subtitle: "Первые сказки", emoji: "🥚", tint: "gold" },
-    { id: "3-5", title: "3 — 5 лет", subtitle: "Звери и смекалка", emoji: "🦊", tint: "berry" },
-    { id: "5-7", title: "5 — 7 лет", subtitle: "Пора чудес", emoji: "✨", tint: "sky" },
-    { id: "7-10", title: "7 — 10 лет", subtitle: "Дорога героя", emoji: "🗺️", tint: "forest" },
-    { id: "10-13", title: "10 — 13 лет", subtitle: "Подвиги и выбор", emoji: "⚔️", tint: "ember" },
-    { id: "13-17", title: "13 — 17 лет", subtitle: "Сказка и миф", emoji: "🌙", tint: "violet" }
+    { id: "0-3", title: "0 — 3 года", subtitle: "Первые сказки", emoji: "🥚", image: "/quiz/first-tales.png", tint: "gold" },
+    { id: "3-5", title: "3 — 5 лет", subtitle: "Звери и смекалка", emoji: "🦊", image: "/quiz/animals.png", tint: "berry" },
+    { id: "5-7", title: "5 — 7 лет", subtitle: "Пора чудес", emoji: "✨", image: "/quiz/wonders.png", tint: "sky" },
+    { id: "7-10", title: "7 — 10 лет", subtitle: "Дорога героя", emoji: "🗺️", image: "/quiz/journey.png", tint: "forest" },
+    { id: "10-13", title: "10 — 13 лет", subtitle: "Подвиги и выбор", emoji: "⚔️", image: "/quiz/feats.png", tint: "ember" },
+    { id: "13-17", title: "13 — 17 лет", subtitle: "Сказка и миф", emoji: "🌙", image: "/quiz/myth.png", tint: "violet" }
   ],
 
   questions: [

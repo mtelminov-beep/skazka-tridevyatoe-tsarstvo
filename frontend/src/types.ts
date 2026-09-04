@@ -191,6 +191,8 @@ export type QuizLevel = {
   title: string;
   subtitle: string;
   emoji: string;
+  /** Фотография-сцена для плитки возрастной викторины. */
+  image?: string;
   tint: Tint;
 };
 

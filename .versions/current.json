@@ -1,22 +1,21 @@
 {
-  "version": "1.7.0",
-  "updatedAt": "2026-09-04T07:42:14.470Z",
+  "version": "1.8.0",
+  "updatedAt": "2026-09-04T10:00:49.143Z",
   "agent": "codex",
   "host": "DESKTOP-D0H2DER",
   "branch": "main",
-  "summary": "Карточки словаря получили фотореалистичные тематические изображения",
+  "summary": "Плитки викторины получили фотореалистичные тематические обложки",
   "type": "minor",
   "files": [
-    "frontend/src/data/dictionary.ts",
-    "frontend/src/pages/DictionaryPage.tsx",
+    "frontend/src/data/quiz.ts",
+    "frontend/src/pages/QuizPage.tsx",
     "frontend/src/styles/components.css",
     "frontend/src/types.ts",
-    "frontend/public/dictionary/architecture.png",
-    "frontend/public/dictionary/costume.png",
-    "frontend/public/dictionary/household.png",
-    "frontend/public/dictionary/kitchen.png",
-    "frontend/public/dictionary/magic.png",
-    "frontend/public/dictionary/people.png",
-    "frontend/public/dictionary/spinning.png"
+    "frontend/public/quiz/animals.png",
+    "frontend/public/quiz/feats.png",
+    "frontend/public/quiz/first-tales.png",
+    "frontend/public/quiz/journey.png",
+    "frontend/public/quiz/myth.png",
+    "frontend/public/quiz/wonders.png"
   ]
 }

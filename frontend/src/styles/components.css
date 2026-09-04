@@ -2342,10 +2342,20 @@
   box-shadow: var(--shadow-lift);
 }
 
-.level-card em {
+.level-card__image,
+.level-card > .media-fallback {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: calc(var(--radius-lg) - 0.35rem);
+  object-fit: cover;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, white 18%, transparent);
+}
+
+.level-card > .media-fallback {
+  display: grid;
+  place-items: center;
   font-size: 3rem;
-  font-style: normal;
-  line-height: 1;
+  background: color-mix(in srgb, var(--tint-a) 35%, var(--surface));
 }
 
 .level-card strong {
