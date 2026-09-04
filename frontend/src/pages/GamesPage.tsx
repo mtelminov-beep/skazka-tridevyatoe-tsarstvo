@@ -16,6 +16,15 @@ type GameMenuItem = {
   config: { title: string; subtitle: string; rules: string; ages: string; emoji: string; tint: string };
 };
 
+const menuImages: Record<GameId, string> = {
+  order: "/games/menu/story-order.png",
+  memory: "/games/menu/find-a-pair.png",
+  sorting: "/games/menu/whose-object.png",
+  words: "/games/menu/finish-the-phrase.png",
+  odd: "/games/menu/who-does-not-belong.png",
+  puzzle: "/games/menu/assemble-the-picture.png"
+};
+
 /** Раздел «Игры»: меню из шести игр и экран выбранной игры. */
 export function GamesPage() {
   const games = useCatalog("skazka-games-v1");
@@ -45,6 +54,9 @@ export function GamesPage() {
                 trackEvent(`game:${game.id}`);
               }}
             >
+              <span className="game-card__image" aria-hidden="true">
+                <img src={menuImages[game.id]} alt="" />
+              </span>
               <em aria-hidden="true">{game.config.emoji}</em>
               <strong>{game.config.title}</strong>
               <span style={{ color: "var(--text-dim)", fontSize: "0.9rem" }}>{game.config.subtitle}</span>

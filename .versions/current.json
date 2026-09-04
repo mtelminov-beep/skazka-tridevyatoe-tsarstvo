@@ -1,21 +1,19 @@
 {
-  "version": "1.8.0",
-  "updatedAt": "2026-09-04T10:00:49.143Z",
+  "version": "1.9.0",
+  "updatedAt": "2026-09-04T10:25:27.857Z",
   "agent": "codex",
   "host": "DESKTOP-D0H2DER",
   "branch": "main",
-  "summary": "Плитки викторины получили фотореалистичные тематические обложки",
+  "summary": "Добавлены фотореалистичные обложки для шести игр",
   "type": "minor",
   "files": [
-    "frontend/src/data/quiz.ts",
-    "frontend/src/pages/QuizPage.tsx",
+    "frontend/src/pages/GamesPage.tsx",
     "frontend/src/styles/components.css",
-    "frontend/src/types.ts",
-    "frontend/public/quiz/animals.png",
-    "frontend/public/quiz/feats.png",
-    "frontend/public/quiz/first-tales.png",
-    "frontend/public/quiz/journey.png",
-    "frontend/public/quiz/myth.png",
-    "frontend/public/quiz/wonders.png"
+    "frontend/public/games/menu/assemble-the-picture.png",
+    "frontend/public/games/menu/find-a-pair.png",
+    "frontend/public/games/menu/finish-the-phrase.png",
+    "frontend/public/games/menu/story-order.png",
+    "frontend/public/games/menu/who-does-not-belong.png",
+    "frontend/public/games/menu/whose-object.png"
   ]
 }

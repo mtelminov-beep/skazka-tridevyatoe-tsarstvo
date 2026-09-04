@@ -4,6 +4,23 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.9.0 — 04.09.2026 15:25:27
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T10:25:27.857Z
+
+Добавлены фотореалистичные обложки для шести игр
+
+Изменённые файлы:
+- `frontend/src/pages/GamesPage.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/public/games/menu/assemble-the-picture.png`
+- `frontend/public/games/menu/find-a-pair.png`
+- `frontend/public/games/menu/finish-the-phrase.png`
+- `frontend/public/games/menu/story-order.png`
+- `frontend/public/games/menu/who-does-not-belong.png`
+- `frontend/public/games/menu/whose-object.png`
+
+
 ## v1.8.0 — 04.09.2026 15:00:49
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T10:00:49.143Z
