@@ -305,6 +305,8 @@ export type TaleKindCard = {
   title: string;
   text: string;
   emoji: string;
+  /** Фотография для тематической карточки. */
+  image?: string;
   tint: Tint;
   examples: string[];
 };

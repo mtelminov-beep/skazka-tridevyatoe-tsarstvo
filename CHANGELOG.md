@@ -4,6 +4,23 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.5.0 — 04.09.2026 12:05:07
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T07:05:07.504Z
+
+Тематические плитки традиций получили фотореалистичные изображения
+
+Изменённые файлы:
+- `frontend/src/data/traditions.ts`
+- `frontend/src/pages/TraditionsPage.tsx`
+- `frontend/src/styles/folk.css`
+- `frontend/src/types.ts`
+- `frontend/public/traditions/animals-photo.png`
+- `frontend/public/traditions/everyday-photo.png`
+- `frontend/public/traditions/literary-photo.png`
+- `frontend/public/traditions/magic-photo.png`
+
+
 ## v1.4.0 — 03.09.2026 16:54:06
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-03T11:54:06.582Z

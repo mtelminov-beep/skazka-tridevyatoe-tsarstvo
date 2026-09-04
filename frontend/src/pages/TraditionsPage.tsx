@@ -35,9 +35,12 @@ export function TraditionsPage() {
           const count = countByKind(kind.id);
           return (
             <article className={`card kind-card tint--${kind.tint}`} key={kind.id}>
-              <div className="kind-card__emoji" aria-hidden="true">
-                {kind.emoji}
-              </div>
+              <ContentImage
+                className="kind-card__image"
+                src={kind.image ?? ""}
+                alt={`Тематическая фотография: ${kind.title}`}
+                fallback={kind.emoji}
+              />
               <h3>{kind.title}</h3>
               <p>{kind.text}</p>
               <div className="row" style={{ gap: "0.4rem" }}>
