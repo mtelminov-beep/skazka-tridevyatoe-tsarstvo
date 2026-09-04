@@ -4,6 +4,22 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.6.0 — 04.09.2026 12:32:19
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T07:32:19.787Z
+
+В карточки сказителей добавлены исторические портреты и фотографии
+
+Изменённые файлы:
+- `frontend/src/data/traditions.ts`
+- `frontend/src/styles/folk.css`
+- `frontend/public/traditions/collectors/afanasyev.jpg`
+- `frontend/public/traditions/collectors/arina-rodionovna.jpg`
+- `frontend/public/traditions/collectors/bilibin.jpg`
+- `frontend/public/traditions/collectors/krivopolenova.jpg`
+- `frontend/public/traditions/collectors/propp.jpg`
+
+
 ## v1.5.0 — 04.09.2026 12:05:07
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T07:05:07.504Z

@@ -413,8 +413,8 @@
 .collector-card__face {
   display: grid;
   place-items: center;
-  width: 5.4rem;
-  height: 5.4rem;
+  width: 6.6rem;
+  height: 6.6rem;
   overflow: hidden;
   border-radius: 50%;
   border: 2px solid var(--gold-500);
@@ -425,6 +425,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  image-rendering: auto;
+  filter: contrast(1.04) brightness(1.03);
 }
 .collector-card__years {
   color: var(--gold-300);

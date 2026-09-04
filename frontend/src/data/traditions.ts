@@ -127,7 +127,7 @@ export const defaultTraditions: TraditionsCatalog = {
         "тексты присылали корреспонденты со всей страны, а Афанасьев сверял, разбирал и издавал. " +
         "«Народные русские сказки» выходили выпусками восемь лет и включили около шестисот текстов.",
       quote: "«Сказка — складка, песня — быль».",
-      portrait: "",
+      portrait: "/traditions/collectors/afanasyev.jpg",
       emoji: "📚"
     },
     {
@@ -139,7 +139,7 @@ export const defaultTraditions: TraditionsCatalog = {
         "сюжеты прозой — эти записи сохранились. Из них потом выросли «Сказка о царе Салтане» " +
         "и «Сказка о мёртвой царевне».",
       quote: "«Мастерица ведь была, и откуда что брала».",
-      portrait: "",
+      portrait: "/traditions/collectors/arina-rodionovna.jpg",
       emoji: "🕯️"
     },
     {
@@ -150,7 +150,7 @@ export const defaultTraditions: TraditionsCatalog = {
         "Сказительница и былинщица с Пинеги. Знала наизусть десятки былин и сказок, выступала в Москве " +
         "и Петербурге и показала образованной публике, что устная традиция — не прошлое, а живой голос.",
       quote: "«Спою, как деды пели».",
-      portrait: "",
+      portrait: "/traditions/collectors/krivopolenova.jpg",
       emoji: "🎶"
     },
     {
@@ -162,7 +162,7 @@ export const defaultTraditions: TraditionsCatalog = {
         "сколько бы ни было сюжетов, набор действий один и тот же, и идут они в одном порядке. " +
         "Именно поэтому сказка так легко запоминается.",
       quote: "«Постоянными величинами сказки являются функции действующих лиц».",
-      portrait: "",
+      portrait: "/traditions/collectors/propp.jpg",
       emoji: "🔬"
     },
     {
@@ -174,7 +174,7 @@ export const defaultTraditions: TraditionsCatalog = {
         "чёрный контур, плоский цвет, узорная рама вокруг каждой страницы. Он ездил на Север, " +
         "зарисовывал избы, прялки и наличники — и переносил их в книгу.",
       quote: "«Графическое кружево».",
-      portrait: "",
+      portrait: "/traditions/collectors/bilibin.jpg",
       emoji: "🖌️"
     }
   ],

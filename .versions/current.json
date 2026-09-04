@@ -1,19 +1,18 @@
 {
-  "version": "1.5.0",
-  "updatedAt": "2026-09-04T07:05:07.504Z",
+  "version": "1.6.0",
+  "updatedAt": "2026-09-04T07:32:19.787Z",
   "agent": "codex",
   "host": "DESKTOP-D0H2DER",
   "branch": "main",
-  "summary": "Тематические плитки традиций получили фотореалистичные изображения",
+  "summary": "В карточки сказителей добавлены исторические портреты и фотографии",
   "type": "minor",
   "files": [
     "frontend/src/data/traditions.ts",
-    "frontend/src/pages/TraditionsPage.tsx",
     "frontend/src/styles/folk.css",
-    "frontend/src/types.ts",
-    "frontend/public/traditions/animals-photo.png",
-    "frontend/public/traditions/everyday-photo.png",
-    "frontend/public/traditions/literary-photo.png",
-    "frontend/public/traditions/magic-photo.png"
+    "frontend/public/traditions/collectors/afanasyev.jpg",
+    "frontend/public/traditions/collectors/arina-rodionovna.jpg",
+    "frontend/public/traditions/collectors/bilibin.jpg",
+    "frontend/public/traditions/collectors/krivopolenova.jpg",
+    "frontend/public/traditions/collectors/propp.jpg"
   ]
 }
