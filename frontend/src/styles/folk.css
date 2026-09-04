@@ -568,10 +568,13 @@
   transition: transform 0.24s var(--ease-spring), border-color 0.24s var(--ease-out),
     opacity 0.24s var(--ease-out);
 }
-.odd-card em {
-  font-style: normal;
-  font-size: 2.8rem;
-  line-height: 1;
+.odd-card__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.7rem;
+  background-repeat: no-repeat;
+  background-size: 200% 200%;
 }
 .odd-card:active {
   transform: scale(0.96);

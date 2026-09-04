@@ -4,6 +4,23 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.12.0 — 04.09.2026 16:33:25
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T11:33:25.545Z
+
+Добавлены фотореалистичные изображения для вариантов игры «Кто лишний»
+
+Изменённые файлы:
+- `frontend/src/components/games/OddGame.tsx`
+- `frontend/src/styles/folk.css`
+- `frontend/public/games/odd/bogatyri.png`
+- `frontend/public/games/odd/gusi.png`
+- `frontend/public/games/odd/predmety.png`
+- `frontend/public/games/odd/repka.png`
+- `frontend/public/games/odd/teremok.png`
+- `frontend/public/games/odd/yaga.png`
+
+
 ## v1.11.0 — 04.09.2026 16:17:59
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T11:17:59.313Z

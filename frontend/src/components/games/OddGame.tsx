@@ -2,6 +2,15 @@ import { useMemo, useState } from "react";
 import { Confetti } from "../Confetti";
 import type { GamesCatalog } from "../../types";
 
+const optionSheets: Record<string, string> = {
+  "odd-repka": "/games/odd/repka.png",
+  "odd-teremok": "/games/odd/teremok.png",
+  "odd-gusi": "/games/odd/gusi.png",
+  "odd-predmety": "/games/odd/predmety.png",
+  "odd-yaga": "/games/odd/yaga.png",
+  "odd-bogatyri": "/games/odd/bogatyri.png"
+};
+
 function shuffle<T>(items: T[]): T[] {
   const copy = [...items];
   for (let i = copy.length - 1; i > 0; i -= 1) {
@@ -108,7 +117,14 @@ export function OddGame({ config }: { config: GamesCatalog["odd"] }) {
           }
           return (
             <button key={option.label} type="button" className={className} onClick={() => choose(index)}>
-              <em aria-hidden="true">{option.emoji}</em>
+              <span
+                className="odd-card__image"
+                aria-hidden="true"
+                style={{
+                  backgroundImage: `url(${optionSheets[task.id]})`,
+                  backgroundPosition: `${index % 2 ? "100%" : "0%"} ${index > 1 ? "100%" : "0%"}`
+                }}
+              />
               <span>{option.label}</span>
             </button>
           );
