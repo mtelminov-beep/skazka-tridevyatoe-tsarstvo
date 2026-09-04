@@ -64,7 +64,7 @@ export const talesAge0: Tale[] = [
     ],
     heroes: ["kurochka-ryaba", "ded", "baba", "myshka"],
     words: ["izba", "zachin"],
-    audio: "",
+    audio: "/audio/repka.mp3",
     video: ""
   },
   {
@@ -123,7 +123,7 @@ export const talesAge0: Tale[] = [
     ],
     heroes: ["ded", "baba", "vnuchka", "zhuchka", "koshka", "myshka"],
     words: ["izba", "ambar"],
-    audio: "",
+    audio: "/audio/kolobok.mp3",
     video: ""
   },
   {
@@ -202,7 +202,7 @@ export const talesAge0: Tale[] = [
     ],
     heroes: ["kolobok", "ded", "baba", "zayats", "volk", "medved", "lisa"],
     words: ["ambar", "susek", "kvashnya", "seni", "izba"],
-    audio: "",
+    audio: "/audio/teremok.mp3",
     video: ""
   },
   {

@@ -81,7 +81,7 @@ export const talesAge1: Tale[] = [
     ],
     heroes: ["masha", "medved", "ded", "baba"],
     words: ["korob", "izba", "pech", "lapti"],
-    audio: "",
+    audio: "/audio/masha-i-medved.mp3",
     video: ""
   },
   {
@@ -154,7 +154,7 @@ export const talesAge1: Tale[] = [
     ],
     heroes: ["devochka-tri-medvedya", "medved", "mishutka"],
     words: ["izba", "gornitsa", "pech"],
-    audio: "",
+    audio: "/audio/tri-medvedya.mp3",
     video: ""
   },
   {

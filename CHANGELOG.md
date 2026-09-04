@@ -4,6 +4,27 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.13.0 — 04.09.2026 16:45:07
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T11:45:07.845Z
+
+Добавлены аудиозаписи для восьми сказок
+
+Изменённые файлы:
+- `frontend/src/data/tales/age0.ts`
+- `frontend/src/data/tales/age1.ts`
+- `frontend/src/data/tales/age2.ts`
+- `frontend/src/data/tales/age3.ts`
+- `frontend/public/audio/carevna-lyagushka.mp3`
+- `frontend/public/audio/gusi-lebedi.mp3`
+- `frontend/public/audio/kolobok.mp3`
+- `frontend/public/audio/masha-i-medved.mp3`
+- `frontend/public/audio/repka.mp3`
+- `frontend/public/audio/sestrica-alenushka-i-bratec-ivanushka.mp3`
+- `frontend/public/audio/teremok.mp3`
+- `frontend/public/audio/tri-medvedya.mp3`
+
+
 ## v1.12.0 — 04.09.2026 16:33:25
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T11:33:25.545Z

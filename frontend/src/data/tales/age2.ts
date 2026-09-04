@@ -97,7 +97,7 @@ export const talesAge2: Tale[] = [
     ],
     heroes: ["baba-yaga", "pechka", "yablonya", "rechka"],
     words: ["pech", "kisel", "ukhvat", "izba", "zachin"],
-    audio: "",
+    audio: "/audio/gusi-lebedi.mp3",
     video: ""
   },
   {
@@ -175,7 +175,7 @@ export const talesAge2: Tale[] = [
     ],
     heroes: ["snegurochka", "ded", "baba"],
     words: ["izba", "pech", "sarafan", "kokoshnik", "gornitsa"],
-    audio: "",
+    audio: "/audio/carevna-lyagushka.mp3",
     video: ""
   },
   {

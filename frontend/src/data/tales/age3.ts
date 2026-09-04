@@ -104,7 +104,7 @@ export const talesAge3: Tale[] = [
     ],
     heroes: ["ivan-tsarevich", "seryy-volk", "zhar-ptitsa"],
     words: ["zhar-ptitsa", "tridevyatoe-tsarstvo", "zhivaya-voda", "terem", "zastava"],
-    audio: "",
+    audio: "/audio/sestrica-alenushka-i-bratec-ivanushka.mp3",
     video: ""
   },
   {
