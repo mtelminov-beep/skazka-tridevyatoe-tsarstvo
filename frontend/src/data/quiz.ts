@@ -1,4 +1,4 @@
-import type { QuizCatalog } from "../types";
+import type { QuizCatalog, QuizQuestion } from "../types";
 
 /**
  * Викторина: шесть уровней — по одному на каждую возрастную полку.
@@ -362,7 +362,13 @@ export const defaultQuiz: QuizCatalog = {
       explain: "Сказку не читали, а рассказывали. Повторяющаяся схема позволяла рассказчику помнить сюжет, а слушателю — предугадывать поворот.",
       emoji: "🔁"
     }
-  ],
+  ].map(
+    (question): QuizQuestion => ({
+      ...question,
+      level: question.level as QuizQuestion["level"],
+      image: `/quiz/questions/${question.id}.png`
+    })
+  ),
 
   praise: [
     "Славно! Сказку вы знаете не понаслышке.",

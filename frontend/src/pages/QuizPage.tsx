@@ -185,7 +185,12 @@ export function QuizPage() {
       </div>
 
       <div className="quiz-question rise-in" key={question.id}>
-        <em aria-hidden="true">{question.emoji}</em>
+        <ContentImage
+          className="quiz-question__image"
+          src={question.image ?? ""}
+          alt={`Фотография к вопросу «${question.question}»`}
+          fallback={question.emoji}
+        />
         <h2>{question.question}</h2>
       </div>
 

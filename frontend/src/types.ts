@@ -205,6 +205,8 @@ export type QuizQuestion = {
   correct: number;
   explain: string;
   emoji: string;
+  /** Небольшая фотография к сюжету вопроса. */
+  image?: string;
 };
 
 export type QuizCatalog = {

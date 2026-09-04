@@ -2397,6 +2397,23 @@
   margin-bottom: 1.2rem;
 }
 
+.quiz-question__image,
+.quiz-question > .media-fallback {
+  width: 5.5rem;
+  height: 5.5rem;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 1.1rem;
+  box-shadow: var(--shadow-lift);
+}
+
+.quiz-question > .media-fallback {
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  background: var(--surface-strong);
+}
+
 .quiz-question em {
   display: block;
   font-size: 3.4rem;

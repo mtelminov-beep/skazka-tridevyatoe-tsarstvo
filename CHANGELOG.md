@@ -4,6 +4,55 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.10.0 — 04.09.2026 15:41:43
+
+**Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T10:41:43.521Z
+
+Каждый вопрос викторины получил тематическую фотореалистичную иллюстрацию
+
+Изменённые файлы:
+- `frontend/src/data/quiz.ts`
+- `frontend/src/pages/QuizPage.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/src/types.ts`
+- `frontend/public/quiz/questions/q-afanasyev-1.png`
+- `frontend/public/quiz/questions/q-alyonushka-1.png`
+- `frontend/public/quiz/questions/q-baba-yaga-1.png`
+- `frontend/public/quiz/questions/q-bykovich-1.png`
+- `frontend/public/quiz/questions/q-emelya-1.png`
+- `frontend/public/quiz/questions/q-finist-1.png`
+- `frontend/public/quiz/questions/q-gusi-1.png`
+- `frontend/public/quiz/questions/q-gusi-2.png`
+- `frontend/public/quiz/questions/q-khavroshechka-1.png`
+- `frontend/public/quiz/questions/q-kolobok-1.png`
+- `frontend/public/quiz/questions/q-koshchey-1.png`
+- `frontend/public/quiz/questions/q-kozlyata-1.png`
+- `frontend/public/quiz/questions/q-lisa-zhuravl-1.png`
+- `frontend/public/quiz/questions/q-lyagushka-1.png`
+- `frontend/public/quiz/questions/q-marya-morevna-1.png`
+- `frontend/public/quiz/questions/q-masha-1.png`
+- `frontend/public/quiz/questions/q-mertvaya-1.png`
+- `frontend/public/quiz/questions/q-morozko-1.png`
+- `frontend/public/quiz/questions/q-podi-tuda-1.png`
+- `frontend/public/quiz/questions/q-propp-1.png`
+- `frontend/public/quiz/questions/q-repka-1.png`
+- `frontend/public/quiz/questions/q-rukavichka-1.png`
+- `frontend/public/quiz/questions/q-ryaba-1.png`
+- `frontend/public/quiz/questions/q-seryy-volk-1.png`
+- `frontend/public/quiz/questions/q-sivka-1.png`
+- `frontend/public/quiz/questions/q-snegurochka-1.png`
+- `frontend/public/quiz/questions/q-teremok-1.png`
+- `frontend/public/quiz/questions/q-teremok-2.png`
+- `frontend/public/quiz/questions/q-tri-medvedya-1.png`
+- `frontend/public/quiz/questions/q-tri-tipa-1.png`
+- `frontend/public/quiz/questions/q-troekratie-1.png`
+- `frontend/public/quiz/questions/q-utochka-1.png`
+- `frontend/public/quiz/questions/q-vasilisa-prekr-1.png`
+- `frontend/public/quiz/questions/q-yabloki-1.png`
+- `frontend/public/quiz/questions/q-zayushkina-1.png`
+- `frontend/public/quiz/questions/q-zayushkina-2.png`
+
+
 ## v1.9.0 — 04.09.2026 15:25:27
 
 **Агент:** codex  ·  **Машина:** DESKTOP-D0H2DER  ·  **Тип:** minor  ·  **UTC:** 2026-09-04T10:25:27.857Z
