@@ -43,16 +43,6 @@ export function StartPage() {
           👆
         </div>
         <strong style={{ fontFamily: "Alegreya, Georgia, serif", fontSize: "1.35rem" }}>{start.cta}</strong>
-        <p style={{ color: "var(--text-dim)", margin: 0 }}>{start.hint}</p>
-        {start.badges.length > 0 && (
-          <div className="start__badges">
-            {start.badges.map((badge) => (
-              <span className="chip chip--gold" key={badge}>
-                {badge}
-              </span>
-            ))}
-          </div>
-        )}
       </button>
     </div>
   );

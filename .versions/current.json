@@ -1,13 +1,12 @@
 {
-  "version": "1.13.6",
-  "updatedAt": "2026-09-17T10:19:32.296Z",
+  "version": "1.13.7",
+  "updatedAt": "2026-09-17T14:27:10.286Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Вход с заставки ограничен явной кнопкой",
+  "summary": "На заставке убран текст и значки после призыва коснуться экрана",
   "type": "patch",
   "files": [
-    "frontend/src/pages/StartPage.tsx",
-    "frontend/src/styles/components.css"
+    "frontend/src/pages/StartPage.tsx"
   ]
 }
