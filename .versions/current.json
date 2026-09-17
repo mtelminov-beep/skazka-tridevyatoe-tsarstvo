@@ -1,12 +1,12 @@
 {
-  "version": "1.13.7",
-  "updatedAt": "2026-09-17T14:27:10.286Z",
+  "version": "1.13.8",
+  "updatedAt": "2026-09-17T14:37:11.807Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "На заставке убран текст и значки после призыва коснуться экрана",
+  "summary": "Синхронизированы счётчики посещений панели",
   "type": "patch",
   "files": [
-    "frontend/src/pages/StartPage.tsx"
+    "backend/data/cms-state.json"
   ]
 }
