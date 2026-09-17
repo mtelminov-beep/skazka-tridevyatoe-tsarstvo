@@ -146,8 +146,8 @@ frontend/           React 18 + TypeScript + Vite
   src/admin/        универсальные редакторы CMS
   src/styles/       theme.css, components.css, folk.css, animations.css, admin.css
 backend/            Node + Express, CMS API, раздача собранного фронта
-  data/             состояние CMS (в git не хранится)
-media/uploads/      загруженные файлы (в git не хранятся)
+  data/             состояние CMS (хранится в git)
+media/uploads/      загруженные файлы (хранятся в git)
 scripts/version.mjs журнал версий
 ```
 

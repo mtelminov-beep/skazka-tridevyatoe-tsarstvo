@@ -132,9 +132,12 @@ AGENT_HOST=library-kiosk node scripts/version.mjs bump --agent claude -m "…"
    и rebase уже опубликованных коммитов: на других машинах это ломает копии.
 8. **Ветка одна — `main`.** Она же собирается на панели. Если нужна отдельная ветка,
    это отдельная договорённость с человеком, а не решение агента.
-9. **Локальное состояние не синхронизируется.** `backend/data/cms-state.json`,
-   `media/uploads/*`, `node_modules/`, `dist/` живут на каждой машине свои, в git их нет.
-   После `sync` на новой машине выполните `npm run install:all` и сборку.
+9. **Каталог CMS синхронизируется, окружение — нет.** `backend/data/cms-state.json`
+   и `media/uploads/*` с версии 1.13.3 лежат в git, чтобы новая копия сразу была
+   с картинками. `node_modules/` и `dist/` у каждой машины свои: после `sync`
+   на новой машине выполните `npm run install:all` и сборку. Счётчики посещений
+   внутри `cms-state.json` сервер дописывает сам — правку, где изменились только
+   числа в `stats`, версионируйте отдельным `patch`.
 10. **Долгая сессия — повторный `sync`.** Если между началом работы и `bump` прошло
     больше получаса, синхронизируйтесь ещё раз перед правкой: за это время другая
     машина могла тронуть те же файлы. Сам `bump` тоже делает `pull --rebase`, но
@@ -257,8 +260,8 @@ node scripts/version.mjs bump --agent chrome --type <patch|minor|major> -m "чт
 | `frontend/src/components/` | Общие компоненты, `games/` — шесть игр |
 | `frontend/src/admin/` | Редакторы CMS |
 | `frontend/public/covers/` | Обложки сказок и фон заставки |
-| `backend/data/cms-state.json` | Состояние CMS. **В git не хранится** |
-| `media/uploads/` | Загруженные файлы. **В git не хранятся** |
+| `backend/data/cms-state.json` | Состояние CMS. **Хранится в git**, счётчики растут сами |
+| `media/uploads/` | Загруженные файлы. **Хранятся в git** |
 | `scripts/version.mjs` | Журнал версий |
 
 ### Запуск

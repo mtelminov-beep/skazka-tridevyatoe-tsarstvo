@@ -1,12 +1,14 @@
 {
-  "version": "1.13.4",
-  "updatedAt": "2026-09-17T09:18:58.235Z",
+  "version": "1.13.5",
+  "updatedAt": "2026-09-17T09:21:25.945Z",
   "agent": "claude",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Обновлены счётчики посещений разделов после просмотра панели",
+  "summary": "Документация приведена в соответствие: каталог CMS и загруженные файлы хранятся в git",
   "type": "patch",
   "files": [
-    "backend/data/cms-state.json"
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md"
   ]
 }
