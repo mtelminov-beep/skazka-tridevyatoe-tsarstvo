@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useCatalog, useCatalogs } from "../stores/catalogStore";
 import { trackEvent } from "../stores/cmsClient";
@@ -308,8 +308,9 @@ export function AppLayout() {
 
   // Прокрутка наверх при смене раздела: панель не должна открывать
   // новый раздел с середины предыдущего.
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.querySelector(".app-main")?.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, left: 0 });
   }, [location.pathname]);
 
   /** Возврат на заставку, если панель осталась без внимания. */

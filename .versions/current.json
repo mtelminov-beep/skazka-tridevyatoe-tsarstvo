@@ -1,12 +1,13 @@
 {
-  "version": "1.13.8",
-  "updatedAt": "2026-09-17T14:37:11.807Z",
+  "version": "1.13.9",
+  "updatedAt": "2026-09-17T14:38:05.420Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Синхронизированы счётчики посещений панели",
+  "summary": "Разделы и вложенные страницы теперь открываются с начала",
   "type": "patch",
   "files": [
-    "backend/data/cms-state.json"
+    "backend/data/cms-state.json",
+    "frontend/src/components/Layout.tsx"
   ]
 }
