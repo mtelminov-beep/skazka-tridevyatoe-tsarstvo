@@ -11,6 +11,7 @@ import { deleteMedia, listMedia, upload, uploadMedia } from "./mediaRoutes.js";
 import { MEDIA_DIR } from "./persistence.js";
 import { getCmsSession, loginCms, logoutCms, requireCmsAuth } from "./security.js";
 import { persistStore, store } from "./store.js";
+import { validateNetworkSettings, writeNetworkSettings } from "./networkConfig.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +19,7 @@ function listLocalNetworkAddresses(host, port) {
   if (host === "127.0.0.1" || host === "localhost") {
     return [{ host: "127.0.0.1", url: `http://127.0.0.1:${port}` }];
   }
+  if (host !== "0.0.0.0") return [{ host, url: `http://${host}:${port}` }];
 
   return Object.values(networkInterfaces())
     .flat()
@@ -28,7 +30,7 @@ function listLocalNetworkAddresses(host, port) {
 export function createCmsApp(options = {}) {
   const port = Number(options.port || process.env.PORT || 8803);
   const host = options.host || process.env.HOST || "0.0.0.0";
-  const frontendDist = options.frontendDist || join(here, "..", "..", "frontend", "dist");
+  const frontendDist = options.frontendDist || process.env.CMS_FRONTEND_DIST || join(here, "..", "..", "frontend", "dist");
   const app = express();
 
   app.use(express.json({ limit: "8mb" }));
@@ -79,6 +81,23 @@ export function createCmsApp(options = {}) {
   app.post("/cms/auth/logout", logoutCms);
 
   app.get("/cms/keys", requireCmsAuth, (req, res) => sendData(res, req, { keys: CATALOG_KEYS }));
+  app.get("/cms/network", requireCmsAuth, (req, res) => {
+    sendData(res, req, { host, port, configurable: Boolean(options.networkConfigPath) });
+  });
+  app.put("/cms/network", requireCmsAuth, (req, res) => {
+    try {
+      if (!options.networkConfigPath) {
+        sendFail(res, req, 409, "NETWORK_CONFIG_UNAVAILABLE", "Настройки сети доступны только во встроенном Windows-приложении");
+        return;
+      }
+      const settings = validateNetworkSettings(req.body);
+      writeNetworkSettings(options.networkConfigPath, settings);
+      sendData(res, req, { ...settings, restarting: true });
+      setTimeout(() => options.onNetworkChange?.(settings), 150);
+    } catch (error) {
+      sendFail(res, req, 400, "BAD_NETWORK_SETTINGS", error instanceof Error ? error.message : "Некорректные настройки сети");
+    }
+  });
   app.get("/cms/catalogs", requireCmsAuth, listCatalogs);
   app.get("/cms/catalogs/:key", requireCmsAuth, getCatalog);
   app.put("/cms/catalogs/:key", requireCmsAuth, putCatalog);

@@ -4,6 +4,28 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.16.0 — 17.09.2026 20:28:55
+
+**Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** minor  ·  **UTC:** 2026-09-17T15:28:55.776Z
+
+Добавлены Windows-приложение и настройка сети CMS
+
+Изменённые файлы:
+- `.gitignore`
+- `README.md`
+- `backend/src/app.js`
+- `backend/src/server.js`
+- `frontend/src/pages/AdminPage.tsx`
+- `frontend/src/pages/StartPage.tsx`
+- `frontend/src/stores/cmsClient.ts`
+- `frontend/src/vite-env.d.ts`
+- `package.json`
+- `backend/src/networkConfig.js`
+- `electron/main.cjs`
+- `electron/preload.cjs`
+- `package-lock.json`
+
+
 ## v1.15.1 — 17.09.2026 20:16:58
 
 **Агент:** chrome  ·  **Машина:** MIKHAIL  ·  **Тип:** patch  ·  **UTC:** 2026-09-17T15:16:58.240Z

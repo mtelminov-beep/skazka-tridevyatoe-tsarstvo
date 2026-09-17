@@ -2,6 +2,8 @@ node_modules/
 dist/
 *.log
 *.tsbuildinfo
+frontend/dist-desktop/
+release/
 
 # Блокировка журнала версий — временный файл конкретного процесса.
 # Без этой строки `bump` коммитит собственный lock и оставляет рабочее

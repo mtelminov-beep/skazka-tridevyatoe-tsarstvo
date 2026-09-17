@@ -9,7 +9,7 @@ import type { CatalogKey } from "../types";
  * на случай, когда контент правят с ноутбука библиотекаря по сети.
  */
 
-const DEFAULT_API_BASE = import.meta.env.VITE_API_BASE ?? "";
+const DEFAULT_API_BASE = import.meta.env.VITE_API_BASE ?? window.tridevyatoeApp?.cmsBase() ?? "";
 const API_BASE_STORAGE_KEY = "skazka-cms-api-base";
 const TOKEN_STORAGE_KEY = "skazka-cms-token";
 const SESSION_STORAGE_KEY = "skazka-cms-session";
@@ -52,6 +52,8 @@ export type CmsBackupImportResult = {
   media_records: number;
   media_files: number;
 };
+
+export type CmsNetworkSettings = { host: string; port: number; configurable?: boolean; restarting?: boolean };
 
 function normalizeApiBase(value: string): string {
   const raw = value.trim().replace(/\/+$/, "");
@@ -231,6 +233,15 @@ export async function fetchStats(): Promise<{ stats: Record<string, number> }> {
 export async function clearStats(): Promise<void> {
   const response = await fetch(apiUrl("/cms/stats"), { method: "DELETE", headers: cmsHeaders() });
   await unwrap(response);
+}
+
+export async function updateNetworkSettings(host: string, port: number): Promise<CmsNetworkSettings> {
+  const response = await fetch(apiUrl("/cms/network"), {
+    method: "PUT",
+    headers: cmsHeaders({ "Content-Type": "application/json" }),
+    body: JSON.stringify({ host, port })
+  });
+  return unwrap<CmsNetworkSettings>(response);
 }
 
 export async function checkHealth(base = getCmsApiBase()): Promise<CmsHealth> {

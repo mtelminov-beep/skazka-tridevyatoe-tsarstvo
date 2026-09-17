@@ -18,6 +18,7 @@ import {
   publishCatalog,
   resetCatalog,
   setCmsApiBase,
+  updateNetworkSettings,
   type CmsHealth
 } from "../stores/cmsClient";
 import type { CatalogKey } from "../types";
@@ -464,11 +465,20 @@ function ServicePanel({
 }) {
   const [health, setHealth] = useState<CmsHealth | null>(null);
   const [base, setBase] = useState(getCmsApiBase());
+  const [networkHost, setNetworkHost] = useState("0.0.0.0");
+  const [networkPort, setNetworkPort] = useState("8803");
+  const [networkBusy, setNetworkBusy] = useState(false);
   const importRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     checkHealth()
-      .then(setHealth)
+      .then((next) => {
+        setHealth(next);
+        if (next.listen) {
+          setNetworkHost(next.listen.host);
+          setNetworkPort(String(next.listen.port));
+        }
+      })
       .catch(() => setHealth(null));
   }, []);
 
@@ -496,6 +506,19 @@ function ServicePanel({
       onFlash("ok", `Восстановлено: разделов ${result.catalogs}, файлов ${result.media_files}.`);
     } catch (error) {
       onFlash("error", error instanceof Error ? error.message : "Не удалось восстановить копию");
+    }
+  };
+
+  const saveNetwork = async () => {
+    const port = Number(networkPort);
+    setNetworkBusy(true);
+    try {
+      const result = await updateNetworkSettings(networkHost, port);
+      onFlash("ok", `Настройки сохранены. Сервер перезапускается: откройте админку по новому адресу и порту ${result.port}.`);
+    } catch (error) {
+      onFlash("error", error instanceof Error ? error.message : "Не удалось сохранить настройки сети");
+    } finally {
+      setNetworkBusy(false);
     }
   };
 
@@ -533,6 +556,26 @@ function ServicePanel({
           </button>
         </div>
       </div>
+
+      {window.tridevyatoeApp ? (
+        <div className="admin-card">
+          <h4>Сеть панели</h4>
+          <p className="admin-note">
+            <code>0.0.0.0</code> открывает админку с любого компьютера локальной сети. Используйте IP этого компьютера и выбранный порт, например <code>http://192.168.1.10:8803/admin</code>.
+          </p>
+          <div className="admin-field">
+            <label htmlFor="network-host">IP-адрес для прослушивания</label>
+            <input id="network-host" className="admin-input" value={networkHost} placeholder="0.0.0.0" onChange={(event) => setNetworkHost(event.target.value)} />
+          </div>
+          <div className="admin-field">
+            <label htmlFor="network-port">Порт</label>
+            <input id="network-port" className="admin-input" type="number" min="1" max="65535" value={networkPort} onChange={(event) => setNetworkPort(event.target.value)} />
+          </div>
+          <button type="button" className="admin-btn admin-btn--primary" style={{ marginTop: 8 }} disabled={networkBusy} onClick={() => void saveNetwork()}>
+            {networkBusy ? "Сохраняем…" : "Сохранить и перезапустить сервер"}
+          </button>
+        </div>
+      ) : null}
 
       <div className="admin-card">
         <h4>Адрес сервера</h4>
