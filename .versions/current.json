@@ -1,16 +1,12 @@
 {
-  "version": "1.15.0",
-  "updatedAt": "2026-09-17T14:52:04.236Z",
-  "agent": "codex",
+  "version": "1.15.1",
+  "updatedAt": "2026-09-17T15:16:58.240Z",
+  "agent": "chrome",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "На заставке добавлены системные кнопки и контрастный режим для слабовидящих",
-  "type": "minor",
+  "summary": "Синхронизирована статистика посещений панели",
+  "type": "patch",
   "files": [
-    "frontend/src/components/Layout.tsx",
-    "frontend/src/main.tsx",
-    "frontend/src/pages/StartPage.tsx",
-    "frontend/src/styles/components.css",
-    "frontend/src/components/DisplayControls.tsx"
+    "backend/data/cms-state.json"
   ]
 }

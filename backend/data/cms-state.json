@@ -4696,9 +4696,9 @@
     }
   ],
   "stats": {
-    "section:home": 90,
+    "section:home": 92,
     "section:ages": 28,
-    "section:tales": 41,
+    "section:tales": 42,
     "section:traditions": 19,
     "section:games": 27,
     "section:gallery": 21,
@@ -4730,9 +4730,10 @@
     "quiz:7-10": 1,
     "quiz-done:7-10": 1,
     "tale:vasilisa-premudraya": 1,
-    "tale:tri-medvedya": 1,
+    "tale:tri-medvedya": 2,
     "hero:maryushka": 1,
     "quiz:3-5": 1,
-    "tale:teremok": 1
+    "tale:teremok": 1,
+    "tale:gusi-lebedi": 1
   }
 }
