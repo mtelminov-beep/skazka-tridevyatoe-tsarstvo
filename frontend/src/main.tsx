@@ -14,8 +14,10 @@ import "./styles/admin.css";
 try {
   const saved = localStorage.getItem("skazka-theme");
   document.documentElement.dataset.theme = saved === "day" ? "day" : "night";
+  document.documentElement.dataset.contrast = localStorage.getItem("skazka-high-contrast") === "true" ? "high" : "normal";
 } catch {
   document.documentElement.dataset.theme = "night";
+  document.documentElement.dataset.contrast = "normal";
 }
 
 // Крупный кегль для слабовидящих читателей — переключается в шапке панели.

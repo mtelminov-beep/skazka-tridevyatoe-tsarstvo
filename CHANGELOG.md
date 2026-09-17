@@ -4,6 +4,20 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.15.0 — 17.09.2026 19:52:04
+
+**Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** minor  ·  **UTC:** 2026-09-17T14:52:04.236Z
+
+На заставке добавлены системные кнопки и контрастный режим для слабовидящих
+
+Изменённые файлы:
+- `frontend/src/components/Layout.tsx`
+- `frontend/src/main.tsx`
+- `frontend/src/pages/StartPage.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/src/components/DisplayControls.tsx`
+
+
 ## v1.14.0 — 17.09.2026 19:47:39
 
 **Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** minor  ·  **UTC:** 2026-09-17T14:47:39.286Z

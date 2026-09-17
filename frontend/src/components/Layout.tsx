@@ -4,6 +4,7 @@ import { useCatalog, useCatalogs } from "../stores/catalogStore";
 import { trackEvent } from "../stores/cmsClient";
 import { getViewport, MODE_TITLES, nextLayoutMode, setLayoutMode, useViewport, type LayoutMode } from "../stores/viewport";
 import { Sky } from "./Sky";
+import { DisplayControls } from "./DisplayControls";
 
 const THEME_KEY = "skazka-theme";
 const TEXT_KEY = "skazka-large-text";
@@ -346,6 +347,7 @@ export function AppLayout() {
           <span>{current?.subtitle ?? "Русские народные сказки"}</span>
         </div>
         <div className="topbar__tools">
+          <DisplayControls />
           <button
             type="button"
             className={`icon-btn mode-btn${viewport.mode === "auto" ? "" : " icon-btn--on"}`}
