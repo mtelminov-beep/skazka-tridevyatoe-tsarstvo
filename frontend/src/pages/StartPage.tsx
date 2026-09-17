@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Sky } from "../components/Sky";
 import { useCatalog } from "../stores/catalogStore";
@@ -16,15 +15,8 @@ export function StartPage() {
   const start = useCatalog("skazka-start-screen-v1");
   const navigate = useNavigate();
 
-  // Любая клавиша тоже открывает панель — на случай подключённой клавиатуры.
-  useEffect(() => {
-    const onKey = () => navigate("/home");
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [navigate]);
-
   return (
-    <div className="start" onClick={() => navigate("/home")} role="button" tabIndex={0}>
+    <div className="start">
       <img className="start__hero-image" src="/covers/tridevyatoe-forest-background.png" alt="" aria-hidden="true" />
       <Sky stars={110} sparks={26} />
 
@@ -46,7 +38,7 @@ export function StartPage() {
         </div>
       </div>
 
-      <div className="start__cta start__text-panel start__text-panel--cta">
+      <button type="button" className="start__cta start__text-panel start__text-panel--cta" onClick={() => navigate("/home")}>
         <div className="start__pulse" aria-hidden="true">
           👆
         </div>
@@ -61,7 +53,7 @@ export function StartPage() {
             ))}
           </div>
         )}
-      </div>
+      </button>
     </div>
   );
 }

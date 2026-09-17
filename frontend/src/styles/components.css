@@ -478,7 +478,6 @@
   grid-template-rows: auto 1fr auto;
   padding: clamp(28px, 6vh, 90px) var(--page-pad);
   text-align: center;
-  cursor: pointer;
   isolation: isolate;
   overflow: hidden;
   background: var(--bg-deep);
@@ -615,6 +614,16 @@
   display: grid;
   justify-items: center;
   gap: 0.9rem;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.start__cta:hover,
+.start__cta:focus-visible {
+  border-color: rgba(255, 224, 138, 0.82);
+  box-shadow: 0 24px 80px rgba(3, 2, 18, 0.32), 0 0 0 4px rgba(240, 180, 41, 0.22);
 }
 
 .start__pulse {
