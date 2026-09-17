@@ -230,7 +230,7 @@ function TaleDetails({
 
   const taleHeroes = heroes.filter((hero) => tale.heroes.includes(hero.id));
   const taleWords = words.filter((word) => tale.words.includes(word.id));
-  const hasAudio = Boolean(tale.audio) || Boolean(tale.audioParts?.length);
+  const hasAudio = Boolean(tale.audio?.trim()) || Boolean(tale.audioParts?.some((part) => part.src.trim()));
 
   return (
     <article className={`tint--${tale.tint}`}>
@@ -259,15 +259,15 @@ function TaleDetails({
         {tale.summary}
       </p>
 
-      <div className="tale-audio">
-        <div className="tale-audio__head">
-          <span className="tale-audio__icon" aria-hidden="true" />
-          <div>
-            <strong>Послушать сказку</strong>
-            <span>{tale.audioParts?.length ? "По частям" : "Аудиозапись"}</span>
+      {hasAudio ? (
+        <div className="tale-audio">
+          <div className="tale-audio__head">
+            <span className="tale-audio__icon" aria-hidden="true" />
+            <div>
+              <strong>Послушать сказку</strong>
+              <span>{tale.audioParts?.length ? "По частям" : "Аудиозапись"}</span>
+            </div>
           </div>
-        </div>
-        {hasAudio ? (
           <div className="tale-audio__list">
             {tale.audioParts?.length ? (
               tale.audioParts.map((part, index) => (
@@ -283,13 +283,8 @@ function TaleDetails({
               <audio src={tale.audio} controls preload="none" />
             )}
           </div>
-        ) : (
-          <p className="tale-audio__empty">
-            Запись этой сказки пока не загружена. Библиотекарь добавляет аудио в админке — файл появится здесь,
-            и ничего в панели менять не нужно.
-          </p>
-        )}
-      </div>
+        </div>
+      ) : null}
 
       {tale.text.length > 0 ? (
         <>

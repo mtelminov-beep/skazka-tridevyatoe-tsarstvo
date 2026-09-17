@@ -1,13 +1,12 @@
 {
-  "version": "1.13.9",
-  "updatedAt": "2026-09-17T14:38:05.420Z",
+  "version": "1.13.10",
+  "updatedAt": "2026-09-17T14:39:48.237Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Разделы и вложенные страницы теперь открываются с начала",
+  "summary": "Скрыт аудиоблок у сказок без аудиофайла",
   "type": "patch",
   "files": [
-    "backend/data/cms-state.json",
-    "frontend/src/components/Layout.tsx"
+    "frontend/src/pages/TalesPage.tsx"
   ]
 }
