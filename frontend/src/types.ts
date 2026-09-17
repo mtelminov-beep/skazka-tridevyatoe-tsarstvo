@@ -7,7 +7,7 @@
  */
 
 /** Цветовая тема плитки/карточки. Значения совпадают с классами `.tint--*` в theme.css. */
-export type Tint = "gold" | "berry" | "gzhel" | "forest" | "ember" | "violet" | "sky" | "rose";
+export type Tint = "gold" | "berry" | "gzhel" | "sea" | "forest" | "ember" | "violet" | "sky" | "rose";
 
 /**
  * Возрастная полка. Шесть ступеней вместо привычных четырёх: между сказкой
@@ -372,41 +372,31 @@ export type GalleryCatalog = {
 
 /* ------------------------------- Библиотека ------------------------------- */
 
-export type LibraryEvent = {
+export type LibrarySection = {
   id: string;
   title: string;
-  when: string;
-  ages: string;
-  place: string;
-  text: string;
+  description: string;
+  content: string[];
   emoji: string;
-};
-
-export type LibraryService = {
-  id: string;
-  title: string;
-  text: string;
-  emoji: string;
+  tint: Tint;
 };
 
 export type LibraryCatalog = {
   title: string;
   lead: string;
-  about: string;
-  project: {
-    title: string;
-    text: string;
-    url: string;
-  };
   contacts: {
     address: string;
     phone: string;
     hours: string;
     site: string;
   };
-  events: LibraryEvent[];
-  services: LibraryService[];
+  sections: LibrarySection[];
 };
+
+/* -------------------------- Календарь событий -------------------------- */
+export type CalendarEvent = { id: string; day: string; title: string; description: string; anniversary?: string; media?: string };
+export type CalendarMonth = { id: string; name: string; events: CalendarEvent[] };
+export type CalendarCatalog = { eyebrow: string; title: string; lead: string; year: string; intro: CalendarEvent[]; months: CalendarMonth[] };
 
 /* ------------------------------ Карта каталогов --------------------------- */
 
@@ -423,6 +413,7 @@ export type CatalogMap = {
   "skazka-traditions-v1": TraditionsCatalog;
   "skazka-gallery-v1": GalleryCatalog;
   "skazka-library-v1": LibraryCatalog;
+  "skazka-calendar-v1": CalendarCatalog;
 };
 
 export type CatalogKey = keyof CatalogMap;

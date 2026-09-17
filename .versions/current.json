@@ -1,12 +1,21 @@
 {
-  "version": "1.13.11",
-  "updatedAt": "2026-09-17T14:47:19.406Z",
-  "agent": "chrome",
+  "version": "1.14.0",
+  "updatedAt": "2026-09-17T14:47:39.286Z",
+  "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Обновлены счётчики посещаемости CMS",
-  "type": "patch",
+  "summary": "Библиотека перенесена в формат подразделов с календарём и поддержкой CMS",
+  "type": "minor",
   "files": [
-    "backend/data/cms-state.json"
+    "backend/src/catalogKeys.js",
+    "frontend/src/admin/StructuredEditor.tsx",
+    "frontend/src/data/defaults.ts",
+    "frontend/src/data/library.ts",
+    "frontend/src/pages/LibraryPage.tsx",
+    "frontend/src/router.tsx",
+    "frontend/src/styles/components.css",
+    "frontend/src/types.ts",
+    "frontend/src/data/calendar.ts",
+    "frontend/src/pages/CalendarPage.tsx"
   ]
 }

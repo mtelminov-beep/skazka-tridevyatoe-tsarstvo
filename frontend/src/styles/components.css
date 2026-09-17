@@ -3113,6 +3113,44 @@
   border-bottom: 0;
 }
 
+.library-section-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.library-section-card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem; min-height: 8.8rem; padding: 1.2rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); text-decoration: none; transition: transform 0.22s var(--ease-spring), border-color 0.22s, background 0.22s; }
+.library-section-card:hover, .library-section-card:focus-visible { transform: translateY(-3px); border-color: var(--gold-400); background: var(--surface-strong); }
+.library-section-card__icon, .library-article__icon { display: grid; place-items: center; width: 3.7rem; height: 3.7rem; flex: 0 0 auto; border-radius: 1.1rem; background: rgba(240, 180, 41, 0.18); font-size: 1.85rem; }
+.library-section-card__body { display: grid; gap: 0.38rem; min-width: 0; }
+.library-section-card__body strong { font-size: 1.05rem; }
+.library-section-card__body small { color: var(--text-dim); line-height: 1.35; }
+.library-back { display: inline-block; margin-bottom: 1rem; color: var(--gold-300); font-weight: 700; text-decoration: none; }
+.library-article { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.25rem; padding: 1.4rem; }
+.library-article p { color: var(--text-dim); line-height: 1.6; }
+.library-article p:first-child { margin-top: 0; }
+.library-article p:last-child { margin-bottom: 0; }
+.calendar-page { padding-bottom: 2rem; }
+.calendar-intro { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1.2rem; padding: 1.25rem 1.4rem; overflow: hidden; }
+.calendar-intro__year { font: 800 clamp(2.3rem, 8vw, 5rem)/1 "Unbounded", sans-serif; color: var(--gold-300); text-shadow: 0 0 28px rgba(240, 180, 41, 0.35); }
+.calendar-intro strong { font-size: 1.1rem; }
+.calendar-intro p { margin: 0.35rem 0 0; color: var(--text-dim); }
+.calendar-months { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; margin: 1rem 0 1.7rem; }
+.calendar-month { min-height: 3.25rem; border: 1px solid var(--border); border-radius: 0.9rem; background: var(--surface); color: var(--text-dim); font: 700 0.75rem/1 "Unbounded", sans-serif; letter-spacing: 0.04em; text-transform: uppercase; transition: 0.2s var(--ease-spring); }
+.calendar-month:hover, .calendar-month:focus-visible { transform: translateY(-2px); border-color: var(--gold-400); }
+.calendar-month--active { color: #241600; border-color: transparent; background: linear-gradient(135deg, var(--gold-300), var(--gold-500)); box-shadow: var(--glow-gold); }
+.calendar-all-year { margin-bottom: 2rem; }
+.calendar-all-year h2 { font-size: 1.25rem; margin-bottom: 0.8rem; }
+.calendar-events { display: grid; gap: 0.8rem; }
+.calendar-event { display: grid; grid-template-columns: minmax(4.4rem, 6.6rem) minmax(0, 1fr) minmax(10rem, 15rem); gap: 1rem; padding: 1rem; overflow: hidden; }
+.calendar-event:not(:has(.calendar-event__media)) { grid-template-columns: minmax(4.4rem, 6.6rem) 1fr; }
+.calendar-event::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(var(--gold-300), #9275ff); }
+.calendar-event__day { display: grid; place-items: center; align-self: stretch; min-height: 4rem; border-radius: 1rem; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.22), transparent 32%), rgba(240,180,41,.15); color: var(--gold-200); font: 800 clamp(1.05rem, 2.8vw, 1.65rem)/1.1 "Unbounded", sans-serif; text-align: center; }
+.calendar-event__body { min-width: 0; }
+.calendar-event__body .chip { margin-bottom: 0.55rem; font-size: 0.58rem; }
+.calendar-event h3 { font-size: clamp(1rem, 2.4vw, 1.35rem); margin: 0 0 0.4rem; }
+.calendar-event p { margin: 0; color: var(--text-dim); line-height: 1.52; }
+.calendar-event__media { align-self: stretch; min-height: 9rem; overflow: hidden; border-radius: 0.85rem; background: rgba(0, 0, 0, 0.2); }
+.calendar-event__media img, .calendar-event__media video { display: block; width: 100%; height: 100%; min-height: 9rem; object-fit: cover; }
+.library-contacts { padding: 1rem 1.35rem; }
+.library-contacts p { margin: 0; padding: 0.72rem 0; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+.library-contacts p:last-child { border-bottom: 0; }
+
 /* ============================ Модальное окно ============================ */
 
 .modal-backdrop {

@@ -17,7 +17,8 @@ export const CATALOG_KEYS = [
   "skazka-games-v1",
   "skazka-traditions-v1",
   "skazka-gallery-v1",
-  "skazka-library-v1"
+  "skazka-library-v1",
+  "skazka-calendar-v1"
 ];
 
 /** @param {string} key */

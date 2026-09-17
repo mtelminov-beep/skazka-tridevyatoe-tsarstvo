@@ -1,104 +1,13 @@
+import { Link, useParams } from "react-router-dom";
 import { PageHead } from "../components/PageHead";
 import { useCatalog } from "../stores/catalogStore";
 
-/** Раздел о библиотеке: афиша, услуги, контакты и рассказ о нацпроекте. */
+/** Библиотека — каталог редактируемых подразделов с отдельными страницами. */
 export function LibraryPage() {
   const library = useCatalog("skazka-library-v1");
-
-  return (
-    <>
-      <PageHead eyebrow="Приходите к нам" title={library.title} lead={library.lead} />
-
-      <div className="glass" style={{ padding: "1.4rem", marginBottom: "1.4rem" }}>
-        <p style={{ margin: 0 }}>{library.about}</p>
-      </div>
-
-      <div className="section-title">
-        <h2>Афиша встреч</h2>
-        <span>{library.events.length} событий</span>
-      </div>
-
-      <div className="stack stagger" style={{ gap: "0.8rem" }}>
-        {library.events.map((event) => (
-          <div className="event-card" key={event.id}>
-            <div className="event-card__badge" aria-hidden="true">
-              {event.emoji}
-            </div>
-            <div>
-              <div className="event-card__when">{event.when}</div>
-              <div style={{ fontWeight: 800, fontSize: "1.06rem", margin: "0.15rem 0" }}>{event.title}</div>
-              <div style={{ fontSize: "0.8rem", color: "var(--text-faint)", marginBottom: "0.5rem" }}>
-                {event.ages} · {event.place}
-              </div>
-              <p style={{ margin: 0, color: "var(--text-dim)", fontSize: "0.94rem" }}>{event.text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="section-title">
-        <h2>Что у нас есть</h2>
-      </div>
-
-      <div className="grid grid--2">
-        {library.services.map((service) => (
-          <div className="card" key={service.id} style={{ padding: "1.1rem 1.2rem" }}>
-            <div style={{ fontSize: "2rem", marginBottom: "0.5rem" }} aria-hidden="true">
-              {service.emoji}
-            </div>
-            <strong style={{ display: "block", marginBottom: "0.35rem" }}>{service.title}</strong>
-            <span style={{ color: "var(--text-dim)", fontSize: "0.92rem" }}>{service.text}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="section-title">
-        <h2>Как нас найти</h2>
-      </div>
-
-      <div className="glass" style={{ padding: "0.6rem 1.3rem" }}>
-        <div className="contact-row">
-          <span style={{ fontSize: "1.5rem" }} aria-hidden="true">
-            📍
-          </span>
-          <span>{library.contacts.address}</span>
-        </div>
-        <div className="contact-row">
-          <span style={{ fontSize: "1.5rem" }} aria-hidden="true">
-            ☎️
-          </span>
-          <span>{library.contacts.phone}</span>
-        </div>
-        <div className="contact-row">
-          <span style={{ fontSize: "1.5rem" }} aria-hidden="true">
-            🕘
-          </span>
-          <span>{library.contacts.hours}</span>
-        </div>
-        {library.contacts.site ? (
-          <div className="contact-row">
-            <span style={{ fontSize: "1.5rem" }} aria-hidden="true">
-              🌐
-            </span>
-            <span>{library.contacts.site}</span>
-          </div>
-        ) : null}
-      </div>
-
-      <div className="section-title">
-        <h2>{library.project.title}</h2>
-      </div>
-
-      <div
-        className="card tint--gold"
-        style={{
-          padding: "1.4rem",
-          background: "linear-gradient(150deg, rgba(240, 180, 41, 0.18), var(--surface) 62%)"
-        }}
-      >
-        <p style={{ marginBottom: "0.9rem" }}>{library.project.text}</p>
-        <span className="chip chip--gold">{library.project.url}</span>
-      </div>
-    </>
-  );
+  const { sectionId } = useParams();
+  const section = sectionId ? library.sections.find((item) => item.id === sectionId) : undefined;
+  if (sectionId && !section) return <><PageHead eyebrow="Библиотека" title="Раздел не найден" lead="Вернитесь к списку разделов библиотеки." /><Link className="btn btn--primary" to="/library">К разделам библиотеки</Link></>;
+  if (section) return <><Link className="library-back" to="/library">← Все разделы библиотеки</Link><PageHead eyebrow="Библиотека" title={section.title} lead={section.description} /><article className="library-article glass"><div className="library-article__icon" aria-hidden="true">{section.emoji}</div><div>{section.content.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div></article></>;
+  return <><PageHead eyebrow="Библиотека" title={library.title} lead={library.lead} /><div className="library-section-grid">{library.sections.map((item) => <Link className={`library-section-card tint--${item.tint}`} key={item.id} to={item.id === "calendar-2027" ? "/library/calendar-2027" : `/library/${item.id}`}><span className="library-section-card__icon" aria-hidden="true">{item.emoji}</span><span className="library-section-card__body"><strong>{item.title}</strong><small>{item.description}</small></span><span aria-hidden="true">→</span></Link>)}</div><div className="section-title"><h2>Контакты</h2></div><div className="glass library-contacts"><p>📍 {library.contacts.address}</p><p>☎️ {library.contacts.phone}</p><p>🕘 {library.contacts.hours}</p><p>🌐 {library.contacts.site}</p></div></>;
 }

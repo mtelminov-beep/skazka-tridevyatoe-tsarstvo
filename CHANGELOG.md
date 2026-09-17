@@ -4,6 +4,25 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.14.0 — 17.09.2026 19:47:39
+
+**Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** minor  ·  **UTC:** 2026-09-17T14:47:39.286Z
+
+Библиотека перенесена в формат подразделов с календарём и поддержкой CMS
+
+Изменённые файлы:
+- `backend/src/catalogKeys.js`
+- `frontend/src/admin/StructuredEditor.tsx`
+- `frontend/src/data/defaults.ts`
+- `frontend/src/data/library.ts`
+- `frontend/src/pages/LibraryPage.tsx`
+- `frontend/src/router.tsx`
+- `frontend/src/styles/components.css`
+- `frontend/src/types.ts`
+- `frontend/src/data/calendar.ts`
+- `frontend/src/pages/CalendarPage.tsx`
+
+
 ## v1.13.11 — 17.09.2026 19:47:19
 
 **Агент:** chrome  ·  **Машина:** MIKHAIL  ·  **Тип:** patch  ·  **UTC:** 2026-09-17T14:47:19.406Z

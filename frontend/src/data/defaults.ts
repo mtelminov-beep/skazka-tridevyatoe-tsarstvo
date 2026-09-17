@@ -5,6 +5,7 @@ import { defaultGallery } from "./gallery";
 import { defaultGames } from "./games";
 import { defaultHeroes } from "./heroes";
 import { defaultLibrary } from "./library";
+import { defaultCalendar } from "./calendar";
 import { defaultQuiz } from "./quiz";
 import { defaultHome, defaultNavigation, defaultStartScreen } from "./shell";
 import { defaultTales } from "./tales";
@@ -27,7 +28,8 @@ export const catalogDefaults: CatalogMap = {
   "skazka-games-v1": defaultGames,
   "skazka-traditions-v1": defaultTraditions,
   "skazka-gallery-v1": defaultGallery,
-  "skazka-library-v1": defaultLibrary
+  "skazka-library-v1": defaultLibrary,
+  "skazka-calendar-v1": defaultCalendar
 };
 
 export const CATALOG_KEYS = Object.keys(catalogDefaults) as CatalogKey[];
@@ -45,7 +47,8 @@ export const CATALOG_LABELS: Record<CatalogKey, string> = {
   "skazka-games-v1": "Игры",
   "skazka-traditions-v1": "Как рождалась сказка",
   "skazka-gallery-v1": "Галерея и источники",
-  "skazka-library-v1": "Библиотека и афиша"
+  "skazka-library-v1": "Библиотека",
+  "skazka-calendar-v1": "Календарь событий"
 };
 
 /** Короткие пояснения — что именно правит библиотекарь в этом разделе. */
@@ -61,5 +64,6 @@ export const CATALOG_HINTS: Record<CatalogKey, string> = {
   "skazka-games-v1": "Карточки, предметы и задания для шести игр.",
   "skazka-traditions-v1": "Типы сказок, части рассказа, сказители и собиратели.",
   "skazka-gallery-v1": "Изображения художников и ссылки на открытые источники.",
-  "skazka-library-v1": "Контакты, афиша встреч и услуги библиотеки — заполните перед запуском."
+  "skazka-library-v1": "Редактируйте подразделы: текст и порядок плиток, а также контакты библиотеки.",
+  "skazka-calendar-v1": "Краеведческий календарь: вводные даты, месяцы и события. Добавляйте, редактируйте и меняйте порядок карточек."
 };

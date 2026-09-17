@@ -92,7 +92,12 @@ export const appRouter = createBrowserRouter([
         lazy: route(() => import("./pages/GalleryPage"), "GalleryPage")
       },
       {
-        path: "library",
+        path: "library/calendar-2027",
+        hydrateFallbackElement: <LoadingPage />,
+        lazy: route(() => import("./pages/CalendarPage"), "CalendarPage")
+      },
+      {
+        path: "library/:sectionId?",
         hydrateFallbackElement: <LoadingPage />,
         lazy: route(() => import("./pages/LibraryPage"), "LibraryPage")
       },
