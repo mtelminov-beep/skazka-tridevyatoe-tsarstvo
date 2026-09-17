@@ -24,3 +24,4 @@
 {"version":"1.13.8","updatedAt":"2026-09-17T14:37:11.807Z","agent":"codex","host":"MIKHAIL","branch":"main","summary":"Синхронизированы счётчики посещений панели","type":"patch","files":["backend/data/cms-state.json"]}
 {"version":"1.13.9","updatedAt":"2026-09-17T14:38:05.420Z","agent":"codex","host":"MIKHAIL","branch":"main","summary":"Разделы и вложенные страницы теперь открываются с начала","type":"patch","files":["backend/data/cms-state.json","frontend/src/components/Layout.tsx"]}
 {"version":"1.13.10","updatedAt":"2026-09-17T14:39:48.237Z","agent":"codex","host":"MIKHAIL","branch":"main","summary":"Скрыт аудиоблок у сказок без аудиофайла","type":"patch","files":["frontend/src/pages/TalesPage.tsx"]}
+{"version":"1.13.11","updatedAt":"2026-09-17T14:47:19.406Z","agent":"chrome","host":"MIKHAIL","branch":"main","summary":"Обновлены счётчики посещаемости CMS","type":"patch","files":["backend/data/cms-state.json"]}

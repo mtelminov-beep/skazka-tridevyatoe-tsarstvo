@@ -1,12 +1,12 @@
 {
-  "version": "1.13.10",
-  "updatedAt": "2026-09-17T14:39:48.237Z",
-  "agent": "codex",
+  "version": "1.13.11",
+  "updatedAt": "2026-09-17T14:47:19.406Z",
+  "agent": "chrome",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Скрыт аудиоблок у сказок без аудиофайла",
+  "summary": "Обновлены счётчики посещаемости CMS",
   "type": "patch",
   "files": [
-    "frontend/src/pages/TalesPage.tsx"
+    "backend/data/cms-state.json"
   ]
 }
