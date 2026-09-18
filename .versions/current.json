@@ -1,13 +1,12 @@
 {
-  "version": "1.16.1",
-  "updatedAt": "2026-09-18T08:55:41.589Z",
+  "version": "1.16.2",
+  "updatedAt": "2026-09-18T10:44:14.953Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "В Windows-сборку добавлены медиа и локальная загрузка CMS",
+  "summary": "Восстанавливается пустая CMS старых Windows-установок",
   "type": "patch",
   "files": [
-    "electron/main.cjs",
-    "package.json"
+    "electron/main.cjs"
   ]
 }

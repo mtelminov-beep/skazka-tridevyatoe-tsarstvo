@@ -27,13 +27,26 @@ function seedCmsData(dataRoot) {
   const sourceUploads = path.join(packageRoot, "media", "uploads");
   const targetState = path.join(dataRoot, "cms-state.json");
   const targetUploads = path.join(dataRoot, "uploads");
+  const seedMarker = path.join(dataRoot, "seeded-v1.json");
 
   fs.mkdirSync(dataRoot, { recursive: true });
   // Новая установка начинает с подготовленного библиотекой контента. Существующее
   // состояние не перезаписываем: это защищает публикации и восстановленные копии.
-  if (!fs.existsSync(targetState) && fs.existsSync(sourceState)) fs.copyFileSync(sourceState, targetState);
+  let emptyLegacyState = false;
+  if (fs.existsSync(targetState) && !fs.existsSync(seedMarker)) {
+    try {
+      const saved = JSON.parse(fs.readFileSync(targetState, "utf8"));
+      emptyLegacyState = Object.keys(saved?.catalogs ?? {}).length === 0 && (saved?.media?.length ?? 0) === 0;
+    } catch {
+      emptyLegacyState = true;
+    }
+  }
+  // Версии до 1.16.1 могли создать пустой файл CMS. Миграция срабатывает только
+  // один раз и возвращает опубликованные разделы, не затрагивая живую базу.
+  if ((!fs.existsSync(targetState) || emptyLegacyState) && fs.existsSync(sourceState)) fs.copyFileSync(sourceState, targetState);
   // При обновлении добавляем только отсутствующие файлы — свои загрузки не затираем.
   if (fs.existsSync(sourceUploads)) fs.cpSync(sourceUploads, targetUploads, { recursive: true, force: false, errorOnExist: false });
+  if (!fs.existsSync(seedMarker)) fs.writeFileSync(seedMarker, '{"version":1}\n', "utf8");
 }
 
 function cmsUrl() {
