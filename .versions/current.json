@@ -1,24 +1,13 @@
 {
-  "version": "1.16.0",
-  "updatedAt": "2026-09-17T15:28:55.776Z",
+  "version": "1.16.1",
+  "updatedAt": "2026-09-18T08:55:41.589Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Добавлены Windows-приложение и настройка сети CMS",
-  "type": "minor",
+  "summary": "В Windows-сборку добавлены медиа и локальная загрузка CMS",
+  "type": "patch",
   "files": [
-    ".gitignore",
-    "README.md",
-    "backend/src/app.js",
-    "backend/src/server.js",
-    "frontend/src/pages/AdminPage.tsx",
-    "frontend/src/pages/StartPage.tsx",
-    "frontend/src/stores/cmsClient.ts",
-    "frontend/src/vite-env.d.ts",
-    "package.json",
-    "backend/src/networkConfig.js",
     "electron/main.cjs",
-    "electron/preload.cjs",
-    "package-lock.json"
+    "package.json"
   ]
 }

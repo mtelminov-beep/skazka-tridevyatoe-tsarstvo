@@ -1,29 +1,55 @@
-const { app, BrowserWindow, ipcMain, net, powerSaveBlocker, protocol, screen } = require("electron");
+const { app, BrowserWindow, ipcMain, net, powerSaveBlocker, screen } = require("electron");
 const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
-const { pathToFileURL } = require("url");
 
 let kioskWindow;
 let displaySleepBlockerId;
 let cmsProcess;
+let cmsHost = "0.0.0.0";
 let cmsPort = 8803;
 
-function getSavedCmsPort(dataRoot) {
+function getSavedNetworkSettings(dataRoot) {
   try {
     const saved = JSON.parse(fs.readFileSync(path.join(dataRoot, "network.json"), "utf8"));
     const port = Number(saved?.port);
-    return Number.isInteger(port) && port >= 1 && port <= 65535 ? port : 8803;
+    const host = typeof saved?.host === "string" ? saved.host : "0.0.0.0";
+    if (Number.isInteger(port) && port >= 1 && port <= 65535) return { host, port };
   } catch {
-    return 8803;
+    // Первый запуск использует безопасные настройки по умолчанию.
   }
+  return { host: "0.0.0.0", port: 8803 };
+}
+
+function seedCmsData(dataRoot) {
+  const packageRoot = path.join(__dirname, "..");
+  const sourceState = path.join(packageRoot, "backend", "data", "cms-state.json");
+  const sourceUploads = path.join(packageRoot, "media", "uploads");
+  const targetState = path.join(dataRoot, "cms-state.json");
+  const targetUploads = path.join(dataRoot, "uploads");
+
+  fs.mkdirSync(dataRoot, { recursive: true });
+  // Новая установка начинает с подготовленного библиотекой контента. Существующее
+  // состояние не перезаписываем: это защищает публикации и восстановленные копии.
+  if (!fs.existsSync(targetState) && fs.existsSync(sourceState)) fs.copyFileSync(sourceState, targetState);
+  // При обновлении добавляем только отсутствующие файлы — свои загрузки не затираем.
+  if (fs.existsSync(sourceUploads)) fs.cpSync(sourceUploads, targetUploads, { recursive: true, force: false, errorOnExist: false });
+}
+
+function cmsUrl() {
+  // 0.0.0.0 — адрес прослушивания, но не адрес назначения в браузере.
+  const host = cmsHost === "0.0.0.0" ? "127.0.0.1" : cmsHost;
+  return `http://${host}:${cmsPort}`;
 }
 
 function startCmsServer(settings = {}) {
   const dataRoot = path.join(app.getPath("userData"), "cms");
+  const network = { ...getSavedNetworkSettings(dataRoot), ...settings };
   const serverEntry = path.join(__dirname, "..", "backend", "src", "server.js");
   const webRoot = path.join(__dirname, "..", "frontend", "dist-desktop");
-  cmsPort = Number(settings.port) || getSavedCmsPort(dataRoot);
+  seedCmsData(dataRoot);
+  cmsHost = network.host;
+  cmsPort = network.port;
   cmsProcess = spawn(process.execPath, [serverEntry], {
     env: {
       ...process.env,
@@ -44,29 +70,32 @@ function startCmsServer(settings = {}) {
   cmsProcess.on("error", (error) => console.error("Не удалось запустить CMS:", error));
 }
 
-function restartCmsServer(settings) {
-  const previous = cmsProcess;
-  if (previous && !previous.killed) previous.once("exit", () => startCmsServer(settings));
-  if (previous && !previous.killed) previous.kill();
-  else startCmsServer(settings);
+async function loadKioskContent() {
+  const target = `${cmsUrl()}/`;
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    try {
+      const response = await net.fetch(`${cmsUrl()}/health`);
+      if (response.ok) {
+        await kioskWindow?.loadURL(target);
+        return;
+      }
+    } catch {
+      // Сервер запускается отдельным процессом; коротко ждём его готовности.
+    }
+    await new Promise((resolve) => setTimeout(resolve, 150));
+  }
+  kioskWindow?.loadURL(target).catch((error) => console.error("Не удалось открыть панель:", error));
 }
 
-protocol.registerSchemesAsPrivileged([
-  { scheme: "tridevyatoe", privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true } }
-]);
-
-function registerLocalContentProtocol() {
-  const webRoot = path.join(__dirname, "..", "frontend", "dist-desktop");
-  const indexFile = path.join(webRoot, "index.html");
-  const rootPrefix = `${webRoot}${path.sep}`;
-  protocol.handle("tridevyatoe", (request) => {
-    const url = new URL(request.url);
-    const requestedPath = decodeURIComponent(url.pathname).replace(/^[/\\]+/, "");
-    const candidate = path.resolve(webRoot, requestedPath || "index.html");
-    const isLocalFile = candidate === webRoot || candidate.startsWith(rootPrefix);
-    const target = isLocalFile && fs.existsSync(candidate) && fs.statSync(candidate).isFile() ? candidate : indexFile;
-    return net.fetch(pathToFileURL(target).toString());
-  });
+function restartCmsServer(settings) {
+  const previous = cmsProcess;
+  const start = () => {
+    startCmsServer(settings);
+    void loadKioskContent();
+  };
+  if (previous && !previous.killed) previous.once("exit", start);
+  if (previous && !previous.killed) previous.kill();
+  else start();
 }
 
 function createKioskWindow() {
@@ -75,18 +104,17 @@ function createKioskWindow() {
     x, y, width, height, backgroundColor: "#06031a", fullscreen: true, kiosk: true, frame: false, autoHideMenuBar: true,
     webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true, preload: path.join(__dirname, "preload.cjs") }
   });
-  kioskWindow.loadURL("tridevyatoe://app/index.html");
 }
 
 app.whenReady().then(() => {
-  registerLocalContentProtocol();
   startCmsServer();
   displaySleepBlockerId = powerSaveBlocker.start("prevent-display-sleep");
   createKioskWindow();
+  void loadKioskContent();
 });
 
 ipcMain.on("tridevyatoe:quit", () => app.quit());
-ipcMain.on("tridevyatoe:cms-base", (event) => { event.returnValue = `http://127.0.0.1:${cmsPort}`; });
+ipcMain.on("tridevyatoe:cms-base", (event) => { event.returnValue = cmsUrl(); });
 app.on("window-all-closed", () => app.quit());
 app.on("will-quit", () => {
   if (cmsProcess && !cmsProcess.killed) cmsProcess.kill();

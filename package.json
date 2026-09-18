@@ -1,6 +1,6 @@
 {
   "name": "skazka-interactive",
-  "version": "1.16.0",
+  "version": "1.16.1",
   "private": true,
   "description": "Интерактивная панель «Тридевятое царство» — русские народные сказки для детской библиотеки нового поколения",
   "type": "module",
@@ -24,7 +24,7 @@
     "appId": "ru.tridevyatoe.skazki",
     "productName": "Тридевятое царство",
     "directories": { "output": "release/windows" },
-    "files": ["electron/**/*", "backend/src/**/*", "backend/node_modules/**/*", "frontend/dist-desktop/**/*", "package.json"],
+    "files": ["electron/**/*", "backend/src/**/*", "backend/data/**/*", "backend/node_modules/**/*", "frontend/dist-desktop/**/*", "media/uploads/**/*", "package.json"],
     "asar": false,
     "compression": "store",
     "win": { "target": ["nsis"], "artifactName": "Tridevyatoe-Tsarstvo-Setup-${version}.${ext}" },
