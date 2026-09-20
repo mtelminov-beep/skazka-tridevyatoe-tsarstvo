@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import { appRouter } from "./router";
+import { LicenseGate } from "./LicenseGate";
 import { initViewport } from "./stores/viewport";
 import "./styles/theme.css";
 import "./styles/animations.css";
@@ -9,6 +10,7 @@ import "./styles/components.css";
 import "./styles/folk.css";
 import "./styles/adaptive.css";
 import "./styles/admin.css";
+import "./styles/license.css";
 
 // Тема выбирается в панели и запоминается: в зале её ставят один раз под освещение.
 try {
@@ -38,6 +40,6 @@ document.addEventListener("gesturestart", (event) => event.preventDefault());
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={appRouter} />
+    <LicenseGate><RouterProvider router={appRouter} /></LicenseGate>
   </StrictMode>
 );

@@ -1,0 +1,13 @@
+{
+  "appId": "ru.tridevyatoe.skazki",
+  "appName": "Тридевятое царство",
+  "webDir": "frontend/dist",
+  "server": {
+    "cleartext": true,
+    "allowNavigation": ["*"]
+  },
+  "android": {
+    "backgroundColor": "#160b2d",
+    "allowMixedContent": true
+  }
+}

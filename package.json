@@ -1,6 +1,6 @@
 {
   "name": "skazka-interactive",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "private": true,
   "description": "Интерактивная панель «Тридевятое царство» — русские народные сказки для детской библиотеки нового поколения",
   "type": "module",
@@ -14,9 +14,17 @@
     "kiosk": "npm run build && npm run start",
     "check": "npm --prefix frontend run check",
     "desktop:web": "set \"VITE_DESKTOP=true\" && npm --prefix frontend run build -- --outDir dist-desktop",
-    "desktop:installer": "npm run desktop:web && electron-builder --win nsis"
+    "desktop:installer": "npm run desktop:web && electron-builder --win nsis",
+    "android:media": "node scripts/prepare-android-media.mjs",
+    "android:sync": "npm run android:media && npm --prefix frontend run build && npx cap sync android",
+    "android:apk": "npm run android:sync && cd android && gradlew.bat assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/core": "7.4.3"
   },
   "devDependencies": {
+    "@capacitor/android": "7.4.3",
+    "@capacitor/cli": "7.4.3",
     "electron": "44.3.0",
     "electron-builder": "26.15.3"
   },

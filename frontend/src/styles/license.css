@@ -1,0 +1,15 @@
+.license-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; color: #fff8e9; background: radial-gradient(circle at 50% 0, #6f3b81, #160b2d 62%); }
+.license-card { width: min(100%, 620px); padding: clamp(24px, 6vw, 48px); border: 1px solid #e7c77d88; border-radius: 28px; background: #27143de8; box-shadow: 0 24px 70px #0008; }
+.license-card h1 { margin: 0 0 12px; font-family: Georgia, serif; font-size: clamp(28px, 7vw, 48px); }
+.license-card p { line-height: 1.5; color: #f1dfbf; }
+.license-eyebrow { margin: 0 0 8px; color: #ffd86f !important; font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+.license-code, .license-input { display: grid; gap: 8px; margin-top: 24px; font-weight: 700; }
+.license-code { padding: 16px; border-radius: 14px; background: #12091f; }
+.license-code code { overflow-wrap: anywhere; color: #ffdc74; font-size: 15px; }
+.license-device { margin: 8px 0 0; font-size: 14px; }
+.license-input textarea { resize: vertical; border: 1px solid #c59c5a; border-radius: 12px; padding: 12px; color: #fff8e9; background: #12091f; font: 13px/1.4 ui-monospace, monospace; }
+.license-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.license-actions button { border: 0; border-radius: 999px; padding: 13px 22px; color: #26132d; background: #ffd86f; font-weight: 800; cursor: pointer; }
+.license-actions .license-secondary { color: #fff8e9; background: transparent; border: 1px solid #e7c77d; }
+.license-actions button:disabled { opacity: .55; cursor: wait; }
+.license-error { color: #ffb4ad !important; font-weight: 700; }

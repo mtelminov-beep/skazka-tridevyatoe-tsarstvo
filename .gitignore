@@ -3,6 +3,7 @@ dist/
 *.log
 *.tsbuildinfo
 frontend/dist-desktop/
+frontend/public/media/uploads/
 release/
 activation-tool/TridevyatoeActivationTool/keys/*.pfx
 
