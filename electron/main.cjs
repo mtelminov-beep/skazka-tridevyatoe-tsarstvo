@@ -28,6 +28,7 @@ function seedCmsData(dataRoot) {
   const targetState = path.join(dataRoot, "cms-state.json");
   const targetUploads = path.join(dataRoot, "uploads");
   const seedMarker = path.join(dataRoot, "seeded-v1.json");
+  const genericContentMarker = path.join(dataRoot, "generic-content-v1.json");
 
   fs.mkdirSync(dataRoot, { recursive: true });
   // Новая установка начинает с подготовленного библиотекой контента. Существующее
@@ -47,6 +48,19 @@ function seedCmsData(dataRoot) {
   // При обновлении добавляем только отсутствующие файлы — свои загрузки не затираем.
   if (fs.existsSync(sourceUploads)) fs.cpSync(sourceUploads, targetUploads, { recursive: true, force: false, errorOnExist: false });
   if (!fs.existsSync(seedMarker)) fs.writeFileSync(seedMarker, '{"version":1}\n', "utf8");
+  // До универсальной сборки эти два каталога содержали сведения конкретного
+  // учреждения. Убираем их один раз и позволяем фронтенду показать новые шаблоны.
+  if (!fs.existsSync(genericContentMarker) && fs.existsSync(targetState)) {
+    try {
+      const state = JSON.parse(fs.readFileSync(targetState, "utf8"));
+      delete state?.catalogs?.["skazka-library-v1"];
+      delete state?.catalogs?.["skazka-calendar-v1"];
+      fs.writeFileSync(targetState, `${JSON.stringify(state, null, 2)}\n`, "utf8");
+    } catch {
+      // Повреждённое состояние штатно обработает CMS при запуске.
+    }
+    fs.writeFileSync(genericContentMarker, '{"version":1}\n', "utf8");
+  }
 }
 
 function cmsUrl() {

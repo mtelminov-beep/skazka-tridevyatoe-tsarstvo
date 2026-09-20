@@ -1,0 +1,25 @@
+<Window x:Class="TridevyatoeActivationTool.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Тридевятое царство — активатор" Width="940" Height="700" MinWidth="820" MinHeight="620" WindowStartupLocation="CenterScreen" Background="#100C1F">
+  <Grid Margin="18">
+    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <Border Padding="18" Margin="0,0,0,14" CornerRadius="12" Background="#21183C" BorderBrush="#5D438F" BorderThickness="1">
+      <StackPanel><TextBlock FontSize="27" FontWeight="SemiBold" Foreground="#FFF7E8" Text="Тридевятое царство · активатор"/><TextBlock Margin="0,8,0,0" Foreground="#D8C9F5" Text="Генерация офлайн-лицензии для Windows-приложения. Храните программу и приватный ключ только у владельца."/><TextBlock Margin="0,6,0,0" Foreground="#A992D4" Text="{Binding KeyStatus}"/></StackPanel>
+    </Border>
+    <Grid Grid.Row="1"><Grid.ColumnDefinitions><ColumnDefinition Width="360"/><ColumnDefinition Width="14"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+      <Border Grid.Column="0" Padding="18" CornerRadius="12" Background="#1A142C" BorderBrush="#42345F" BorderThickness="1"><StackPanel>
+        <TextBlock FontSize="19" FontWeight="SemiBold" Foreground="#FFF7E8" Text="Параметры лицензии"/>
+        <TextBlock Margin="0,18,0,6" Foreground="#D8C9F5" Text="Код запроса устройства"/><TextBox x:Name="RequestCodeTextBox" Height="36" Padding="10,7" Background="#0D0917" BorderBrush="#574376" Foreground="#FFF7E8"/>
+        <TextBlock Margin="0,14,0,6" Foreground="#D8C9F5" Text="Заказчик / объект"/><TextBox x:Name="CustomerTextBox" Height="36" Padding="10,7" Text="Библиотека" Background="#0D0917" BorderBrush="#574376" Foreground="#FFF7E8"/>
+        <CheckBox x:Name="PerpetualCheckBox" Margin="0,18,0,8" Foreground="#FFF7E8" Content="Бессрочная лицензия" IsChecked="True" Checked="PerpetualCheckBox_OnChanged" Unchecked="PerpetualCheckBox_OnChanged"/>
+        <TextBlock Margin="0,4,0,6" Foreground="#D8C9F5" Text="Дата окончания"/><DatePicker x:Name="ExpiresAtPicker" Height="36" IsEnabled="False" Background="#0D0917" BorderBrush="#574376" Foreground="#FFF7E8"/>
+        <TextBlock Margin="0,14,0,6" Foreground="#D8C9F5" Text="Функции (по одной на строку)"/><TextBox x:Name="FeaturesTextBox" MinHeight="110" Padding="10" AcceptsReturn="True" Text="all" Background="#0D0917" BorderBrush="#574376" Foreground="#FFF7E8"/>
+        <StackPanel Margin="0,18,0,0" Orientation="Horizontal"><Button Width="150" Height="38" Click="GenerateButton_Click" Content="Сгенерировать"/><Button Width="120" Height="38" Margin="10,0,0,0" Click="ClearButton_Click" Content="Очистить"/></StackPanel>
+      </StackPanel></Border>
+      <Border Grid.Column="2" Padding="18" CornerRadius="12" Background="#1A142C" BorderBrush="#42345F" BorderThickness="1"><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <TextBlock FontSize="19" FontWeight="SemiBold" Foreground="#FFF7E8" Text="Файл лицензии"/>
+        <TextBox Grid.Row="1" x:Name="OutputTextBox" Margin="0,14,0,14" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True" FontFamily="Consolas" FontSize="13" Padding="12" Background="#0D0917" BorderBrush="#574376" Foreground="#FFF7E8"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal"><Button Width="130" Height="38" Click="CopyButton_Click" Content="Копировать"/><Button Width="150" Height="38" Margin="10,0,0,0" Click="SaveButton_Click" Content="Сохранить файл"/></StackPanel>
+      </Grid></Border>
+    </Grid>
+    <StatusBar Grid.Row="2" Margin="0,14,0,0" Background="#1A142C" Foreground="#E6DDF7"><StatusBarItem><TextBlock Text="{Binding StatusMessage}"/></StatusBarItem></StatusBar>
+  </Grid>
+</Window>

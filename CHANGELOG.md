@@ -4,6 +4,34 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.17.0 — 20.09.2026 16:51:49
+
+**Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** minor  ·  **UTC:** 2026-09-20T11:51:49.373Z
+
+Контент библиотеки стал универсальным и добавлен активатор ключей
+
+Изменённые файлы:
+- `.gitignore`
+- `README.md`
+- `backend/data/cms-state.json`
+- `electron/main.cjs`
+- `frontend/src/data/calendar.ts`
+- `frontend/src/data/library.ts`
+- `activation-tool/TridevyatoeActivationTool/App.xaml`
+- `activation-tool/TridevyatoeActivationTool/App.xaml.cs`
+- `activation-tool/TridevyatoeActivationTool/LicenseSettings.cs`
+- `activation-tool/TridevyatoeActivationTool/MainWindow.xaml`
+- `activation-tool/TridevyatoeActivationTool/MainWindow.xaml.cs`
+- `activation-tool/TridevyatoeActivationTool/TridevyatoeActivationTool.csproj`
+- `activation-tool/TridevyatoeActivationTool/keys/license-settings.json`
+- `activation-tool/TridevyatoeActivationTool/obj/TridevyatoeActivationTool.csproj.nuget.dgspec.json`
+- `activation-tool/TridevyatoeActivationTool/obj/TridevyatoeActivationTool.csproj.nuget.g.props`
+- `activation-tool/TridevyatoeActivationTool/obj/TridevyatoeActivationTool.csproj.nuget.g.targets`
+- `activation-tool/TridevyatoeActivationTool/obj/project.assets.json`
+- `activation-tool/TridevyatoeActivationTool/obj/project.nuget.cache`
+- `scripts/publish-activation-tool.ps1`
+
+
 ## v1.16.2 — 18.09.2026 15:44:14
 
 **Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** patch  ·  **UTC:** 2026-09-18T10:44:14.953Z

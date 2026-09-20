@@ -4,6 +4,7 @@ dist/
 *.tsbuildinfo
 frontend/dist-desktop/
 release/
+activation-tool/TridevyatoeActivationTool/keys/*.pfx
 
 # Блокировка журнала версий — временный файл конкретного процесса.
 # Без этой строки `bump` коммитит собственный lock и оставляет рабочее
