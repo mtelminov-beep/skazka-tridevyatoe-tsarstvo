@@ -4,6 +4,20 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.18.1 — 24.09.2026 20:38:34
+
+**Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** patch  ·  **UTC:** 2026-09-24T15:38:34.151Z
+
+Исправлены офлайн-медиа и обязательная активация Windows-приложения
+
+Изменённые файлы:
+- `electron/main.cjs`
+- `electron/preload.cjs`
+- `frontend/src/nativeLicense.ts`
+- `frontend/src/vite-env.d.ts`
+- `package.json`
+
+
 ## v1.18.0 — 20.09.2026 22:03:29
 
 **Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** minor  ·  **UTC:** 2026-09-20T17:03:29.701Z

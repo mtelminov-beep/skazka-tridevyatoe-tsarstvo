@@ -2,12 +2,62 @@ const { app, BrowserWindow, ipcMain, net, powerSaveBlocker, screen } = require("
 const { spawn } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
+const crypto = require("crypto");
 
 let kioskWindow;
 let displaySleepBlockerId;
 let cmsProcess;
 let cmsHost = "0.0.0.0";
 let cmsPort = 8803;
+
+const LICENSE_APP_ID = "ru.tridevyatoe.skazki";
+const LICENSE_CERTIFICATE = "MIIEGTCCAoGgAwIBAgIQU5BBcYW48LBOhiAJhi6pOTANBgkqhkiG9w0BAQsFADAvMS0wKwYDVQQDDCRUcmlkZXZ5YXRvZSBUc2Fyc3R2byBMaWNlbnNlIFNpZ25pbmcwHhcNMjYwOTIwMTEzODE0WhcNMjcwOTIwMTE1ODE0WjAvMS0wKwYDVQQDDCRUcmlkZXZ5YXRvZSBUc2Fyc3R2byBMaWNlbnNlIFNpZ25pbmcwggGiMA0GCSqGSIb3DQEBAQUAA4IBjwAwggGKAoIBgQDGqcFu9cu6rs8OXH8qx/F0XtXGOxq+4cLWGuLH3HV1eT7M8LeqBLZIM1ODGxQc7YuEIgi5f+NnI0bk8k8nh3C5ksxYqQn7xI4Tt7y+olqCqqT9w/DfyXVK3YpE075RbbVT+h4Ncpc9stb8vNmiLrNBzQPnJTFQYlvfVxGDR5G1RVZfmUgxCrdrTqnyZSe0hQtI8fd9pVYcytTTFlAoPRWvWVNoCBG6afQ6vfx9Q2PcfSB9Tsw5Ia23vDIQelchT3rbwV6EhTNVLAp/OWbz9/9089lQn90dWvf4FKx81yZZ6bvi85HISEvakaW5Sv4YllJiQEWtUhWEkrtPKCaYSP/Aldia5he2WtwFp0iJhG7NlIDjEKUjUhoYB8vXOHpPocnbY1JoS+y+5bGwSFajUxSlQ1AWXhPlI3gVgjQXYagxocGpRUWETFyCUcnNlIHaJM8gzF2R+DYGRivu8uMNxzctEK/CBNynO4GMR2x2/Yr5uXhCxu66Wi+ShmRyL3RzQJkCAwEAAaMxMC8wDgYDVR0PAQH/BAQDAgeAMB0GA1UdDgQWBBTJB9jyYQCMk0FKzoo3sG5FANWADzANBgkqhkiG9w0BAQsFAAOCAYEAWpkGd/U+DLmJIsAQoh9lHXNSEfGOrbejsey8unweDbBya4Fb66Mh/dLNYJXNou/te6t+y1AnI1+x9b7d3wgIptDYBhbKIeC6QvwD0hd69knlb+eccbY4Lekjg10AjUr4mFxW9s/ap1pg82sgIj72+V7OO0A0dQpixvWOmFy1I/uoJzLpc55bCiVFfsPSxelZFg6rb28bUR4hcksqfW/5NfYKQzGtglnGGDrl62p94w7OcYh7u363EoTvro1q87SeSh0/dIDjFpokwO+XRWAWujDxVlvl75AL7YGiBs3DsI8IVWg67A1+QIIU0GjE3thmQwMlzKqV/ULXNttPRls3Y+NbnmvQwJ7U3rriFgdPovoxBncNCDSnu1TlUDg2/ywdMQ+93m7pshJfC6y7weJKDlhqi51d7PmAVAEW6FO0Ca5W9FTkxHCijC1iz4dWmDReqFzRYTbcSi6BqvGMlKdMk1XyP0KQpEUN6HbIqyxdZUMNI5ZyjG0zDe72Iycf42Y+";
+
+function windowsDeviceRequestId() {
+  const identity = [LICENSE_APP_ID, process.platform, os.hostname(), os.userInfo().username].join("|");
+  return crypto.createHash("sha256").update(identity, "utf8").digest("hex").toUpperCase();
+}
+
+function formatRequestCode(value) { return value.replace(/(.{5})(?!$)/g, "$1-"); }
+
+function readLicense() {
+  try { return fs.readFileSync(path.join(app.getPath("userData"), "license.json"), "utf8").trim(); } catch { return null; }
+}
+
+function licenseStatus(rawLicense = readLicense()) {
+  const deviceRequestId = windowsDeviceRequestId();
+  const base = { platform: "windows", appId: LICENSE_APP_ID, packageName: app.getName(), manufacturer: os.hostname(), model: "Windows", deviceRequestId, requestCode: formatRequestCode(deviceRequestId) };
+  if (!rawLicense) return { ...base, licensePresent: false, licenseValid: false, needsActivation: true, reason: "license_required", licenseSummary: null };
+  try {
+    const license = JSON.parse(rawLicense);
+    const payloadBytes = Buffer.from(String(license.payload).replace(/-/g, "+").replace(/_/g, "/"), "base64");
+    const signature = Buffer.from(String(license.signature).replace(/-/g, "+").replace(/_/g, "/"), "base64");
+    const certificate = new crypto.X509Certificate(Buffer.from(LICENSE_CERTIFICATE, "base64"));
+    if (!crypto.verify("RSA-SHA256", payloadBytes, certificate.publicKey, signature)) throw new Error("invalid_signature");
+    const payload = JSON.parse(payloadBytes.toString("utf8"));
+    if (payload.appId !== LICENSE_APP_ID) throw new Error("app_mismatch");
+    if (String(payload.deviceRequestId).toUpperCase() !== deviceRequestId) throw new Error("device_mismatch");
+    if (payload.version !== 1) throw new Error("version_mismatch");
+    if (payload.expiresAt && Number.isFinite(Date.parse(payload.expiresAt)) && Date.now() > Date.parse(payload.expiresAt)) throw new Error("expired");
+    return { ...base, licensePresent: true, licenseValid: true, needsActivation: false, reason: "active", licenseSummary: { customer: payload.customer ?? "Библиотека", issuedAt: payload.issuedAt ?? "", expiresAt: payload.expiresAt ?? null, features: Array.isArray(payload.features) ? payload.features : [] } };
+  } catch (error) {
+    return { ...base, licensePresent: true, licenseValid: false, needsActivation: true, reason: error instanceof Error ? error.message : "invalid_license", licenseSummary: null };
+  }
+}
+
+function syncMissingMedia(source, target) {
+  for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
+    const from = path.join(source, entry.name);
+    const to = path.join(target, entry.name);
+    if (entry.isDirectory()) {
+      fs.mkdirSync(to, { recursive: true });
+      syncMissingMedia(from, to);
+    } else if (entry.isFile() && (!fs.existsSync(to) || fs.statSync(from).size !== fs.statSync(to).size)) {
+      fs.copyFileSync(from, to);
+    }
+  }
+}
 
 function getSavedNetworkSettings(dataRoot) {
   try {
@@ -45,8 +95,8 @@ function seedCmsData(dataRoot) {
   // Версии до 1.16.1 могли создать пустой файл CMS. Миграция срабатывает только
   // один раз и возвращает опубликованные разделы, не затрагивая живую базу.
   if ((!fs.existsSync(targetState) || emptyLegacyState) && fs.existsSync(sourceState)) fs.copyFileSync(sourceState, targetState);
-  // При обновлении добавляем только отсутствующие файлы — свои загрузки не затираем.
-  if (fs.existsSync(sourceUploads)) fs.cpSync(sourceUploads, targetUploads, { recursive: true, force: false, errorOnExist: false });
+  // При обновлении добавляем отсутствующие или повреждённые файлы, не трогая свои загрузки.
+  if (fs.existsSync(sourceUploads)) { fs.mkdirSync(targetUploads, { recursive: true }); syncMissingMedia(sourceUploads, targetUploads); }
   if (!fs.existsSync(seedMarker)) fs.writeFileSync(seedMarker, '{"version":1}\n', "utf8");
   // До универсальной сборки эти два каталога содержали сведения конкретного
   // учреждения. Убираем их один раз и позволяем фронтенду показать новые шаблоны.
@@ -142,6 +192,13 @@ app.whenReady().then(() => {
 
 ipcMain.on("tridevyatoe:quit", () => app.quit());
 ipcMain.on("tridevyatoe:cms-base", (event) => { event.returnValue = cmsUrl(); });
+ipcMain.handle("tridevyatoe:license-status", () => licenseStatus());
+ipcMain.handle("tridevyatoe:license-activate", (_event, rawLicense) => {
+  const status = licenseStatus(typeof rawLicense === "string" ? rawLicense.trim() : "");
+  if (!status.licenseValid) throw new Error(status.reason);
+  fs.writeFileSync(path.join(app.getPath("userData"), "license.json"), rawLicense.trim(), "utf8");
+  return { status };
+});
 app.on("window-all-closed", () => app.quit());
 app.on("will-quit", () => {
   if (cmsProcess && !cmsProcess.killed) cmsProcess.kill();

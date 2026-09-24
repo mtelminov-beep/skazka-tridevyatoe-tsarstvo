@@ -1,7 +1,7 @@
 import { registerPlugin } from "@capacitor/core";
 
 export type LicenseStatus = {
-  platform: "android" | "web";
+  platform: "android" | "windows" | "web";
   appId: string;
   packageName: string;
   manufacturer: string;
@@ -37,9 +37,14 @@ const browserStatus: LicenseStatus = {
   licenseSummary: null
 };
 
-export const NativeLicense = registerPlugin<NativeLicensePlugin>("TridevyatoeLicense", {
+const capacitorLicense = registerPlugin<NativeLicensePlugin>("TridevyatoeLicense", {
   web: () => ({
     async getStatus() { return browserStatus; },
     async activate() { return { status: browserStatus }; }
   })
 });
+
+export const NativeLicense: NativeLicensePlugin = {
+  getStatus: () => window.tridevyatoeApp?.licenseStatus() ?? capacitorLicense.getStatus(),
+  activate: (options) => window.tridevyatoeApp?.activateLicense(options.license) ?? capacitorLicense.activate(options)
+};
