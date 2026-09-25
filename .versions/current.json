@@ -1,16 +1,12 @@
 {
-  "version": "1.18.1",
-  "updatedAt": "2026-09-24T15:38:34.151Z",
-  "agent": "codex",
+  "version": "1.18.2",
+  "updatedAt": "2026-09-25T00:35:02.541Z",
+  "agent": "claude",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Исправлены офлайн-медиа и обязательная активация Windows-приложения",
+  "summary": "Счётчики посещений разделов (визит при подготовке презентации)",
   "type": "patch",
   "files": [
-    "electron/main.cjs",
-    "electron/preload.cjs",
-    "frontend/src/nativeLicense.ts",
-    "frontend/src/vite-env.d.ts",
-    "package.json"
+    "backend/data/cms-state.json"
   ]
 }

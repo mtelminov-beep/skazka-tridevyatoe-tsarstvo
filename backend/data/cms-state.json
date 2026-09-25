@@ -1,5 +1,14 @@
 {
   "catalogs": {},
   "media": [],
-  "stats": {}
+  "stats": {
+    "section:home": 1,
+    "section:ages": 1,
+    "section:tales": 1,
+    "section:gallery": 1,
+    "section:heroes": 1,
+    "section:games": 1,
+    "section:dictionary": 1,
+    "section:quiz": 1
+  }
 }
