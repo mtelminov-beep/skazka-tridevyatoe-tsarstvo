@@ -1,12 +1,14 @@
 {
-  "version": "1.18.2",
-  "updatedAt": "2026-09-25T00:35:02.541Z",
+  "version": "1.18.3",
+  "updatedAt": "2026-09-25T08:29:28.136Z",
   "agent": "claude",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Счётчики посещений разделов (визит при подготовке презентации)",
+  "summary": "Счётчики посещений и синхронизация версии в lock-файлах при подъёме проекта",
   "type": "patch",
   "files": [
-    "backend/data/cms-state.json"
+    "backend/data/cms-state.json",
+    "backend/package-lock.json",
+    "frontend/package-lock.json"
   ]
 }
