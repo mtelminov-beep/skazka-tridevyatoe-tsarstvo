@@ -54,7 +54,7 @@ function readMode(): LayoutMode {
   } catch {
     /* приватный режим браузера — работаем автоматически */
   }
-  return "auto";
+  return "kiosk";
 }
 
 /**

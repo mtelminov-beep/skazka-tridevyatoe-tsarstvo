@@ -1,14 +1,15 @@
 {
-  "version": "1.18.5",
-  "updatedAt": "2026-10-12T07:56:46.539Z",
+  "version": "1.18.6",
+  "updatedAt": "2026-10-12T07:57:38.862Z",
   "agent": "codex",
   "host": "MIKHAIL",
   "branch": "main",
-  "summary": "Сохранена локальная настройка хуков Codex и обновлены счётчики CMS",
+  "summary": "Заставка открывается вертикально, режим переключается до входа, переход требует нажатия кнопки",
   "type": "patch",
   "files": [
-    "backend/data/cms-state.json",
-    ".agents/skills/version-log/SKILL.md",
-    ".codex/hooks.json"
+    "frontend/src/components/DisplayControls.tsx",
+    "frontend/src/pages/StartPage.tsx",
+    "frontend/src/stores/viewport.ts",
+    "frontend/src/styles/components.css"
   ]
 }

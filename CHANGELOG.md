@@ -4,6 +4,19 @@
 
 <!-- новые версии добавляются сюда -->
 
+## v1.18.6 — 12.10.2026 12:57:38
+
+**Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** patch  ·  **UTC:** 2026-10-12T07:57:38.862Z
+
+Заставка открывается вертикально, режим переключается до входа, переход требует нажатия кнопки
+
+Изменённые файлы:
+- `frontend/src/components/DisplayControls.tsx`
+- `frontend/src/pages/StartPage.tsx`
+- `frontend/src/stores/viewport.ts`
+- `frontend/src/styles/components.css`
+
+
 ## v1.18.5 — 12.10.2026 12:56:46
 
 **Агент:** codex  ·  **Машина:** MIKHAIL  ·  **Тип:** patch  ·  **UTC:** 2026-10-12T07:56:46.539Z
