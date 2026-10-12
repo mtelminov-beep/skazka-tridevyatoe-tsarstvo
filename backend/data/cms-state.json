@@ -4696,13 +4696,19 @@
     }
   ],
   "stats": {
-    "section:home": 13,
-    "section:ages": 3,
-    "section:tales": 4,
-    "section:gallery": 1,
-    "section:heroes": 4,
-    "section:games": 2,
-    "section:dictionary": 1,
-    "section:quiz": 1
+    "section:home": 33,
+    "section:ages": 4,
+    "section:tales": 7,
+    "section:gallery": 3,
+    "section:heroes": 7,
+    "section:games": 7,
+    "section:dictionary": 2,
+    "section:quiz": 5,
+    "game:memory": 1,
+    "game:order": 2,
+    "section:traditions": 4,
+    "quiz:5-7": 1,
+    "tale:ryaba": 1,
+    "tale:lisa-i-zhuravl": 1
   }
 }
